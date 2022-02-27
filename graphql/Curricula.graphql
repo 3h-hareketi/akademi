@@ -1,0 +1,8 @@
+query Curricula {
+  curricula {
+    id
+    title
+    slug
+    description
+  }
+}
