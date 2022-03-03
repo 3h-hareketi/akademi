@@ -110,9 +110,11 @@ const Curricula = ({ curricula }: Props) => (
               </ul>
             </div>
           </div>
-          {curricula.map((curriculum) => (
-            <CurriculumListItem curriculum={curriculum} key={curriculum.id} />
-          ))}
+          <div className="w-full px-3 lg:w-3/4">
+            {curricula.map((curriculum) => (
+              <CurriculumListItem curriculum={curriculum} key={curriculum.id} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
