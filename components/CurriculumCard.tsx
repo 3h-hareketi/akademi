@@ -11,10 +11,9 @@ const CurriculumCard = (props: Props) => {
     >
       <div className="bg-white rounded">
         <div className="relative h-64">
-          {" "}
           <Image
             className="rounded-t"
-            src="/placeholder.jpeg"
+            src={props.curriculum.image?.url || "/placeholder.jpeg"}
             alt=""
             layout="fill"
             objectFit="cover"
@@ -42,7 +41,6 @@ const CurriculumCard = (props: Props) => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Kurs detayları</span>
           </a>
         </div>
       </div>
