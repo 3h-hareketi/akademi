@@ -23,6 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: curricula.map((curriculum) => {
       return {
         params: {
+          category: curriculum.category?.slug,
           slug: curriculum.slug,
         },
       };
