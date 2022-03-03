@@ -1,5 +1,7 @@
+import { GetStaticProps } from "next";
 import CurriculumCard from "../../components/CurriculumCard";
-import { Curriculum } from "../../interfaces";
+import { Curriculum, getSdk } from "../../interfaces";
+import { client } from "../../utils";
 
 type Props = {
   curricula: Array<Curriculum>;
@@ -152,5 +154,14 @@ const Curricula = ({ curricula }: Props) => (
     </div>
   </section>
 );
+
+export const getStaticProps: GetStaticProps = async () => {
+  const sdk = getSdk(client);
+  const { curricula } = await sdk.Curricula();
+
+  return {
+    props: { curricula },
+  };
+};
 
 export default Curricula;
