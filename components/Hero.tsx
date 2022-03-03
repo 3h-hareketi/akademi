@@ -15,7 +15,7 @@ const Hero = () => (
         <div className="flex flex-wrap -mx-4">
           <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
             <div className="px-6 py-12 text-center bg-white rounded shadow">
-              <span className="inline-block p-2 mb-6 bg-green-100 rounded-lg">
+              <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
                   className="w-10 h-10 text-primary"
                   xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const Hero = () => (
           </div>
           <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
             <div className="px-6 py-12 text-center bg-white rounded shadow">
-              <span className="inline-block p-2 mb-6 bg-green-100 rounded-lg">
+              <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
                   className="w-10 h-10 text-primary"
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ const Hero = () => (
           </div>
           <div className="w-full px-4 lg:w-1/3">
             <div className="px-6 py-12 text-center bg-white rounded shadow">
-              <span className="inline-block p-2 mb-6 bg-green-100 rounded">
+              <span className="inline-block p-2 mb-6 bg-gray-100 rounded">
                 <svg
                   className="w-10 h-10 text-primary"
                   xmlns="http://www.w3.org/2000/svg"
