@@ -4,21 +4,21 @@ const Hero = () => {
   return (
     <section>
       <div className="py-20 bg-gray-50 radius-for-skewed">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 max-w-md mx-auto text-center">
-            <span className="text-green-600 font-bold">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-md mx-auto mb-16 text-center">
+            <span className="font-bold text-primary">
               Hürriyet, Hukuk, Hoşgörü
             </span>
-            <h2 className="text-4xl lg:text-5xl font-bold font-heading">
+            <h2 className="text-4xl font-bold lg:text-5xl font-heading">
               3H Akademi&apos;ye hoşgeldiniz!
             </h2>
           </div>
           <div className="flex flex-wrap -mx-4">
-            <div className="mb-8 lg:mb-0 w-full lg:w-1/3 px-4">
-              <div className="py-12 px-6 bg-white rounded shadow text-center">
-                <span className="mb-6 inline-block p-2 rounded-lg bg-green-100">
+            <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
+              <div className="px-6 py-12 text-center bg-white rounded shadow">
+                <span className="inline-block p-2 mb-6 bg-green-100 rounded-lg">
                   <svg
-                    className="w-10 h-10 text-green-500"
+                    className="w-10 h-10 text-primary"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -41,11 +41,11 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="mb-8 lg:mb-0 w-full lg:w-1/3 px-4">
-              <div className="py-12 px-6 bg-white rounded shadow text-center">
-                <span className="mb-6 inline-block p-2 rounded-lg bg-green-100">
+            <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
+              <div className="px-6 py-12 text-center bg-white rounded shadow">
+                <span className="inline-block p-2 mb-6 bg-green-100 rounded-lg">
                   <svg
-                    className="w-10 h-10 text-green-500"
+                    className="w-10 h-10 text-primary"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -62,11 +62,11 @@ const Hero = () => {
                 </p>
               </div>
             </div>
-            <div className="w-full lg:w-1/3 px-4">
-              <div className="py-12 px-6 bg-white rounded shadow text-center">
-                <span className="mb-6 inline-block p-2 rounded bg-green-100">
+            <div className="w-full px-4 lg:w-1/3">
+              <div className="px-6 py-12 text-center bg-white rounded shadow">
+                <span className="inline-block p-2 mb-6 bg-green-100 rounded">
                   <svg
-                    className="w-10 h-10 text-green-500"
+                    className="w-10 h-10 text-primary"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
