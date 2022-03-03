@@ -42,7 +42,7 @@ const Curricula = ({ curricula, categories }: Props) => (
                 </a>
                 {categories.map((category) => (
                   <li key={category.slug}>
-                    <Link href={category.slug} passHref>
+                    <Link href={`/curricula/${category.slug}`} passHref>
                       <a
                         className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                         href="#"
