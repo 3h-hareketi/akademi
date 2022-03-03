@@ -37,9 +37,11 @@ const CurriculaList = ({ curricula, categories }: Props) => (
                 Kategoriler
               </h4>
               <ul>
-                <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
-                  Tümü
-                </a>
+                <Link href={`/curricula`} passHref>
+                  <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
+                    Tümü
+                  </a>
+                </Link>
                 {categories.map((category) => (
                   <li key={category.slug}>
                     <Link href={`/curricula/${category.slug}`} passHref>
