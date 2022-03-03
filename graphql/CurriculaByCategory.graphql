@@ -1,0 +1,17 @@
+query CurriculaByCategorySlug($categorySlug: String!) {
+  category(where: {slug: $categorySlug}) {
+    curricula {
+      id
+      slug
+      title
+      description
+      category {
+        title
+        slug
+      }
+      image {
+        url
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => (
   <section>
@@ -6,9 +7,11 @@ const Navbar = () => (
       <div className="flex items-center">
         <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-5">
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-              Start
-            </a>
+            <Link href="/">
+              <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+                Home
+              </a>
+            </Link>
           </li>
           <li className="text-gray-300">
             <svg
@@ -28,7 +31,7 @@ const Navbar = () => (
           </li>
           <li>
             <a className="text-sm font-bold text-primary" href="#">
-              About Us
+              About
             </a>
           </li>
           <li className="text-gray-300">
@@ -48,9 +51,11 @@ const Navbar = () => (
             </svg>
           </li>
           <li>
-            <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-              Services
-            </a>
+            <Link href="/curricula">
+              <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
+                Courses
+              </a>
+            </Link>
           </li>
         </ul>
         <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-y-1/2 lg:-translate-x-1/2">

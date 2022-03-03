@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { Curriculum, getSdk } from "../../interfaces";
-import { client } from "../../utils";
+import { Curriculum, getSdk } from "../../../interfaces";
+import { client } from "../../../utils";
 
 const Curriculum = ({ title, slug }: Curriculum) => <div></div>;
 
@@ -23,6 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: curricula.map((curriculum) => {
       return {
         params: {
+          category: curriculum.category?.slug,
           slug: curriculum.slug,
         },
       };
