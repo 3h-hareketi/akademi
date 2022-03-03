@@ -41,6 +41,7 @@ const CurriculumCard = (props: Props) => {
                 clipRule="evenodd"
               ></path>
             </svg>
+            <span>Kurs detayları</span>
           </a>
         </div>
       </div>
