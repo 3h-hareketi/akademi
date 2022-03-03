@@ -1,5 +1,5 @@
 import Image from "next/image";
-const Login = () => (
+const Signup = () => (
   <section className="flex h-screen py-10 bg-primary lg:py-20">
     <div className="container px-4 mx-auto my-auto">
       <div className="max-w-xl mx-auto">
@@ -13,15 +13,31 @@ const Login = () => (
         </div>
         <div className="p-6 mb-6 bg-white rounded shadow-md lg:mb-10 lg:p-12">
           <div className="mb-6">
-            <span className="text-gray-500">Tekrar hoşgeldiniz</span>
-            <h3 className="text-2xl font-bold">Giriş</h3>
+            <span className="text-gray-500">Aramıza katıl!</span>
+            <h3 className="text-2xl font-bold">Hesap oluştur</h3>
           </div>
           <form action="" data-bitwarden-watching="1">
+            <div className="flex flex-wrap -mx-2">
+              <div className="w-full px-2 mb-3 lg:w-1/2">
+                <input
+                  className="w-full p-4 text-xs rounded outline-none bg-gray-50"
+                  type="text"
+                  placeholder="Ad"
+                ></input>
+              </div>
+              <div className="w-full px-2 mb-3 lg:w-1/2">
+                <input
+                  className="w-full p-4 text-xs rounded outline-none bg-gray-50"
+                  type="text"
+                  placeholder="Soyad"
+                ></input>
+              </div>
+            </div>
             <div className="flex p-4 mb-3 rounded bg-gray-50">
               <input
                 className="w-full text-xs outline-none bg-gray-50"
                 type="email"
-                placeholder="E-posta"
+                placeholder="isim@email.com"
               ></input>
               <svg
                 className="w-6 h-6 my-auto ml-4 text-gray-300"
@@ -42,7 +58,7 @@ const Login = () => (
               <input
                 className="w-full text-xs outline-none bg-gray-50"
                 type="password"
-                placeholder="Şifre"
+                placeholder="Şifre belirleyin"
               ></input>
               <button>
                 <svg
@@ -69,12 +85,12 @@ const Login = () => (
             </div>
             <div className="text-center">
               <button className="w-full py-4 mb-2 text-sm font-bold transition duration-200 rounded bg-primary hover:bg-primaryShade text-gray-50">
-                Giriş yap
+                Üye ol
               </button>
               <span className="text-xs text-gray-400">
-                <span>Hesabınız yok mu?</span>
+                <span>Zaten bir hesabınız mı var?</span>
                 <a className="text-primary hover:underline" href="#">
-                  Üye olun
+                  Giriş yap
                 </a>
               </span>
             </div>
@@ -94,4 +110,4 @@ const Login = () => (
   </section>
 );
 
-export default Login;
+export default Signup;
