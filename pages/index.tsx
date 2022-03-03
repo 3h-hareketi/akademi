@@ -2,7 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Hero from "../components/Hero";
 import Overview from "../components/Overview";
-const Home: NextPage = () => {
+import { CurriculaQuery, getSdk } from "../interfaces";
+import { client } from "../utils";
+
+const Home = ({ curricula }: CurriculaQuery) => {
   return (
     <div className="py-10 mx-auto bg-white">
       <Head>
@@ -12,10 +15,20 @@ const Home: NextPage = () => {
       </Head>
       <div className="container mx-auto bg-white px4">
         <Hero />
-        <Overview />
+        <Overview curricula={curricula} />
       </div>
     </div>
   );
 };
+
+export async function getStaticProps() {
+  const sdk = getSdk(client);
+  const { curricula } = await sdk.Curricula();
+  return {
+    props: {
+      curricula,
+    },
+  };
+}
 
 export default Home;
