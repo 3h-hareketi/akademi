@@ -14,9 +14,10 @@ const Category = ({ curricula, categories }: Props) => (
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const sdk = getSdk(client);
-  const { curricula } = await sdk.CurriculaByCategorySlug({
+  const { category } = await sdk.CurriculaByCategorySlug({
     categorySlug: params?.category as string,
   });
+  const curricula = category?.curricula;
   const { categories } = await sdk.Categories();
 
   return {

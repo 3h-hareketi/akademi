@@ -6001,15 +6001,22 @@ export type CurriculaByCategorySlugQueryVariables = Exact<{
 
 export type CurriculaByCategorySlugQuery = {
   __typename?: "Query";
-  curricula: Array<{
-    __typename?: "Curriculum";
-    id: string;
-    slug: string;
-    title: string;
-    description?: string | null;
-    category?: { __typename?: "Category"; title: string; slug: string } | null;
-    image?: { __typename?: "Asset"; url: string } | null;
-  }>;
+  category?: {
+    __typename?: "Category";
+    curricula: Array<{
+      __typename?: "Curriculum";
+      id: string;
+      slug: string;
+      title: string;
+      description?: string | null;
+      category?: {
+        __typename?: "Category";
+        title: string;
+        slug: string;
+      } | null;
+      image?: { __typename?: "Asset"; url: string } | null;
+    }>;
+  } | null;
 };
 
 export type CurriculumBySlugQueryVariables = Exact<{
@@ -6054,17 +6061,19 @@ export const CurriculaDocument = gql`
 `;
 export const CurriculaByCategorySlugDocument = gql`
   query CurriculaByCategorySlug($categorySlug: String!) {
-    curricula(where: { slug: $categorySlug }) {
-      id
-      slug
-      title
-      description
-      category {
-        title
+    category(where: { slug: $categorySlug }) {
+      curricula {
+        id
         slug
-      }
-      image {
-        url
+        title
+        description
+        category {
+          title
+          slug
+        }
+        image {
+          url
+        }
       }
     }
   }
