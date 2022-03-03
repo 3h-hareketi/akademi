@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => (
   <section>
-    <div className="py-20 md:px-20 bg-gray-50 radius-for-skewed">
+    <div className="py-20 md:px-20 radius-for-skewed bg-gray-50">
       <div className="container px-4 mx-auto">
         <div className="max-w-md mx-auto mb-16 text-center">
           <span className="font-bold text-primary">
@@ -14,7 +14,7 @@ const Hero = () => (
         </div>
         <div className="flex flex-wrap -mx-4">
           <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
-            <div className="px-6 py-12 text-center bg-white rounded shadow">
+            <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
                   className="w-10 h-10 text-primary"
@@ -40,7 +40,7 @@ const Hero = () => (
             </div>
           </div>
           <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
-            <div className="px-6 py-12 text-center bg-white rounded shadow">
+            <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
                   className="w-10 h-10 text-primary"
@@ -61,7 +61,7 @@ const Hero = () => (
             </div>
           </div>
           <div className="w-full px-4 lg:w-1/3">
-            <div className="px-6 py-12 text-center bg-white rounded shadow">
+            <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded">
                 <svg
                   className="w-10 h-10 text-primary"

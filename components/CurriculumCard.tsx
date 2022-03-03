@@ -1,5 +1,6 @@
 import { Curriculum } from "../interfaces";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   curriculum: Curriculum;
@@ -7,7 +8,7 @@ interface Props {
 
 const CurriculumCard = (props: Props) => (
   <div key={props.curriculum.id} className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
-    <div className="bg-white rounded">
+    <div className="bg-white rounded shadow-md">
       <div className="relative h-64">
         <Image
           className="rounded-t"
@@ -39,7 +40,9 @@ const CurriculumCard = (props: Props) => (
               clipRule="evenodd"
             ></path>
           </svg>
-          <span>Kurs detayları</span>
+          <Link href={`/curricula/${props.curriculum.slug}`} passHref>
+            <span>Kurs detayları</span>
+          </Link>
         </a>
       </div>
     </div>
