@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 const Login = () => (
   <section className="flex h-screen py-10 bg-primary lg:py-20">
     <div className="container px-4 mx-auto my-auto">
