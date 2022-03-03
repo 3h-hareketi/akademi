@@ -13,14 +13,14 @@ const Curricula = ({ curricula }: Props) => (
       <div className="container px-4 mx-auto Konular">
         <div className="flex flex-wrap items-center mb-16">
           <div className="w-full lg:w-1/2">
-            <span className="font-bold text-green-600">3H Akademi</span>
+            <span className="font-bold text-primary">3H Akademi</span>
             <h2 className="text-4xl font-bold lg:text-5xl font-heading">
               Kurslar
             </h2>
           </div>
           <div className="hidden w-1/2 text-right lg:block">
             <a
-              className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-green-600 rounded-l-xl rounded-t-xl hover:bg-green-700 text-gray-50"
+              className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50"
               href="#"
               data-removed="true"
             >
@@ -37,7 +37,7 @@ const Curricula = ({ curricula }: Props) => (
               <ul>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 font-bold text-green-600 rounded bg-gray-50"
+                    className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50"
                     href="#"
                   >
                     Tümü
@@ -45,7 +45,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Klasik Liberalizm
@@ -53,7 +53,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Tarih
@@ -61,7 +61,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Ekonomi
@@ -69,7 +69,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Fizik
@@ -77,7 +77,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Eğitim
@@ -85,7 +85,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Sosyal Medya
@@ -93,7 +93,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Sertifikasız
@@ -101,7 +101,7 @@ const Curricula = ({ curricula }: Props) => (
                 </li>
                 <li>
                   <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-green-600 hover:bg-gray-50"
+                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
                     href="#"
                   >
                     Finans

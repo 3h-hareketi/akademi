@@ -21,7 +21,7 @@ const CurriculumListItem = ({ curriculum }: Props) => (
       </a>
       <div className="flex items-center mb-2 text-sm">
         <a
-          className="text-green-600 hover:underline hover:text-green-700"
+          className="text-primary hover:underline hover:text-primaryShade"
           href="#"
         >
           Finans
