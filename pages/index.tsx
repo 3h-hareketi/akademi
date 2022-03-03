@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Hero from "../components/Hero";
 
 const Home: NextPage = () => {
   return (
@@ -11,98 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto bg-white px4">
-        <h1>Test</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-          condimentum finibus ultrices. Aenean non metus nibh. Aenean lacinia,
-          tortor ut auctor pulvinar, libero sem condimentum erat, a pulvinar
-          tortor dui lobortis leo. Duis ullamcorper bibendum ligula quis luctus.
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-          posuere cubilia curae; Etiam sit amet dolor eu erat ullamcorper ornare
-          nec quis enim. Donec quis justo orci. In posuere magna sed orci semper
-          convallis eget sit amet elit. Ut vitae semper orci. Etiam euismod
-          metus quis urna convallis rhoncus. Fusce non posuere mauris.
-        </p>
-        <p>
-          Nam porta vehicula ex eget pretium. Donec at massa leo. Nullam
-          dignissim euismod orci, quis faucibus orci blandit id. Proin purus
-          lacus, sollicitudin quis ligula ut, iaculis viverra urna. Suspendisse
-          erat eros, laoreet et dapibus vitae, fermentum non dolor. Vestibulum a
-          nunc finibus, suscipit odio nec, ornare mauris. Fusce sed lobortis
-          velit. Aenean rhoncus justo ac velit scelerisque, non congue urna
-          ultrices. Quisque ut placerat erat, sed varius tellus.
-        </p>
-        <p>
-          Nulla eget lobortis turpis, sit amet sagittis ligula. Duis nec leo mi.
-          Aliquam laoreet dolor ac maximus aliquam. Vivamus eu egestas orci, sit
-          amet euismod erat. Class aptent taciti sociosqu ad litora torquent per
-          conubia nostra, per inceptos himenaeos. Nullam tempor et sem vitae
-          porttitor. In hac habitasse platea dictumst.
-        </p>
-        <p>
-          Donec auctor ipsum leo, eu sodales est vestibulum non. Sed bibendum
-          ullamcorper dolor a condimentum. Nulla facilisi. Nunc non est turpis.
-          Quisque dictum luctus risus, ac egestas nisi mollis vel. Morbi
-          volutpat tempor eros sed dignissim. Sed non tempor libero.
-        </p>
-        <p>
-          Praesent semper, nunc id dapibus accumsan, enim lorem tempus ex, at
-          dapibus lorem lacus eget quam. Cras gravida lacus velit, at varius
-          magna posuere vel. In aliquam ornare nunc, eget auctor leo eleifend
-          non. Cras tincidunt massa id condimentum finibus. Vivamus sed quam
-          pretium, consectetur nisi ac, vestibulum ex. Proin in efficitur ante.
-          Phasellus fringilla, augue id egestas vulputate, erat purus pretium
-          ipsum, at ultrices nibh dolor vitae turpis. Aenean at risus eu erat
-          cursus lacinia. Nulla imperdiet mi et urna imperdiet ornare. Etiam
-          sagittis diam vel neque bibendum facilisis. Aliquam luctus odio non
-          eros tempor aliquam.
-        </p>
-        <h2>Test</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-          condimentum finibus ultrices. Aenean non metus nibh. Aenean lacinia,
-          tortor ut auctor pulvinar, libero sem condimentum erat, a pulvinar
-          tortor dui lobortis leo. Duis ullamcorper bibendum ligula quis luctus.
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-          posuere cubilia curae; Etiam sit amet dolor eu erat ullamcorper ornare
-          nec quis enim. Donec quis justo orci. In posuere magna sed orci semper
-          convallis eget sit amet elit. Ut vitae semper orci. Etiam euismod
-          metus quis urna convallis rhoncus. Fusce non posuere mauris.
-        </p>
-        <p>
-          Nam porta vehicula ex eget pretium. Donec at massa leo. Nullam
-          dignissim euismod orci, quis faucibus orci blandit id. Proin purus
-          lacus, sollicitudin quis ligula ut, iaculis viverra urna. Suspendisse
-          erat eros, laoreet et dapibus vitae, fermentum non dolor. Vestibulum a
-          nunc finibus, suscipit odio nec, ornare mauris. Fusce sed lobortis
-          velit. Aenean rhoncus justo ac velit scelerisque, non congue urna
-          ultrices. Quisque ut placerat erat, sed varius tellus.
-        </p>
-        <p>
-          Nulla eget lobortis turpis, sit amet sagittis ligula. Duis nec leo mi.
-          Aliquam laoreet dolor ac maximus aliquam. Vivamus eu egestas orci, sit
-          amet euismod erat. Class aptent taciti sociosqu ad litora torquent per
-          conubia nostra, per inceptos himenaeos. Nullam tempor et sem vitae
-          porttitor. In hac habitasse platea dictumst.
-        </p>
-        <p>
-          Donec auctor ipsum leo, eu sodales est vestibulum non. Sed bibendum
-          ullamcorper dolor a condimentum. Nulla facilisi. Nunc non est turpis.
-          Quisque dictum luctus risus, ac egestas nisi mollis vel. Morbi
-          volutpat tempor eros sed dignissim. Sed non tempor libero.
-        </p>
-        <p>
-          Praesent semper, nunc id dapibus accumsan, enim lorem tempus ex, at
-          dapibus lorem lacus eget quam. Cras gravida lacus velit, at varius
-          magna posuere vel. In aliquam ornare nunc, eget auctor leo eleifend
-          non. Cras tincidunt massa id condimentum finibus. Vivamus sed quam
-          pretium, consectetur nisi ac, vestibulum ex. Proin in efficitur ante.
-          Phasellus fringilla, augue id egestas vulputate, erat purus pretium
-          ipsum, at ultrices nibh dolor vitae turpis. Aenean at risus eu erat
-          cursus lacinia. Nulla imperdiet mi et urna imperdiet ornare. Etiam
-          sagittis diam vel neque bibendum facilisis. Aliquam luctus odio non
-          eros tempor aliquam.
-        </p>
+        <Hero />
       </div>
     </div>
   );
