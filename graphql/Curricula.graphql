@@ -1,8 +1,11 @@
 query Curricula {
   curricula {
     id
-    title
     slug
+    title
     description
+    image {
+      url
+    }
   }
 }
