@@ -103,12 +103,11 @@ const Home = ({ curricula }: Props) => {
                     Öne Çıkan Kurslar
                   </h2>
                 </div>
-                <a
-                  className="hidden px-6 py-2 font-bold leading-loose transition duration-200 bg-primary md:inline-block rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50"
-                  href="#"
-                >
-                  Daha Fazla Kurs Gör
-                </a>
+                <Link href="/curricula" passHref>
+                  <a className="hidden px-6 py-2 font-bold leading-loose transition duration-200 bg-primary md:inline-block rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50">
+                    Daha Fazla Kurs Gör
+                  </a>
+                </Link>
               </div>
               <div className="flex flex-wrap mb-4 -mx-4">
                 {curricula.map((curriculum: Curriculum) => (
