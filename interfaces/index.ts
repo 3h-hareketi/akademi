@@ -1624,6 +1624,7 @@ export type Curriculum = Node & {
   slug: Scalars["String"];
   /** System stage field */
   stage: Stage;
+  tags: Array<Scalars["String"]>;
   title: Scalars["String"];
   /** The time the document was updated */
   updatedAt: Scalars["DateTime"];
@@ -1703,6 +1704,7 @@ export type CurriculumCreateInput = {
   description?: InputMaybe<Scalars["String"]>;
   image?: InputMaybe<AssetCreateOneInlineInput>;
   slug: Scalars["String"];
+  tags?: InputMaybe<Array<Scalars["String"]>>;
   title: Scalars["String"];
   updatedAt?: InputMaybe<Scalars["DateTime"]>;
 };
@@ -1836,6 +1838,16 @@ export type CurriculumManyWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars["String"]>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tags?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tags_contains_all?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tags_contains_none?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tags_contains_some?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tags_not?: InputMaybe<Array<Scalars["String"]>>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -1884,6 +1896,8 @@ export enum CurriculumOrderByInput {
   PublishedAtDesc = "publishedAt_DESC",
   SlugAsc = "slug_ASC",
   SlugDesc = "slug_DESC",
+  TagsAsc = "tags_ASC",
+  TagsDesc = "tags_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
@@ -1895,6 +1909,7 @@ export type CurriculumUpdateInput = {
   description?: InputMaybe<Scalars["String"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   slug?: InputMaybe<Scalars["String"]>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -1917,6 +1932,7 @@ export type CurriculumUpdateManyInlineInput = {
 
 export type CurriculumUpdateManyInput = {
   description?: InputMaybe<Scalars["String"]>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 export type CurriculumUpdateManyWithNestedWhereInput = {
@@ -2068,6 +2084,16 @@ export type CurriculumWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars["String"]>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tags?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tags_contains_all?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tags_contains_none?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tags_contains_some?: InputMaybe<Array<Scalars["String"]>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tags_not?: InputMaybe<Array<Scalars["String"]>>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
