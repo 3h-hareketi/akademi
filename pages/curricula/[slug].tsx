@@ -1,5 +1,5 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { Curriculum, getSdk, Node } from "../../interfaces";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { Curriculum, getSdk } from "../../interfaces";
 import { client } from "../../utils";
 
 const Curricula = ({ title, slug }: Curriculum) => <div></div>;
