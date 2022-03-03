@@ -1,8 +1,19 @@
-import { GetStaticPaths, NextPage } from "next";
-import { getSdk } from "../../interfaces";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { Curriculum, getSdk, Node } from "../../interfaces";
 import { client } from "../../utils";
 
-const Curricula: NextPage = () => <div></div>;
+const Curricula = ({ title, slug }: Curriculum) => <div></div>;
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const sdk = getSdk(client);
+  const { curriculum } = await sdk.CurriculumBySlug({
+    slug: params!.slug as string,
+  });
+
+  return {
+    props: { ...curriculum },
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const sdk = getSdk(client);
