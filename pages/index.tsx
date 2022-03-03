@@ -2,8 +2,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Hero from "../components/Hero";
 import Overview from "../components/Overview";
-import { CurriculaQuery, getSdk } from "../interfaces";
+import { CurriculaQuery, Curriculum, getSdk } from "../interfaces";
 import { client } from "../utils";
+
+type Props = {
+  curricula: Array<Curriculum>;
+};
 
 const Home = ({ curricula }: CurriculaQuery) => {
   return (
