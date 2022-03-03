@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Hero from "../components/Hero";
-
+import Overview from "../components/Overview";
 const Home: NextPage = () => {
   return (
     <div className="py-10 mx-auto bg-white">
@@ -12,6 +12,7 @@ const Home: NextPage = () => {
       </Head>
       <div className="container mx-auto bg-white px4">
         <Hero />
+        <Overview />
       </div>
     </div>
   );
