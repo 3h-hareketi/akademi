@@ -1,5 +1,7 @@
 import { Curriculum } from "../interfaces";
 import Image from "next/image";
+import Link from "next/link";
+
 type Props = {
   curriculum: Curriculum;
 };
@@ -26,11 +28,13 @@ const CurriculumListItem = ({ curriculum }: Props) => (
     /> */}
     </div>
     <div className="w-full px-3 lg:w-3/4">
-      <a className="hover:underline" href="#">
-        <h3 className="mb-1 text-2xl font-bold font-heading">
-          {curriculum.title}
-        </h3>
-      </a>
+      <Link href={`/${curriculum.category}/${curriculum.slug}`} passHref>
+        <a className="hover:underline" href="#">
+          <h3 className="mb-1 text-2xl font-bold font-heading">
+            {curriculum.title}
+          </h3>
+        </a>
+      </Link>
       <div className="flex items-center mb-2 text-sm">
         <a
           className="text-primary hover:underline hover:text-primaryShade"
