@@ -41,7 +41,7 @@ const Curricula = ({ curricula, categories }: Props) => (
                   <li key={category.slug}>
                     <Link href={category.slug} passHref>
                       <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
-                        Tümü
+                        {category.title}
                       </a>
                     </Link>
                   </li>
