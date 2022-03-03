@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
-import { CurriculaQuery } from "../interfaces";
+import { CurriculaQuery, Curriculum } from "../interfaces";
 type Props = {
-  curricula: CurriculaQuery["curricula"];
+  curricula: Array<Curriculum>;
 };
 const Overview = (props: Props) => {
   return (
@@ -24,61 +24,50 @@ const Overview = (props: Props) => {
             </a>
           </div>
           <div className="flex flex-wrap mb-4 -mx-4">
-            {props.curricula.map(
-              (curriculum: {
-                id: Key | null | undefined;
-                title:
-                  | boolean
-                  | ReactChild
-                  | ReactFragment
-                  | ReactPortal
-                  | null
-                  | undefined;
-              }) => (
-                <div
-                  key={curriculum.id}
-                  className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3"
-                >
-                  <div className="bg-white rounded">
-                    <div className="relative h-64">
-                      {" "}
-                      <Image
-                        className="rounded-t"
-                        src="/homepage.jpeg"
-                        alt=""
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
+            {props.curricula.map((curriculum) => (
+              <div
+                key={curriculum.id}
+                className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3"
+              >
+                <div className="bg-white rounded">
+                  <div className="relative h-64">
+                    {" "}
+                    <Image
+                      className="rounded-t"
+                      src="/homepage.jpeg"
+                      alt=""
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
 
-                    <div className="p-6">
-                      <span className="text-gray-400">2021</span>
-                      <h3 className="mb-4 text-2xl font-bold font-heading">
-                        {curriculum.title}
-                      </h3>
-                      <a
-                        className="flex font-bold text-primary hover:text-primaryShade"
-                        href="#"
+                  <div className="p-6">
+                    <span className="text-gray-400">2021</span>
+                    <h3 className="mb-4 text-2xl font-bold font-heading">
+                      {curriculum.title}
+                    </h3>
+                    <a
+                      className="flex font-bold text-primary hover:text-primaryShade"
+                      href="#"
+                    >
+                      <svg
+                        className="w-6 h-6 mr-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
                       >
-                        <svg
-                          className="w-6 h-6 mr-3"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <span>Kurs detayları</span>
-                      </a>
-                    </div>
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      <span>Kurs detayları</span>
+                    </a>
                   </div>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
 
           <div className="text-center">
