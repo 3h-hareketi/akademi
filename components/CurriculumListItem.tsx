@@ -23,7 +23,10 @@ const CurriculumListItem = ({ curriculum }: Props) => (
       </div>
     </div>
     <div className="w-full px-3 lg:w-3/4">
-      <Link href={`/${curriculum.category?.slug}/${curriculum.slug}`} passHref>
+      <Link
+        href={`/curricula/${curriculum.category?.slug}/${curriculum.slug}`}
+        passHref
+      >
         <a className="hover:underline" href="#">
           <h3 className="mb-1 text-2xl font-bold font-heading">
             {curriculum.title}
@@ -31,7 +34,7 @@ const CurriculumListItem = ({ curriculum }: Props) => (
         </a>
       </Link>
       <div className="flex items-center mb-2 text-sm">
-        <Link href={`${curriculum.category?.slug}`} passHref>
+        <Link href={`/curricula/${curriculum.category?.slug}`} passHref>
           <a
             className="text-primary hover:underline hover:text-primaryShade"
             href="#"
