@@ -19,7 +19,7 @@ const Home = ({ curricula }: Props) => {
       <div className="container mx-auto bg-white px4">
         <Hero />
         <section>
-          <div className="py-20 bg-gray-50 radius-for-skewed">
+          <div className="py-20 md:px-20 bg-gray-50 radius-for-skewed">
             <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center justify-center mb-16 md:justify-between">
                 <div className="text-center lg:text-left">

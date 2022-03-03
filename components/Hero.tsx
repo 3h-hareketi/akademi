@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => (
   <section>
-    <div className="py-20 bg-gray-50 radius-for-skewed">
+    <div className="py-20 md:px-20 bg-gray-50 radius-for-skewed">
       <div className="container px-4 mx-auto">
         <div className="max-w-md mx-auto mb-16 text-center">
           <span className="font-bold text-primary">
