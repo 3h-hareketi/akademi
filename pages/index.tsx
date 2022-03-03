@@ -9,7 +9,7 @@ type Props = {
   curricula: Array<Curriculum>;
 };
 
-const Home = ({ curricula }: CurriculaQuery) => {
+const Home = ({ curricula }: Props) => {
   return (
     <div className="py-10 mx-auto bg-white">
       <Head>
