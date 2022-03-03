@@ -3,26 +3,6 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <section>
-      {/*
-      <div className="skew skew-top mr-for-radius bg-grey">
-        <svg
-          className="w-full h-8 md:h-12 lg:h-20 text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
-        </svg>
-      </div>
-      <div className="skew skew-top ml-for-radius">
-        <svg
-          className="w-full h-8 md:h-12 lg:h-20 text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
-        </svg>
-      </div>
-        */}
       <div className="py-10 bg-white">
         <div className="max-w-md mx-auto text-center">
           <a className="inline-block mx-auto leading-none" href="#">
@@ -111,26 +91,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/*
-      <div className="skew skew-bottom mr-for-radius">
-        <svg
-          className="w-full h-8 md:h-12 lg:h-20 text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 0 0 10"></polygon>
-        </svg>
-      </div>
-      <div className="skew skew-bottom ml-for-radius">
-        <svg
-          className="w-full h-8 md:h-12 lg:h-20 text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 0 10 10"></polygon>
-        </svg>
-      </div>
-      */}
     </section>
   );
 };

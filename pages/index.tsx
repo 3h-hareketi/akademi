@@ -1,8 +1,7 @@
-import type { NextPage } from "next";
 import Head from "next/head";
 import Hero from "../components/Hero";
 import Overview from "../components/Overview";
-import { CurriculaQuery, Curriculum, getSdk } from "../interfaces";
+import { Curriculum, getSdk } from "../interfaces";
 import { client } from "../utils";
 
 type Props = {

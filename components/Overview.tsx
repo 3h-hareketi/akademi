@@ -1,6 +1,4 @@
-import Image from "next/image";
-import { Key, ReactChild, ReactFragment, ReactPortal } from "react";
-import { CurriculaQuery, Curriculum } from "../interfaces";
+import { Curriculum } from "../interfaces";
 import CurriculumCard from "./CurriculumCard";
 type Props = {
   curricula: Array<Curriculum>;
