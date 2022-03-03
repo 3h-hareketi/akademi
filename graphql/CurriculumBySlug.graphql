@@ -1,0 +1,11 @@
+query CurriculumBySlug($slug: String!) {
+  curriculum(where: { slug: $slug }) {
+    title
+    slug
+    description
+    image {
+      fileName
+      url
+    }
+  }
+}
