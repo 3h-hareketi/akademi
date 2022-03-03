@@ -1,0 +1,6 @@
+query Categories {
+  categories {
+    title
+    slug
+  }
+}
