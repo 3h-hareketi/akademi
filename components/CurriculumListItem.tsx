@@ -4,7 +4,7 @@ type Props = {
   curriculum: Curriculum;
 };
 
-const CurriculumCard = ({ curriculum }: Props) => (
+const CurriculumListItem = ({ curriculum }: Props) => (
   <div className="w-full px-3 lg:w-3/4">
     <div className="flex flex-wrap mb-8 -mx-3 lg:mb-6">
       <div className="w-full px-3 mb-4 lg:mb-0 lg:w-1/4">
@@ -36,4 +36,4 @@ const CurriculumCard = ({ curriculum }: Props) => (
   </div>
 );
 
-export default CurriculumCard;
+export default CurriculumListItem;

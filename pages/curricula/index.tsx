@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import CurriculumCard from "../../components/CurriculumCard";
+import CurriculumListItem from "../../components/CurriculumListItem";
 import { Curriculum, getSdk } from "../../interfaces";
 import { client } from "../../utils";
 
@@ -111,7 +111,7 @@ const Curricula = ({ curricula }: Props) => (
             </div>
           </div>
           {curricula.map((curriculum) => (
-            <CurriculumCard curriculum={curriculum} key={curriculum.id} />
+            <CurriculumListItem curriculum={curriculum} key={curriculum.id} />
           ))}
         </div>
       </div>
