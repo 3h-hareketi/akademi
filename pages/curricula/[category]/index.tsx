@@ -13,13 +13,7 @@ const Category = ({ curricula, categories }: Props) => {
   const router = useRouter();
   const { pid } = router.query;
 
-  const filteredCurricula = curricula.filter(
-    (curriculum) => curriculum.category?.slug === pid
-  );
-
-  return (
-    <CurriculaList curricula={filteredCurricula} categories={categories} />
-  );
+  return <CurriculaList curricula={curricula} categories={categories} />;
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
