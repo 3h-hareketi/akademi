@@ -34,13 +34,19 @@ const Curricula = ({ curricula, categories }: Props) => (
           <div className="w-full px-3 mb-8 lg:mb-0 lg:w-1/4">
             <div className="px-6 py-4 bg-white rounded shadow">
               <h4 className="mb-4 font-bold text-gray-500 uppercase">
-                KONULAR
+                Kategoriler
               </h4>
               <ul>
+                <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
+                  Tümü
+                </a>
                 {categories.map((category) => (
                   <li key={category.slug}>
                     <Link href={category.slug} passHref>
-                      <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
+                      <a
+                        className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
+                        href="#"
+                      >
                         {category.title}
                       </a>
                     </Link>
