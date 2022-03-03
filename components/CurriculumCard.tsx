@@ -1,8 +1,10 @@
 import { Curriculum } from "../interfaces";
 import Image from "next/image";
+
 interface Props {
   curriculum: Curriculum;
 }
+
 const CurriculumCard = (props: Props) => (
   <div key={props.curriculum.id} className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
     <div className="bg-white rounded">
