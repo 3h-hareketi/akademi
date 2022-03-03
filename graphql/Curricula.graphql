@@ -4,6 +4,9 @@ query Curricula {
     slug
     title
     description
+    category {
+      slug
+    }
     image {
       url
     }

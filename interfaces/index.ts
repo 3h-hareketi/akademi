@@ -5990,6 +5990,7 @@ export type CurriculaQuery = {
     slug: string;
     title: string;
     description?: string | null;
+    category?: { __typename?: "Category"; slug: string } | null;
     image?: { __typename?: "Asset"; url: string } | null;
   }>;
 };
@@ -6024,6 +6025,9 @@ export const CurriculaDocument = gql`
       slug
       title
       description
+      category {
+        slug
+      }
       image {
         url
       }
