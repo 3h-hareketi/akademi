@@ -1,13 +1,15 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import CurriculumListItem from "../../components/CurriculumListItem";
-import { Curriculum, getSdk } from "../../interfaces";
+import { Category, Curriculum, getSdk } from "../../interfaces";
 import { client } from "../../utils";
 
 type Props = {
   curricula: Array<Curriculum>;
+  categories: Array<Category>;
 };
 
-const Curricula = ({ curricula }: Props) => (
+const Curricula = ({ curricula, categories }: Props) => (
   <section>
     <div className="py-20 bg-gray-50 radius-for-skewed">
       <div className="container px-4 mx-auto Konular">
@@ -35,78 +37,15 @@ const Curricula = ({ curricula }: Props) => (
                 KONULAR
               </h4>
               <ul>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50"
-                    href="#"
-                  >
-                    Tümü
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Klasik Liberalizm
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Tarih
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Ekonomi
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Fizik
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Eğitim
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Sosyal Medya
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Sertifikasız
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
-                    href="#"
-                  >
-                    Finans
-                  </a>
-                </li>
+                {categories.map((category) => (
+                  <li key={category.slug}>
+                    <Link href={category.slug} passHref>
+                      <a className="block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50">
+                        Tümü
+                      </a>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -124,9 +63,10 @@ const Curricula = ({ curricula }: Props) => (
 export const getStaticProps: GetStaticProps = async () => {
   const sdk = getSdk(client);
   const { curricula } = await sdk.Curricula();
+  const { categories } = await sdk.Categories();
 
   return {
-    props: { curricula },
+    props: { curricula, categories },
   };
 };
 
