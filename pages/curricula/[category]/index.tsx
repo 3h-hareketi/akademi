@@ -22,9 +22,11 @@ const Category = ({ curricula, categories }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const sdk = getSdk(client);
-  const { curricula } = await sdk.Curricula();
+  const { curricula } = await sdk.CurriculaByCategorySlug({
+    categorySlug: params?.category as string,
+  });
   const { categories } = await sdk.Categories();
 
   return {
