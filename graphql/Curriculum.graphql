@@ -1,0 +1,11 @@
+query Curriculum($id: ID!) {
+  curriculum(where: { id: $id }) {
+    title
+    slug
+    description
+    image {
+      fileName
+      url
+    }
+  }
+}
