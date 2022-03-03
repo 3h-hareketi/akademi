@@ -9,7 +9,7 @@ const Navbar = () => (
           <li>
             <Link href="/">
               <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-                Home
+                Anasayfa
               </a>
             </Link>
           </li>
@@ -30,8 +30,13 @@ const Navbar = () => (
             </svg>
           </li>
           <li>
-            <a className="text-sm font-bold text-primary" href="#">
-              About
+            <a
+              className="text-sm font-bold text-primary"
+              href="https://3hhareketi.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Kurumsal Site
             </a>
           </li>
           <li className="text-gray-300">
@@ -51,36 +56,36 @@ const Navbar = () => (
             </svg>
           </li>
           <li>
-            <Link href="/curricula">
-              <a className="text-sm text-gray-400 hover:text-gray-500" href="#">
-                Courses
+            <Link href="/curricula" passHref>
+              <a className="text-sm text-gray-400 hover:text-gray-500">
+                Kurslar
               </a>
             </Link>
           </li>
         </ul>
         <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-y-1/2 lg:-translate-x-1/2">
-          <a className="text-3xl font-bold leading-none" href="#">
-            <Image
-              className="h-12"
-              src="/3h-logo.png"
-              alt=""
-              width="130"
-              height="140"
-            />
-          </a>
+          <Link href="/" passHref>
+            <a className="text-3xl font-bold leading-none">
+              <Image
+                className="h-12"
+                src="/3h-logo.png"
+                alt=""
+                width="130"
+                height="140"
+              />
+            </a>
+          </Link>
         </div>
-        <a
-          className="hidden px-6 py-2 text-sm font-bold text-gray-600 transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
-          href="#"
-        >
-          Sign In
-        </a>
-        <a
-          className="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 lg:inline-block bg-primary hover:bg-primaryShade rounded-l-xl rounded-t-xl"
-          href="#"
-        >
-          Sign up
-        </a>
+        <Link href="/login" passHref>
+          <a className="hidden px-6 py-2 text-sm font-bold text-gray-600 transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
+            Giriş
+          </a>
+        </Link>
+        <Link href="/login" passHref>
+          <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 lg:inline-block bg-primary hover:bg-primaryShade rounded-l-xl rounded-t-xl">
+            Kayıt
+          </a>
+        </Link>
         <div className="ml-auto lg:hidden">
           <button className="flex items-center p-3 text-primary navbar-burger">
             <svg
@@ -128,45 +133,43 @@ const Navbar = () => (
         <div>
           <ul>
             <li className="mb-1">
-              <a
-                className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-green-50 hover:text-green-600"
-                href="#"
-              >
-                Start
-              </a>
+              <Link href="/" passHref>
+                <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-green-50 hover:text-green-600">
+                  Anasayfa
+                </a>
+              </Link>
             </li>
             <li className="mb-1">
               <a
                 className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-green-50 hover:text-green-600"
-                href="#"
+                href="https://3hhareketi.org"
+                target="_blank"
+                rel="noreferrer"
               >
-                About Us
+                Kurumsal Site
               </a>
             </li>
             <li className="mb-1">
-              <a
-                className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-green-50 hover:text-green-600"
-                href="#"
-              >
-                Services
-              </a>
+              <Link href="/curricula" passHref>
+                <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-green-50 hover:text-green-600">
+                  Kurslar
+                </a>
+              </Link>
             </li>
           </ul>
         </div>
         <div className="mt-auto">
           <div className="pt-6">
-            <a
-              className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
-              href="#"
-            >
-              Sign in
-            </a>
-            <a
-              className="block px-4 py-3 mb-2 text-xs font-semibold leading-loose text-center text-white bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl"
-              href="#"
-            >
-              Sign Up
-            </a>
+            <Link href="/login" passHref>
+              <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
+                Sign in
+              </a>
+            </Link>
+            <Link href="/login" passHref>
+              <a className="block px-4 py-3 mb-2 text-xs font-semibold leading-loose text-center text-white bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl">
+                Sign Up
+              </a>
+            </Link>
           </div>
           <p className="my-4 text-xs text-center text-gray-400">
             <span>© 2020 All rights reserved.</span>
