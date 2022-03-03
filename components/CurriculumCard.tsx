@@ -6,13 +6,13 @@ interface Props {
   curriculum: Curriculum;
 }
 
-const CurriculumCard = (props: Props) => (
-  <div key={props.curriculum.id} className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
+const CurriculumCard = ({ curriculum }: Props) => (
+  <div key={curriculum.id} className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
     <div className="bg-white rounded shadow-md">
       <div className="relative h-64">
         <Image
           className="rounded-t"
-          src={props.curriculum.image?.url || "/placeholder.jpeg"}
+          src={curriculum.image?.url || "/placeholder.jpeg"}
           alt=""
           layout="fill"
           objectFit="cover"
@@ -22,7 +22,7 @@ const CurriculumCard = (props: Props) => (
       <div className="p-6">
         <span className="text-gray-400">2021</span>
         <h3 className="mb-4 text-2xl font-bold font-heading">
-          {props.curriculum.title}
+          {curriculum.title}
         </h3>
         <a
           className="flex font-bold text-primary hover:text-primaryShade"
@@ -40,8 +40,10 @@ const CurriculumCard = (props: Props) => (
               clipRule="evenodd"
             ></path>
           </svg>
-          <Link href={`/curricula/${props.curriculum.slug}`} passHref>
-            <span>Kurs detayları</span>
+          <Link
+            href={`/curricula/${curriculum.category?.slug}/${curriculum.slug}`}
+          >
+            Kurs detayları
           </Link>
         </a>
       </div>
