@@ -1,8 +1,6 @@
-import { GetStaticProps } from "next";
 import Link from "next/link";
 import CurriculumListItem from "../components/CurriculumListItem";
-import { Category, Curriculum, getSdk } from "../interfaces";
-import { client } from "../utils";
+import { Category, Curriculum } from "../interfaces";
 
 type Props = {
   curricula: Array<Curriculum>;
