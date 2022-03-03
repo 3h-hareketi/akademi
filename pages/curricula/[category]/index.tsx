@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import CurriculaList from "../../../components/CurriculaList";
 import { Curriculum, Category, getSdk } from "../../../interfaces";
@@ -23,6 +23,20 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { curricula, categories },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const sdk = getSdk(client);
+  const { categories } = await sdk.Categories();
+
+  return {
+    paths: categories.map((category) => ({
+      params: {
+        category: category.slug,
+      },
+    })),
+    fallback: false,
   };
 };
 
