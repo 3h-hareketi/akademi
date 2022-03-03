@@ -5328,11 +5328,11 @@ export type CurriculaQuery = {
   }>;
 };
 
-export type CurriculumQueryVariables = Exact<{
-  id: Scalars["ID"];
+export type CurriculumBySlugQueryVariables = Exact<{
+  slug: Scalars["String"];
 }>;
 
-export type CurriculumQuery = {
+export type CurriculumBySlugQuery = {
   __typename?: "Query";
   curriculum?: {
     __typename?: "Curriculum";
@@ -5353,9 +5353,9 @@ export const CurriculaDocument = gql`
     }
   }
 `;
-export const CurriculumDocument = gql`
-  query Curriculum($id: ID!) {
-    curriculum(where: { id: $id }) {
+export const CurriculumBySlugDocument = gql`
+  query CurriculumBySlug($slug: String!) {
+    curriculum(where: { slug: $slug }) {
       title
       slug
       description
@@ -5392,17 +5392,18 @@ export function getSdk(
         "Curricula"
       );
     },
-    Curriculum(
-      variables: CurriculumQueryVariables,
+    CurriculumBySlug(
+      variables: CurriculumBySlugQueryVariables,
       requestHeaders?: Dom.RequestInit["headers"]
-    ): Promise<CurriculumQuery> {
+    ): Promise<CurriculumBySlugQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<CurriculumQuery>(CurriculumDocument, variables, {
-            ...requestHeaders,
-            ...wrappedRequestHeaders,
-          }),
-        "Curriculum"
+          client.request<CurriculumBySlugQuery>(
+            CurriculumBySlugDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "CurriculumBySlug"
       );
     },
   };
