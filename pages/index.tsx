@@ -99,7 +99,7 @@ const Home = ({ curricula }: Props) => {
                   <span className="font-bold text-primary">
                     Buradan başlayın!
                   </span>
-                  <h2 className="text-4xl font-bold lg:text-5xl font-heading">
+                  <h2 className="mt-2 text-4xl font-bold lg:text-5xl font-heading">
                     Öne Çıkan Kurslar
                   </h2>
                 </div>
