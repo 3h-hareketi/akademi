@@ -29,13 +29,25 @@ const Exam = (props: Props) => {
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  <Interweave content={article.content.html} />
-                  {article.choices && <Choices choices={article.choices} />}
+                  <div className="p-5">
+                    {" "}
+                    <Interweave content={article.content.html} />
+                    {article.choices && <Choices choices={article.choices} />}
+                  </div>
                 </Disclosure.Panel>
               </>
             )}
           </Disclosure>
         ))}
+        <div className="flex">
+          {" "}
+          <a
+            className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary md:inline-block rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50"
+            href="#"
+          >
+            Tamamla
+          </a>
+        </div>
       </div>
     </div>
   );
