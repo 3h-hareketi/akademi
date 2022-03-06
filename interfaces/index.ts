@@ -6034,6 +6034,25 @@ export type CurriculumBySlugQuery = {
   } | null;
 };
 
+export type GetArticlesByCurriculumQueryVariables = Exact<{
+  id?: InputMaybe<Scalars["ID"]>;
+}>;
+
+export type GetArticlesByCurriculumQuery = {
+  __typename?: "Query";
+  curriculum?: {
+    __typename?: "Curriculum";
+    articles: Array<{
+      __typename?: "Article";
+      id: string;
+      title?: string | null;
+      order: number;
+      content: { __typename?: "ArticleContentRichText"; html: string };
+      choices: Array<{ __typename?: "Choice"; choice: string }>;
+    }>;
+  } | null;
+};
+
 export const CategoriesDocument = gql`
   query Categories {
     categories {
@@ -6087,6 +6106,23 @@ export const CurriculumBySlugDocument = gql`
       image {
         fileName
         url
+      }
+    }
+  }
+`;
+export const GetArticlesByCurriculumDocument = gql`
+  query getArticlesByCurriculum($id: ID) {
+    curriculum(where: { id: $id }) {
+      articles {
+        id
+        title
+        order
+        content {
+          html
+        }
+        choices {
+          choice
+        }
       }
     }
   }
@@ -6156,6 +6192,20 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
         "CurriculumBySlug"
+      );
+    },
+    getArticlesByCurriculum(
+      variables?: GetArticlesByCurriculumQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<GetArticlesByCurriculumQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetArticlesByCurriculumQuery>(
+            GetArticlesByCurriculumDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "getArticlesByCurriculum"
       );
     },
   };
