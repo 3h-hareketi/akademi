@@ -30,7 +30,7 @@ const Exam = (props: Props) => {
                 </Disclosure.Button>
                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                   <Interweave content={article.content.html} />
-                  <Choices choices={article.choices} />
+                  {article.choices && <Choices choices={article.choices} />}
                 </Disclosure.Panel>
               </>
             )}
