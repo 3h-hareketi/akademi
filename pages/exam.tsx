@@ -15,7 +15,7 @@ const Exam = (props: Props) => {
           {props.curriculum.title}
         </h2>
         {props.curriculum.articles.map((article) => (
-          <Disclosure key={article.id}>
+          <Disclosure key={article.id} as="div" className="mt-2">
             {({ open }) => (
               <>
                 <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
