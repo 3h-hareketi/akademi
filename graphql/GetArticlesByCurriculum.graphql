@@ -1,5 +1,6 @@
 query getArticlesByCurriculum($id: ID) {
   curriculum(where: { id: $id }) {
+    title
     articles {
       id
       title

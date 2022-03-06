@@ -6042,6 +6042,7 @@ export type GetArticlesByCurriculumQuery = {
   __typename?: "Query";
   curriculum?: {
     __typename?: "Curriculum";
+    title: string;
     articles: Array<{
       __typename?: "Article";
       id: string;
@@ -6113,6 +6114,7 @@ export const CurriculumBySlugDocument = gql`
 export const GetArticlesByCurriculumDocument = gql`
   query getArticlesByCurriculum($id: ID) {
     curriculum(where: { id: $id }) {
+      title
       articles {
         id
         title
