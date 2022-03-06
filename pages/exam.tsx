@@ -1,5 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
+import { Interweave } from "interweave";
 import { Curriculum, getSdk } from "../interfaces";
 import { client } from "../utils";
 
@@ -27,7 +28,7 @@ const Exam = (props: Props) => {
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  {article.content.html}
+                  <Interweave content={article.content.html} />
                 </Disclosure.Panel>
               </>
             )}
