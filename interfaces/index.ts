@@ -6031,6 +6031,12 @@ export type CurriculumBySlugQuery = {
     slug: string;
     description?: string | null;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
+    category?: { __typename?: "Category"; title: string } | null;
+    articles: Array<{
+      __typename?: "Article";
+      id: string;
+      title?: string | null;
+    }>;
   } | null;
 };
 
@@ -6107,6 +6113,13 @@ export const CurriculumBySlugDocument = gql`
       image {
         fileName
         url
+      }
+      category {
+        title
+      }
+      articles {
+        id
+        title
       }
     }
   }
