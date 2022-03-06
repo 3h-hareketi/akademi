@@ -7,6 +7,9 @@ query getArticlesByCurriculum($id: ID) {
       content {
         html
       }
+      choices {
+        choice
+      }
     }
   }
 }
