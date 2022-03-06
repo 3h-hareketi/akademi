@@ -111,11 +111,9 @@ const Navbar = () => {
         </div>
       </nav>
       <div
-        className={
-          navbarOpen
-            ? "fixed top-0 bottom-0 left-0 z-50 w-5/6 max-w-sm navbar-menu"
-            : "fixed top-0 bottom-0 left-0 z-50 w-5/6 max-w-sm navbar-menu hidden"
-        }
+        className={`fixed top-0 bottom-0 left-0 z-50 w-5/6 max-w-sm navbar-menu ${
+          !navbarOpen && "hidden"
+        }`}
       >
         <div className="fixed inset-0 bg-gray-800 opacity-25 navbar-backdrop"></div>
         <nav className="relative flex flex-col w-full h-full px-6 py-6 overflow-y-auto bg-white border-r">
