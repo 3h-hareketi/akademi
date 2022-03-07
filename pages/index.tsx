@@ -96,7 +96,7 @@ const Home = ({ curricula }: Props) => {
             <div className="container px-4 mx-auto">
               <div className="flex flex-wrap items-center justify-center mb-16 md:justify-between">
                 <div className="text-center lg:text-left">
-                  <span className="font-bold text-primary">
+                  <span className="font-bold text-primary-500">
                     Buradan başlayın!
                   </span>
                   <h2 className="mt-2 text-4xl font-bold lg:text-5xl font-heading">
@@ -104,7 +104,7 @@ const Home = ({ curricula }: Props) => {
                   </h2>
                 </div>
                 <Link href="/curricula" passHref>
-                  <a className="hidden px-6 py-2 font-bold leading-loose transition duration-200 bg-primary md:inline-block rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50">
+                  <a className="hidden px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
                     Daha Fazla Kurs Gör
                   </a>
                 </Link>
@@ -118,7 +118,7 @@ const Home = ({ curricula }: Props) => {
               <div className="text-center">
                 <Link href="/curricula">
                   <a
-                    className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-green-600 md:hidden rounded-l-xl rounded-t-xl hover:bg-green-700 text-gray-50"
+                    className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 md:hidden rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
                     href="#"
                   >
                     Daha Fazla Kurs Gör

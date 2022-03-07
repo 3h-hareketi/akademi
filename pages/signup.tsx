@@ -85,7 +85,7 @@ const Signup = () => (
               </button>
             </div>
             <div className="text-center">
-              <button className="w-full py-4 mb-2 text-sm font-bold transition duration-200 rounded bg-primary hover:bg-primaryShade text-gray-50">
+              <button className="w-full py-4 mb-2 text-sm font-bold transition duration-200 rounded bg-primary-500 hover:bg-primary-700 text-gray-50">
                 Üye ol
               </button>
               <span className="text-xs text-gray-400">

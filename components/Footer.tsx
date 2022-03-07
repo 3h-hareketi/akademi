@@ -24,7 +24,7 @@ const Footer = () => (
             target="_blank"
           >
             <svg
-              className="fill-primary"
+              className="fill-primary-500"
               width="25"
               height="25"
               viewBox="0 0 25 25"
@@ -39,7 +39,7 @@ const Footer = () => (
             target="_blank"
           >
             <svg
-              className="fill-primary"
+              className="fill-primary-500"
               width="25"
               height="25"
               viewBox="0 0 25 25"
@@ -54,7 +54,7 @@ const Footer = () => (
             target="_blank"
           >
             <svg
-              className="fill-primary"
+              className="fill-primary-500"
               width="25"
               height="25"
               viewBox="0 0 25 25"
@@ -69,7 +69,7 @@ const Footer = () => (
             target="_blank"
           >
             <svg
-              className="fill-primary"
+              className="fill-primary-500"
               width="25"
               height="25"
               viewBox="0 0 25 25"
@@ -78,7 +78,7 @@ const Footer = () => (
             </svg>
           </a>
           <a
-            className="inline-block px-1 fill-primary"
+            className="inline-block px-1 fill-primary-500"
             href="https://www.linkedin.com/company/the-3h-movement/"
             rel="noreferrer"
             target="_blank"
