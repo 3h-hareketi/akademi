@@ -38,7 +38,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                className="text-sm font-bold text-primary"
+                className="text-sm font-bold text-primary-500"
                 href="https://3hhareketi.org"
                 target="_blank"
                 rel="noreferrer"
@@ -89,13 +89,13 @@ const Navbar = () => {
             </a>
           </Link>
           <Link href="/login" passHref>
-            <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 lg:inline-block bg-primary hover:bg-primaryShade rounded-l-xl rounded-t-xl">
+            <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 lg:inline-block bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
               Kayıt
             </a>
           </Link>
           <div className="ml-auto lg:hidden">
             <button
-              className="flex items-center p-3 text-primary navbar-burger"
+              className="flex items-center p-3 text-primary-500 navbar-burger"
               onClick={() => setNavbarOpen(true)}
             >
               <svg
@@ -151,14 +151,14 @@ const Navbar = () => {
             <ul>
               <li className="mb-1">
                 <Link href="/" passHref>
-                  <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary">
+                  <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500">
                     Anasayfa
                   </a>
                 </Link>
               </li>
               <li className="mb-1">
                 <a
-                  className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary"
+                  className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
                   href="https://3hhareketi.org"
                   target="_blank"
                   rel="noreferrer"
@@ -168,7 +168,7 @@ const Navbar = () => {
               </li>
               <li className="mb-1">
                 <Link href="/curricula" passHref>
-                  <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary">
+                  <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500">
                     Kurslar
                   </a>
                 </Link>
@@ -183,7 +183,7 @@ const Navbar = () => {
                 </a>
               </Link>
               <Link href="/login" passHref>
-                <a className="block px-4 py-3 mb-2 text-xs font-semibold leading-loose text-center text-white bg-primary hover:primaryShade rounded-l-xl rounded-t-xl">
+                <a className="block px-4 py-3 mb-2 text-xs font-semibold leading-loose text-center text-white bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
                   Kayıt
                 </a>
               </Link>
@@ -198,7 +198,7 @@ const Navbar = () => {
                 href="https://www.facebook.com/3hhareketi/"
               >
                 <svg
-                  className="fill-primary"
+                  className="fill-primary-500"
                   width="35"
                   height="35"
                   viewBox="0 0 25 25"
@@ -212,7 +212,7 @@ const Navbar = () => {
                 href="https://www.instagram.com/3hhareketi/"
               >
                 <svg
-                  className="fill-primary"
+                  className="fill-primary-500"
                   width="35"
                   height="35"
                   viewBox="0 0 25 25"
@@ -226,7 +226,7 @@ const Navbar = () => {
                 href="https://twitter.com/3hhareketi"
               >
                 <svg
-                  className="fill-primary"
+                  className="fill-primary-500"
                   width="35"
                   height="35"
                   viewBox="0 0 25 25"
@@ -240,7 +240,7 @@ const Navbar = () => {
                 href="https://www.youtube.com/channel/UCpNJRC7fCGASPkltHxGJesQ"
               >
                 <svg
-                  className="fill-primary"
+                  className="fill-primary-500"
                   width="35"
                   height="35"
                   viewBox="0 0 25 25"
@@ -254,7 +254,7 @@ const Navbar = () => {
                 href="https://www.linkedin.com/company/the-3h-movement/"
               >
                 <svg
-                  className="fill-primary"
+                  className="fill-primary-500"
                   width="35"
                   height="35"
                   viewBox="0 0 25 25"

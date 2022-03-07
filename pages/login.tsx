@@ -15,7 +15,7 @@ const Login = () => (
         <div className="p-6 mb-6 bg-white rounded shadow-md lg:mb-10 lg:p-12">
           <div className="mb-6">
             <span className="text-gray-500">Tekrar hoşgeldiniz</span>
-            <h3 className="text-2xl font-bold">Giriş</h3>
+            <h3 className="text-2xl font-bold ">Giriş</h3>
           </div>
           <form action="" data-bitwarden-watching="1">
             <div className="flex p-4 mb-3 rounded bg-gray-50">
@@ -69,7 +69,7 @@ const Login = () => (
               </button>
             </div>
             <div className="text-center">
-              <button className="w-full py-4 mb-2 text-sm font-bold transition duration-200 rounded bg-primary hover:bg-primaryShade text-gray-50">
+              <button className="w-full py-4 mb-2 text-sm font-bold transition duration-200 rounded bg-primary-500 hover:bg-primary-700 text-gray-50">
                 Giriş yap
               </button>
               <span className="text-xs text-gray-400">

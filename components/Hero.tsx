@@ -5,7 +5,7 @@ const Hero = () => (
     <div className="py-20 md:px-20 radius-for-skewed bg-gray-50">
       <div className="container px-4 mx-auto">
         <div className="max-w-md mx-auto mb-16 text-center">
-          <span className="font-bold text-primary">
+          <span className="font-bold text-primary-500">
             Hürriyet, Hukuk, Hoşgörü
           </span>
           <h2 className="text-4xl font-bold lg:text-5xl font-heading">
@@ -17,7 +17,7 @@ const Hero = () => (
             <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
-                  className="w-10 h-10 text-primary"
+                  className="w-10 h-10 text-primary-500"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -43,7 +43,7 @@ const Hero = () => (
             <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded-lg">
                 <svg
-                  className="w-10 h-10 text-primary"
+                  className="w-10 h-10 text-primary-500"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
@@ -64,7 +64,7 @@ const Hero = () => (
             <div className="px-6 py-12 text-center bg-white rounded shadow-md">
               <span className="inline-block p-2 mb-6 bg-gray-100 rounded">
                 <svg
-                  className="w-10 h-10 text-primary"
+                  className="w-10 h-10 text-primary-500"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
