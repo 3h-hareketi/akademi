@@ -5,6 +5,8 @@
 
 const { withSentryConfig } = require("@sentry/nextjs");
 
+const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -23,6 +25,7 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
+  dsn: SENTRY_DSN,
 };
 
 module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
