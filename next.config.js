@@ -9,8 +9,6 @@ const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 
 const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN;
 
-const env = process.env.NODE_ENV;
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -31,7 +29,6 @@ const sentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
   dsn: SENTRY_DSN,
   authToken: SENTRY_AUTH_TOKEN,
-  tracesSampleRate: env === "production" ? 0.2 : 1,
 };
 
 module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
