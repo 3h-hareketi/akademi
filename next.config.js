@@ -7,6 +7,8 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 
+const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -26,6 +28,7 @@ const sentryWebpackPluginOptions = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
   dsn: SENTRY_DSN,
+  authToken: SENTRY_AUTH_TOKEN,
 };
 
 module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
