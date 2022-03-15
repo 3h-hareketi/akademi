@@ -84,11 +84,11 @@ const Profile = () => {
                     <Disclosure key={certificate.id} as="div" className="mt-2">
                       {({ open }) => (
                         <>
-                          <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
-                            <span>{certificate.title}</span>
+                          <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg h-14 text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
+                            <span className="my-auto">{certificate.title}</span>
                             <ChevronUpIcon
                               className={`${
-                                open ? "transform rotate-180" : ""
+                                !open ? "transform rotate-180" : ""
                               } w-5 h-5 text-primary-500`}
                             />
                           </Disclosure.Button>
