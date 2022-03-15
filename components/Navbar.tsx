@@ -1,9 +1,11 @@
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false); // mobile navbar (hamburger)
+  const { data: session } = useSession();
 
   return (
     <section>
@@ -83,16 +85,23 @@ const Navbar = () => {
               </a>
             </Link>
           </div>
-          <Link href="/login" passHref>
-            <a className="hidden px-6 py-2 text-sm font-bold text-gray-600 transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
-              Giriş
-            </a>
-          </Link>
-          <Link href="/login" passHref>
-            <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-200 lg:inline-block bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
-              Kayıt
-            </a>
-          </Link>
+          {session ? (
+            <>
+              <div>{session.user?.email}</div>
+              <button
+                className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                onClick={() => signOut()}
+              >
+                Çıkış
+              </button>
+            </>
+          ) : (
+            <Link href="/giris" passHref>
+              <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
+                Giriş &amp; Kayıt
+              </a>
+            </Link>
+          )}
           <div className="ml-auto lg:hidden">
             <button
               className="flex items-center p-3 text-primary-500 navbar-burger"
@@ -177,16 +186,22 @@ const Navbar = () => {
           </div>
           <div className="mt-auto">
             <div className="pt-6">
-              <Link href="/login" passHref>
-                <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
-                  Giriş
-                </a>
-              </Link>
-              <Link href="/login" passHref>
-                <a className="block px-4 py-3 mb-2 text-xs font-semibold leading-loose text-center text-white bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
-                  Kayıt
-                </a>
-              </Link>
+              {session ? (
+                <>
+                  <div>{session.user?.email}</div>
+                  <Link href="/api/auth/signout" passHref>
+                    <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
+                      Çıkış
+                    </a>
+                  </Link>
+                </>
+              ) : (
+                <Link href="/giris" passHref>
+                  <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center text-white bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
+                    Giriş &amp; Kayıt
+                  </a>
+                </Link>
+              )}
             </div>
             <p className="my-4 text-xs text-center text-gray-400">
               {/* <span>© 2022</span> */}

@@ -11,12 +11,17 @@
     "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@next-auth/fauna-adapter": "^1.0.2",
     "@sentry/nextjs": "^6.18.2",
+    "faunadb": "^4.5.2",
     "graphql": "^16.3.0",
     "graphql-request": "^4.1.0",
     "next": "12.1.0",
+    "next-auth": "^4.2.1",
+    "nodemailer": "^6.7.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tslog": "^3.3.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.6.2",
