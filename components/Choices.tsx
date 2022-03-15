@@ -26,7 +26,9 @@ export default function Choices(props: Props) {
                       : ""
                   }
                   ${
-                    checked ? "bg-primary bg-opacity-75 text-white" : "bg-white"
+                    checked
+                      ? "bg-primary-500 bg-opacity-75 text-white"
+                      : "bg-white"
                   }
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
                 }

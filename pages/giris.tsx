@@ -19,7 +19,7 @@ type Props = {
 };
 
 const Login = ({ providers, csrfToken }: Props) => (
-  <section className="flex h-screen py-10 bg-primary lg:py-20">
+  <section className="flex h-screen py-10 bg-primary-500 lg:py-20">
     <div className="container px-4 mx-auto my-auto">
       <div className="max-w-xl mx-auto">
         <div className="p-6 mb-6 bg-white rounded shadow-md lg:mb-10 lg:p-12">
