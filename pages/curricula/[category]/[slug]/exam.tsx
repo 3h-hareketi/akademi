@@ -28,7 +28,7 @@ const Exam = (props: Props) => {
                   <span>{article.title}</span>
                   <ChevronUpIcon
                     className={`${
-                      open ? "transform rotate-180" : ""
+                      !open ? "transform rotate-180" : ""
                     } w-5 h-5 text-primary-500`}
                   />
                 </Disclosure.Button>
