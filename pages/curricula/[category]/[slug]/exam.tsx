@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
+import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces";
 import { client } from "../../../../utils";
@@ -11,6 +12,8 @@ type Props = {
 };
 
 const Exam = (props: Props) => {
+  const { status } = useSession({ required: true });
+
   return (
     <div className="py-10 mx-auto bg-gray-50">
       <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
