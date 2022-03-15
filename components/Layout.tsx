@@ -7,9 +7,9 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => (
-  <div className="content ">
+  <div className="flex flex-col justify-between h-screen subpixel-antialiased">
     <Navbar />
-    <main>{children}</main>
+    <main className="mb-auto">{children}</main>
     <Footer />
   </div>
 );
