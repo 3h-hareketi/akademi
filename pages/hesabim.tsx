@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon } from "@heroicons/react/solid";
+import { ChevronUpIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -32,13 +32,20 @@ const Profile = () => {
             <div className="flex flex-wrap justify-center">
               <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
                 <div className="mt-10 rounded-full">
-                  <Image
-                    alt="profile image"
-                    src={session?.user?.image || "/placeholder.jpeg"}
-                    className="rounded-full"
-                    width="150px"
-                    height="150px"
-                  />
+                  {session?.user?.image ? (
+                    <Image
+                      alt="profile image"
+                      src={session?.user?.image || "/placeholder.jpeg"}
+                      className="rounded-full"
+                      width="160px"
+                      height="160px"
+                    />
+                  ) : (
+                    <div className="w-40 h-40">
+                      {" "}
+                      <UserCircleIcon />
+                    </div>
+                  )}
                 </div>
               </div>
 
