@@ -1,24 +1,11 @@
-import Image from "next/image";
-import {
-  signIn,
-  getSession,
-  getCsrfToken,
-  getProviders,
-  LiteralUnion,
-  ClientSafeProvider,
-} from "next-auth/react";
+import { signIn, getSession, getCsrfToken } from "next-auth/react";
 import { GetServerSideProps } from "next";
-import { BuiltInProviderType } from "next-auth/providers";
 
 type Props = {
-  providers: Record<
-    LiteralUnion<BuiltInProviderType, string>,
-    ClientSafeProvider
-  > | null;
   csrfToken: string | undefined;
 };
 
-const Login = ({ providers, csrfToken }: Props) => (
+const Login = ({ csrfToken }: Props) => (
   <section className="flex h-screen py-10 bg-primary-500 lg:py-20">
     <div className="container px-4 mx-auto my-auto">
       <div className="max-w-xl mx-auto">
@@ -61,19 +48,15 @@ const Login = ({ providers, csrfToken }: Props) => (
               >
                 Giriş yap
               </button>
-              {Object.values(providers!).map((provider) => (
-                <div key={provider.name}>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      signIn(provider.id);
-                    }}
-                    className="w-full py-4 mb-2 text-sm font-bold transition duration-200 bg-blue-500 rounded hover:bg-primary-700 text-gray-50"
-                  >
-                    {provider.name} ile giriş yap
-                  </button>
-                </div>
-              ))}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  signIn("google", { callbackUrl: "/" });
+                }}
+                className="w-full py-4 mb-2 text-sm font-bold transition duration-200 bg-blue-500 rounded hover:bg-primary-700 text-gray-50"
+              >
+                Google ile giriş yap
+              </button>
             </div>
           </form>
         </div>
@@ -95,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, res } = context;
   const session = await getSession({ req });
 
-  if (session && res && session.accessToken) {
+  if (session && res) {
     return {
       redirect: {
         permanent: false,
@@ -106,7 +89,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      providers: await getProviders(),
       csrfToken: await getCsrfToken(context),
     },
   };
