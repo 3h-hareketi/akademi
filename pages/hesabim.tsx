@@ -1,6 +1,26 @@
+import { Disclosure } from "@headlessui/react";
+import { ChevronUpIcon } from "@heroicons/react/solid";
+import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-
+import Choices from "../components/Choices";
+const certificates = [
+  {
+    id: "1",
+    title: "Sertifika #1",
+    content: "",
+  },
+  {
+    id: "2",
+    title: "Klasik Liberalizm",
+    content: "",
+  },
+  {
+    id: "3",
+    title: "Sertifika #3",
+    content: "",
+  },
+];
 const Profile = () => {
   const { data: session } = useSession();
 
@@ -11,7 +31,7 @@ const Profile = () => {
           <div className="px-6">
             <div className="flex flex-wrap justify-center">
               <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
-                <div className="rounded-full">
+                <div className="mt-10 rounded-full">
                   <Image
                     alt="profile image"
                     src={session?.user?.image || "/images/placeholder.jpeg"}
@@ -26,7 +46,6 @@ const Profile = () => {
                   <button
                     className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase rounded shadow outline-none bg-primary-500 active:bg-primary-600 hover:shadow-md focus:outline-none sm:mr-2"
                     type="button"
-                    //   style="transition: all 0.15s ease 0s;"
                   >
                     Yardım
                   </button>
@@ -56,18 +75,32 @@ const Profile = () => {
               <div className="flex flex-wrap justify-center">
                 <div className="w-full px-4 lg:w-9/12">
                   <p className="mb-4 text-lg leading-relaxed text-gray-800">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    Şu ana kadar kazandığınız sertifikaları
+                    görüntüleyebilirsiniz.
                   </p>
-                  <a href="#pablo" className="font-normal text-primary-500">
-                    Show more
-                  </a>
+
+                  {certificates.map((certificate) => (
+                    <Disclosure key={certificate.id} as="div" className="mt-2">
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
+                            <span>{certificate.title}</span>
+                            <ChevronUpIcon
+                              className={`${
+                                open ? "transform rotate-180" : ""
+                              } w-5 h-5 text-primary-500`}
+                            />
+                          </Disclosure.Button>
+                          <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                            <div className="p-5">
+                              {" "}
+                              <Interweave content={certificate.content} />
+                            </div>
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
+                  ))}
                 </div>
               </div>
             </div>
