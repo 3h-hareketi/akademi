@@ -21,11 +21,11 @@ const Exam = (props: Props) => {
           {props.curriculum.title}
         </h2>
         {props.curriculum.articles.map((article) => (
-          <Disclosure key={article.id} as="div" className="mt-2">
+          <Disclosure key={article.id} as="div" className="mt-6">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
-                  <span>{article.title}</span>
+                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75 h-14">
+                  <span className="my-auto">{article.title}</span>
                   <ChevronUpIcon
                     className={`${
                       !open ? "transform rotate-180" : ""
@@ -43,7 +43,7 @@ const Exam = (props: Props) => {
             )}
           </Disclosure>
         ))}
-        <div className="flex">
+        <div className="flex mt-12">
           {" "}
           <a
             className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
