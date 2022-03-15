@@ -2,7 +2,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import UserIcon from "./UserIcon";
+import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false); // mobile navbar (hamburger)
@@ -88,7 +88,7 @@ const Navbar = () => {
           </div>
           {session ? (
             <div className="ml-auto mr-20">
-              <UserIcon user={session.user} />
+              <UserDropdown user={session.user} />
             </div>
           ) : (
             <Link href="/giris" passHref>
