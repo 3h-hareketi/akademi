@@ -184,7 +184,7 @@ const Navbar = () => {
             <div className="pt-6">
               {session ? (
                 <>
-                  <div>{session.user?.email}</div>
+                  <div className="text-center">{session.user?.email}</div>
                   <Link href="/api/auth/signout" passHref>
                     <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
                       Çıkış
