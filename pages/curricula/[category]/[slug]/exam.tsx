@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { Disclosure } from "@headlessui/react";
+import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces";
 import { client } from "../../../../utils";
+import { Fragment } from "react";
 
 type Props = {
   curriculum: Curriculum;
@@ -32,13 +33,23 @@ const Exam = (props: Props) => {
                     } w-5 h-5 text-primary-500`}
                   />
                 </Disclosure.Button>
-                <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                  <div className="p-5">
-                    {" "}
-                    <Interweave content={article.content.html} />
-                    {article.choices && <Choices choices={article.choices} />}
-                  </div>
-                </Disclosure.Panel>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+                    <div className="p-5">
+                      {" "}
+                      <Interweave content={article.content.html} />
+                      {article.choices && <Choices choices={article.choices} />}
+                    </div>
+                  </Disclosure.Panel>
+                </Transition>
               </>
             )}
           </Disclosure>
