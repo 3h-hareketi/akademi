@@ -23,4 +23,5 @@ export default NextAuth({
       process.env.NODE_ENV !== "production" ? log.debug(code, metadata) : null;
     },
   },
+  useSecureCookies: process.env.NODE_ENV === "production" ? true : false,
 });
