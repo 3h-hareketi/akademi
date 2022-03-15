@@ -72,7 +72,10 @@ const Login = ({ providers, csrfToken }: Props) => (
               {Object.values(providers!).map((provider) => (
                 <div key={provider.name}>
                   <button
-                    onClick={() => signIn(provider.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signIn(provider.id);
+                    }}
                     className="w-full py-4 mb-2 text-sm font-bold transition duration-200 bg-blue-500 rounded hover:bg-primary-700 text-gray-50"
                   >
                     {provider.name} ile giriş yap
