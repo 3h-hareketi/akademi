@@ -14,6 +14,8 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="flex flex-col justify-between h-screen subpixel-antialiased">
       <DefaultSeo
+        titleTemplate="%s | 3H Akademi"
+        defaultTitle="3H Akademi"
         openGraph={{
           type: "website",
           url: router.pathname,
