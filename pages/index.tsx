@@ -1,3 +1,4 @@
+import { NextSeo } from "next-seo";
 import Head from "next/head";
 import Link from "next/link";
 import CurriculumCard from "../components/CurriculumCard";
@@ -89,6 +90,7 @@ const Home = ({ curricula }: Props) => {
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      <NextSeo description="3H Akademi ile bir çok konu üzerinde eğitimlere katılın, sertifika alın" />
       <div className="container mx-auto bg-white px4">
         <Hero />
         <section>
@@ -136,6 +138,7 @@ const Home = ({ curricula }: Props) => {
 export async function getStaticProps() {
   const sdk = getSdk(client);
   const { curricula } = await sdk.Curricula();
+
   return {
     props: {
       curricula,
