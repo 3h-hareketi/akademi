@@ -42,7 +42,7 @@ const Exam = (props: Props) => {
         <div className="flex">
           {" "}
           <a
-            className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary md:inline-block rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50"
+            className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
             href="#"
           >
             Tamamla

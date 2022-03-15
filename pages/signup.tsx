@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const Signup = () => (
-  <section className="flex h-screen py-10 bg-primary lg:py-20">
+  <section className="flex h-screen py-10 bg-primary-500 lg:py-20">
     <div className="container px-4 mx-auto my-auto">
       <div className="max-w-xl mx-auto">
         <div className="flex mb-10">
