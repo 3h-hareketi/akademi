@@ -3,6 +3,7 @@ import { Curriculum, getSdk } from "../../../interfaces";
 import { client } from "../../../utils";
 import Image from "next/image";
 import Link from "next/link";
+
 const Curriculum = ({
   title,
   slug,

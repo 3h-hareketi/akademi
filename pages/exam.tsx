@@ -58,6 +58,7 @@ export async function getStaticProps() {
   const { curriculum } = await sdk.getArticlesByCurriculum({
     id: "cl05eco1vm5do0dyvzybx6j3e", // curriculum #1
   });
+
   return {
     props: {
       curriculum,

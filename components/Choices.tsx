@@ -5,6 +5,7 @@ import { Choice } from "../interfaces";
 interface Props {
   choices: Array<Choice>;
 }
+
 export default function Choices(props: Props) {
   const [selected, setSelected] = useState(props.choices[0]);
 
