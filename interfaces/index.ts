@@ -6033,7 +6033,7 @@ export type CurriculumBySlugQuery = {
     slug: string;
     description?: string | null;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
-    category?: { __typename?: "Category"; title: string } | null;
+    category?: { __typename?: "Category"; title: string; slug: string } | null;
     articles: Array<{
       __typename?: "Article";
       id: string;
@@ -6101,6 +6101,7 @@ export const CurriculumBySlugDocument = gql`
       }
       category {
         title
+        slug
       }
       articles {
         id

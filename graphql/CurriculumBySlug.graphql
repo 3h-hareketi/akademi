@@ -9,6 +9,7 @@ query CurriculumBySlug($slug: String!) {
     }
     category {
       title
+      slug
     }
     articles {
       id

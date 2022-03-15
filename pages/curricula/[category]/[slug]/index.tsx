@@ -56,7 +56,7 @@ const Curriculum = ({
             />
           </div>
         </div>
-        <Link href={`/curricula/${category}/${slug}/exam`} passHref>
+        <Link href={`/curricula/${category?.slug}/${slug}/exam`} passHref>
           <a className="inline-block px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
             Sınava katıl
           </a>
