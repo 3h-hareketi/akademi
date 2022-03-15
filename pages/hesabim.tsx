@@ -27,7 +27,7 @@ const Profile = () => {
   return (
     <section className="py-16 bg-gray-100">
       <div className="container px-4 mx-auto">
-        <div className="relative flex flex-col w-full min-w-0 mt-48 mb-6 break-words bg-white rounded-lg shadow-xl">
+        <div className="relative flex flex-col w-full min-w-0 mb-6 break-words bg-white rounded-lg shadow-xl mt-36">
           <div className="px-6">
             <div className="flex flex-wrap justify-center">
               <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
@@ -41,14 +41,15 @@ const Profile = () => {
                   />
                 </div>
               </div>
-              <div className="w-full px-4 lg:w-4/12 lg:order-3 lg:text-right lg:self-center">
-                <div className="px-3 py-6 mt-32 sm:mt-0">
-                  <button
-                    className="px-4 py-2 mb-1 text-xs font-bold text-white uppercase rounded shadow outline-none bg-primary-500 active:bg-primary-600 hover:shadow-md focus:outline-none sm:mr-2"
-                    type="button"
-                  >
-                    Yardım
-                  </button>
+
+              <div className="w-full px-4 lg:w-4/12 lg:order-3">
+                <div className="flex justify-center py-4 pt-8 lg:pt-4">
+                  <div className="p-3 mr-4 text-center">
+                    <span className="block text-xl font-bold tracking-wide text-gray-700 uppercase">
+                      12/12/2020
+                    </span>
+                    <span className="text-sm text-gray-500">Üyelik Tarihi</span>
+                  </div>
                 </div>
               </div>
               <div className="w-full px-4 lg:w-4/12 lg:order-1">
