@@ -67,7 +67,7 @@ const UserDropdown = ({ user }: Props) => {
               {({ active }) => (
                 <a
                   href="#"
-                  className={`px-4 py-2 text-sm text-gray-700 ${
+                  className={`block px-4 py-2 text-sm text-gray-700 ${
                     active && "bg-gray-100"
                   }`}
                   onClick={() => signOut()}
