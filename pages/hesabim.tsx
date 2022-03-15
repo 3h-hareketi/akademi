@@ -34,7 +34,7 @@ const Profile = () => {
                 <div className="mt-10 rounded-full">
                   <Image
                     alt="profile image"
-                    src={session?.user?.image || "/images/placeholder.jpeg"}
+                    src={session?.user?.image || "/placeholder.jpeg"}
                     className="rounded-full"
                     width="150px"
                     height="150px"
