@@ -5940,6 +5940,8 @@ export enum _MutationKind {
   DeleteMany = "deleteMany",
   Publish = "publish",
   PublishMany = "publishMany",
+  SchedulePublish = "schedulePublish",
+  ScheduleUnpublish = "scheduleUnpublish",
   Unpublish = "unpublish",
   UnpublishMany = "unpublishMany",
   Update = "update",
@@ -6036,23 +6038,6 @@ export type CurriculumBySlugQuery = {
       __typename?: "Article";
       id: string;
       title?: string | null;
-    }>;
-  } | null;
-};
-
-export type GetArticlesByCurriculumQueryVariables = Exact<{
-  id?: InputMaybe<Scalars["ID"]>;
-}>;
-
-export type GetArticlesByCurriculumQuery = {
-  __typename?: "Query";
-  curriculum?: {
-    __typename?: "Curriculum";
-    title: string;
-    articles: Array<{
-      __typename?: "Article";
-      id: string;
-      title?: string | null;
       order: number;
       content: { __typename?: "ArticleContentRichText"; html: string };
       choices: Array<{ __typename?: "Choice"; choice: string }>;
@@ -6120,17 +6105,6 @@ export const CurriculumBySlugDocument = gql`
       articles {
         id
         title
-      }
-    }
-  }
-`;
-export const GetArticlesByCurriculumDocument = gql`
-  query getArticlesByCurriculum($id: ID) {
-    curriculum(where: { id: $id }) {
-      title
-      articles {
-        id
-        title
         order
         content {
           html
@@ -6145,10 +6119,15 @@ export const GetArticlesByCurriculumDocument = gql`
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
-  operationName: string
+  operationName: string,
+  operationType?: string
 ) => Promise<T>;
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
+const defaultWrapper: SdkFunctionWrapper = (
+  action,
+  _operationName,
+  _operationType
+) => action();
 
 export function getSdk(
   client: GraphQLClient,
@@ -6165,7 +6144,8 @@ export function getSdk(
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "Categories"
+        "Categories",
+        "query"
       );
     },
     Curricula(
@@ -6178,7 +6158,8 @@ export function getSdk(
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "Curricula"
+        "Curricula",
+        "query"
       );
     },
     CurriculaByCategorySlug(
@@ -6192,7 +6173,8 @@ export function getSdk(
             variables,
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
-        "CurriculaByCategorySlug"
+        "CurriculaByCategorySlug",
+        "query"
       );
     },
     CurriculumBySlug(
@@ -6206,21 +6188,8 @@ export function getSdk(
             variables,
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
-        "CurriculumBySlug"
-      );
-    },
-    getArticlesByCurriculum(
-      variables?: GetArticlesByCurriculumQueryVariables,
-      requestHeaders?: Dom.RequestInit["headers"]
-    ): Promise<GetArticlesByCurriculumQuery> {
-      return withWrapper(
-        (wrappedRequestHeaders) =>
-          client.request<GetArticlesByCurriculumQuery>(
-            GetArticlesByCurriculumDocument,
-            variables,
-            { ...requestHeaders, ...wrappedRequestHeaders }
-          ),
-        "getArticlesByCurriculum"
+        "CurriculumBySlug",
+        "query"
       );
     },
   };
