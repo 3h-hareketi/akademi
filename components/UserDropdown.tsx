@@ -1,10 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/solid";
+import { DefaultSession } from "next-auth";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { Fragment } from "react";
+
 type Props = {
-  user: any;
+  user: DefaultSession["user"];
 };
 
 const UserDropdown = ({ user }: Props) => {
@@ -12,7 +14,7 @@ const UserDropdown = ({ user }: Props) => {
     <div className="ml-auto">
       <Menu as="div" className="relative ml-3">
         <div>
-          {user.image ? (
+          {user?.image ? (
             <Menu.Button>
               {" "}
               <Image
