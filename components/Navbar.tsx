@@ -12,6 +12,21 @@ const Navbar = () => {
     <section>
       <nav className="relative px-6 py-6 bg-white">
         <div className="flex items-center">
+          <div className="mr-auto lg:hidden">
+            <button
+              className="flex items-center p-3 text-primary-500 navbar-burger"
+              onClick={() => setNavbarOpen(true)}
+            >
+              <svg
+                className="block w-4 h-4 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Mobile menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+              </svg>
+            </button>
+          </div>
           <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-5">
             <li>
               <Link href="/">
@@ -86,8 +101,9 @@ const Navbar = () => {
               </a>
             </Link>
           </div>
+
           {session ? (
-            <div className="ml-auto mr-20">
+            <div className="ml-auto">
               <UserDropdown user={session.user} />
             </div>
           ) : (
@@ -97,21 +113,6 @@ const Navbar = () => {
               </a>
             </Link>
           )}
-          <div className="ml-auto lg:hidden">
-            <button
-              className="flex items-center p-3 text-primary-500 navbar-burger"
-              onClick={() => setNavbarOpen(true)}
-            >
-              <svg
-                className="block w-4 h-4 fill-current"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Mobile menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
       </nav>
       <div
