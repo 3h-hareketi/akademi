@@ -3,6 +3,7 @@ import { UserCircleIcon } from "@heroicons/react/solid";
 import { DefaultSession } from "next-auth";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 
 type Props = {
@@ -46,9 +47,19 @@ const UserDropdown = ({ user }: Props) => {
           <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
               {({ active }) => (
-                <div className={`block px-4 py-2 text-sm text-gray-700 `}>
-                  {user?.email}
-                </div>
+                <Link href="/hesabim" passHref>
+                  <a
+                    className={`px-4 py-2 text-sm text-gray-700 flex justify-self-center ${
+                      active && "bg-gray-100"
+                    }`}
+                  >
+                    <div className="w-4 h-4 mr-2">
+                      {" "}
+                      <UserCircleIcon />
+                    </div>
+                    Hesabım{" "}
+                  </a>
+                </Link>
               )}
             </Menu.Item>
 
@@ -56,7 +67,7 @@ const UserDropdown = ({ user }: Props) => {
               {({ active }) => (
                 <a
                   href="#"
-                  className={`block px-4 py-2 text-sm text-gray-700 ${
+                  className={`px-4 py-2 text-sm text-gray-700 ${
                     active && "bg-gray-100"
                   }`}
                   onClick={() => signOut()}
