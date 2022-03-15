@@ -6031,6 +6031,32 @@ export type CurriculumBySlugQuery = {
     slug: string;
     description?: string | null;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
+    category?: { __typename?: "Category"; title: string } | null;
+    articles: Array<{
+      __typename?: "Article";
+      id: string;
+      title?: string | null;
+    }>;
+  } | null;
+};
+
+export type GetArticlesByCurriculumQueryVariables = Exact<{
+  id?: InputMaybe<Scalars["ID"]>;
+}>;
+
+export type GetArticlesByCurriculumQuery = {
+  __typename?: "Query";
+  curriculum?: {
+    __typename?: "Curriculum";
+    title: string;
+    articles: Array<{
+      __typename?: "Article";
+      id: string;
+      title?: string | null;
+      order: number;
+      content: { __typename?: "ArticleContentRichText"; html: string };
+      choices: Array<{ __typename?: "Choice"; choice: string }>;
+    }>;
   } | null;
 };
 
@@ -6087,6 +6113,31 @@ export const CurriculumBySlugDocument = gql`
       image {
         fileName
         url
+      }
+      category {
+        title
+      }
+      articles {
+        id
+        title
+      }
+    }
+  }
+`;
+export const GetArticlesByCurriculumDocument = gql`
+  query getArticlesByCurriculum($id: ID) {
+    curriculum(where: { id: $id }) {
+      title
+      articles {
+        id
+        title
+        order
+        content {
+          html
+        }
+        choices {
+          choice
+        }
       }
     }
   }
@@ -6156,6 +6207,20 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
         "CurriculumBySlug"
+      );
+    },
+    getArticlesByCurriculum(
+      variables?: GetArticlesByCurriculumQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<GetArticlesByCurriculumQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetArticlesByCurriculumQuery>(
+            GetArticlesByCurriculumDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "getArticlesByCurriculum"
       );
     },
   };
