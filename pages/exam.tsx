@@ -20,12 +20,12 @@ const Exam = (props: Props) => {
           <Disclosure key={article.id} as="div" className="mt-2">
             {({ open }) => (
               <>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
+                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
                   <span>{article.title}</span>
                   <ChevronUpIcon
                     className={`${
                       open ? "transform rotate-180" : ""
-                    } w-5 h-5 text-purple-500`}
+                    } w-5 h-5 text-primary-500`}
                   />
                 </Disclosure.Button>
                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
