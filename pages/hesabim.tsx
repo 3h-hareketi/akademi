@@ -22,7 +22,7 @@ const certificates = [
   },
 ];
 const Profile = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession({ required: true });
 
   return (
     <section className="py-16 bg-gray-100">
