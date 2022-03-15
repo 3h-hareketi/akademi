@@ -22,14 +22,6 @@ const Login = ({ providers, csrfToken }: Props) => (
   <section className="flex h-screen py-10 bg-primary lg:py-20">
     <div className="container px-4 mx-auto my-auto">
       <div className="max-w-xl mx-auto">
-        <div className="flex mb-10">
-          <a
-            className="mx-auto text-3xl font-bold leading-none text-white bg-white rounded-full"
-            href="#"
-          >
-            <Image src="/3h-logo.png" alt="" width={180} height={170} />
-          </a>
-        </div>
         <div className="p-6 mb-6 bg-white rounded shadow-md lg:mb-10 lg:p-12">
           <div className="mb-6">
             <span className="text-gray-500">Tekrar hoşgeldiniz</span>
