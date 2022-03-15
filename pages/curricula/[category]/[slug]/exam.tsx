@@ -1,15 +1,19 @@
+import { GetStaticPaths, GetStaticProps } from "next";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
-import Choices from "../components/Choices";
-import { Curriculum, getSdk } from "../interfaces";
-import { client } from "../utils";
+import { useSession } from "next-auth/react";
+import Choices from "../../../../components/Choices";
+import { Curriculum, getSdk } from "../../../../interfaces";
+import { client } from "../../../../utils";
 
 type Props = {
   curriculum: Curriculum;
 };
 
 const Exam = (props: Props) => {
+  const { status } = useSession({ required: true });
+
   return (
     <div className="py-10 mx-auto bg-gray-50">
       <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
@@ -53,10 +57,10 @@ const Exam = (props: Props) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const sdk = getSdk(client);
-  const { curriculum } = await sdk.getArticlesByCurriculum({
-    id: "cl05eco1vm5do0dyvzybx6j3e", // curriculum #1
+  const { curriculum } = await sdk.CurriculumBySlug({
+    slug: context.params?.slug as string,
   });
 
   return {
@@ -64,6 +68,23 @@ export async function getStaticProps() {
       curriculum,
     },
   };
-}
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const sdk = getSdk(client);
+  const { curricula } = await sdk.Curricula();
+
+  return {
+    paths: curricula.map((curriculum) => {
+      return {
+        params: {
+          category: curriculum.category?.slug,
+          slug: curriculum.slug,
+        },
+      };
+    }),
+    fallback: false,
+  };
+};
 
 export default Exam;

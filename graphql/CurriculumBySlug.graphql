@@ -13,6 +13,13 @@ query CurriculumBySlug($slug: String!) {
     articles {
       id
       title
+      order
+      content {
+        html
+      }
+      choices {
+        choice
+      }
     }
   }
 }
