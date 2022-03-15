@@ -2,6 +2,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import UserIcon from "./UserIcon";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false); // mobile navbar (hamburger)
@@ -86,15 +87,9 @@ const Navbar = () => {
             </Link>
           </div>
           {session ? (
-            <>
-              <div>{session.user?.email}</div>
-              <button
-                className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
-                onClick={() => signOut()}
-              >
-                Çıkış
-              </button>
-            </>
+            <div className="ml-auto mr-20">
+              <UserIcon user={session.user} />
+            </div>
           ) : (
             <Link href="/giris" passHref>
               <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
