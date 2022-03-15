@@ -12,13 +12,25 @@ const UserDropdown = ({ user }: Props) => {
     <div className="ml-auto">
       <Menu as="div" className="relative ml-3">
         <div>
-          <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-400 focus:ring-white">
-            <div className="w-8 h-8">
+          {user.image ? (
+            <Menu.Button>
               {" "}
-              <UserCircleIcon />
-            </div>
-            {/* <Image src={user.avatar} alt="" width={"32px"} height={"32px"} /> */}
-          </Menu.Button>
+              <Image
+                src={user?.image}
+                alt=""
+                width={"32px"}
+                height={"32px"}
+                className="rounded-full"
+              />
+            </Menu.Button>
+          ) : (
+            <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary-400 focus:ring-white">
+              <div className="w-8 h-8">
+                {" "}
+                <UserCircleIcon />
+              </div>
+            </Menu.Button>
+          )}
         </div>
         <Transition
           as={Fragment}
@@ -32,14 +44,9 @@ const UserDropdown = ({ user }: Props) => {
           <Menu.Items className="absolute right-0 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
-                  className={`block px-4 py-2 text-sm text-gray-700 ${
-                    active && "bg-gray-100"
-                  }`}
-                >
+                <div className={`block px-4 py-2 text-sm text-gray-700 `}>
                   {user?.email}
-                </a>
+                </div>
               )}
             </Menu.Item>
 
