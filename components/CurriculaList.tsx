@@ -18,14 +18,14 @@ const CurriculaList = ({ curricula, categories }: Props) => {
         <div className="container px-4 mx-auto Konular">
           <div className="flex flex-wrap items-center mb-16">
             <div className="w-full lg:w-1/2">
-              <span className="font-bold text-primary">3H Akademi</span>
+              <span className="font-bold text-primary-500">3H Akademi</span>
               <h2 className="text-4xl font-bold lg:text-5xl font-heading">
                 Kurslar
               </h2>
             </div>
             <div className="hidden w-1/2 text-right lg:block">
               <a
-                className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary rounded-l-xl rounded-t-xl hover:bg-primaryShade text-gray-50"
+                className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
                 href="#"
                 data-removed="true"
               >
@@ -44,8 +44,8 @@ const CurriculaList = ({ curricula, categories }: Props) => {
                     <a
                       className={
                         currentCategory === undefined
-                          ? "block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50"
-                          : "block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
+                          ? "block px-3 py-2 mb-4 font-bold rounded text-primary-500 bg-gray-50"
+                          : "block px-3 py-2 mb-4 rounded hover:text-primary-700 hover:bg-gray-50"
                       }
                     >
                       Tümü
@@ -57,8 +57,8 @@ const CurriculaList = ({ curricula, categories }: Props) => {
                         <a
                           className={
                             currentCategory === category.slug
-                              ? "block px-3 py-2 mb-4 font-bold rounded text-primary bg-gray-50 "
-                              : "block px-3 py-2 mb-4 rounded hover:text-primaryShade hover:bg-gray-50"
+                              ? "block px-3 py-2 mb-4 font-bold rounded text-primary-500 bg-gray-50 "
+                              : "block px-3 py-2 mb-4 rounded hover:text-primary-700 hover:bg-gray-50"
                           }
                           href="#"
                         >
