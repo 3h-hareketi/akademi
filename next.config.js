@@ -11,7 +11,7 @@ const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN;
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["media.graphcms.com"],
+    domains: ["media.graphcms.com", "lh3.googleusercontent.com"],
   },
 };
 
