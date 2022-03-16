@@ -45,8 +45,18 @@ const Layout = ({ children }: Props) => {
           postalCode: "34467",
           addressCountry: "TR",
         }}
-        sameAs={["https://www.orange-fox.com"]}
-        url="https://www.purpule-fox.io/"
+        sameAs={[
+          "https://www.facebook.com/3hhareketi/",
+          "https://twitter.com/3hhareketi",
+          "https://www.linkedin.com/company/the-3h-movement/about/",
+        ]}
+        url="https://www.3hhareketi.org/"
+        email="info@3hhareketi.org"
+        memberOf={[{ "@type": "NGO", name: "IFLRY" }]}
+        funder={[
+          { "@type": "NGO", name: "Friedrich Naumann Foundation" },
+          { "@type": "NGO", name: "Atlas Network" },
+        ]}
       />
       <Navbar />
       <main className="mb-auto">{children}</main>
