@@ -35,7 +35,7 @@ const Layout = ({ children }: Props) => {
       <OrganizationJsonLd
         type="NGO"
         id="https://www.purpule-fox.io/#corporation"
-        logo={`${process.env.NEXTAUTH_URL}/3h-logo.pngg`}
+        logo={`${process.env.NEXTAUTH_URL}/3h-logo.png`}
         legalName="Hürriyet Hukuk Hoşgörü Hareketi Derneği"
         name="3H Hareketi"
         address={{
