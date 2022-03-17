@@ -13,7 +13,7 @@ export default function custom404() {
             width={500}
             height={355}
           />
-          <h1 className="text-2xl font-bold ">
+          <h1 className="py-5 text-2xl font-bold">
             Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış
             olabilir!
           </h1>
