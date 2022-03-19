@@ -9,6 +9,7 @@ const log: Logger = new Logger({ name: "pages/api/auth/[...nextauth].ts" });
 
 export default NextAuth({
   debug: process.env.NODE_ENV !== "production" ? false : true,
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: FaunaAdapter(client),
   providers: [
     EmailProvider({

@@ -1,7 +1,8 @@
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false); // mobile navbar (hamburger)
@@ -11,6 +12,21 @@ const Navbar = () => {
     <section>
       <nav className="relative px-6 py-6 bg-white">
         <div className="flex items-center">
+          <div className="mr-auto lg:hidden">
+            <button
+              className="flex items-center p-3 text-primary-500 navbar-burger"
+              onClick={() => setNavbarOpen(true)}
+            >
+              <svg
+                className="block w-4 h-4 fill-current"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Mobile menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+              </svg>
+            </button>
+          </div>
           <ul className="hidden lg:flex lg:items-center lg:w-auto lg:space-x-5">
             <li>
               <Link href="/">
@@ -85,16 +101,11 @@ const Navbar = () => {
               </a>
             </Link>
           </div>
+
           {session ? (
-            <>
-              <div>{session.user?.email}</div>
-              <button
-                className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
-                onClick={() => signOut()}
-              >
-                Çıkış
-              </button>
-            </>
+            <div className="ml-auto">
+              <UserDropdown user={session.user} />
+            </div>
           ) : (
             <Link href="/giris" passHref>
               <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
@@ -102,21 +113,6 @@ const Navbar = () => {
               </a>
             </Link>
           )}
-          <div className="ml-auto lg:hidden">
-            <button
-              className="flex items-center p-3 text-primary-500 navbar-burger"
-              onClick={() => setNavbarOpen(true)}
-            >
-              <svg
-                className="block w-4 h-4 fill-current"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Mobile menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-              </svg>
-            </button>
-          </div>
         </div>
       </nav>
       <div
@@ -188,7 +184,7 @@ const Navbar = () => {
             <div className="pt-6">
               {session ? (
                 <>
-                  <div>{session.user?.email}</div>
+                  <div className="text-center">{session.user?.email}</div>
                   <Link href="/api/auth/signout" passHref>
                     <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
                       Çıkış
