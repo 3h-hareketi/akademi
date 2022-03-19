@@ -8,19 +8,19 @@ export default function custom404() {
         <div className="grid justify-items-center">
           <Image
             className="object-cover"
-            src="/404.png"
+            src="/404page.png"
             alt="3H Movement-3H Hareketi"
-            width={500}
-            height={355}
+            width={270}
+            height={300}
           />
-          <h1 className="py-5 text-2xl font-bold">
+          <p className="py-3 text-l">
             Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış
             olabilir!
-          </h1>
-          <p className="text-xl font-semibold">
+          </p>
+          <p className="text-l">
             Bunun yerine{" "}
             <Link href="/">
-              <a className="font-bold text-primary-500 decoration-primary-500">
+              <a className="text-primary-500 decoration-primary-500">
                 Anasayfa&#39;ya
               </a>
             </Link>{" "}
