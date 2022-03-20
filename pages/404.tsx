@@ -12,7 +12,7 @@ export default function custom404() {
             alt="3H Movement-3H Hareketi"
             width={270}
             height={300}
-            placeholder="blurDataURL"
+            placeholder="blur"
           />
           <p className="py-3 text-l">
             Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış
