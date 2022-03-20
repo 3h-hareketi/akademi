@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function custom404() {
+export default function Custom404() {
   return (
     <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
       <div className="flex flex-wrap justify-center mx-auto">
