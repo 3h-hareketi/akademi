@@ -88,6 +88,14 @@ const Footer = () => (
             </svg>
           </a>
         </div>
+        <div className="flex justify-center mt-8 space-x-2 lg:space-x-4">
+          <Image
+            src="/1618983297-powered-by-vercel.svg"
+            alt="Powered by Vercel"
+            width="212"
+            height="44"
+          />
+        </div>
       </div>
     </div>
   </section>
