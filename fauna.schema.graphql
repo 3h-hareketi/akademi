@@ -1,0 +1,18 @@
+type User @collection(name: "users") {
+  name: String
+  email: String!
+  emailVerified: Time
+  image: String
+  results: [Result!] @relation(name: "results")
+}
+
+type Result @collection(name: "results") {
+  user: User! @relation(name: "results")
+  curriculumName: String!
+  score: Int
+}
+
+type Query {
+  users: [User!]!
+  results: [Result!]! @index(name: "results")
+}
