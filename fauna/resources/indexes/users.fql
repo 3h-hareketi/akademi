@@ -1,0 +1,4 @@
+CreateIndex({
+  name: "users",
+  source: Collection("users"),
+})
