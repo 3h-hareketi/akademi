@@ -1,6 +1,6 @@
 type User @collection(name: "users") {
   name: String
-  email: String!
+  email: String! @unique(index: "user_by_email")
   emailVerified: Time
   image: String
   results: [Result!] @relation(name: "results")
