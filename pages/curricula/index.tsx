@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import CurriculaList from "../../components/CurriculaList";
-import { Category, Curriculum, getSdk } from "../../interfaces";
+import { Category, Curriculum, getSdk } from "../../interfaces/graphcms";
 import { client } from "../../utils";
 
 type Props = {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CurriculumListItem from "../components/CurriculumListItem";
-import { Category, Curriculum } from "../interfaces";
+import { Category, Curriculum } from "../interfaces/graphcms";
 
 type Props = {
   curricula: Array<Curriculum>;

@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import CurriculumCard from "../components/CurriculumCard";
 import Hero from "../components/Hero";
-import { Curriculum, getSdk } from "../interfaces";
+import { Curriculum, getSdk } from "../interfaces/graphcms";
 import { client } from "../utils";
 
 type Props = {

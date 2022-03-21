@@ -1,6 +1,6 @@
 overwrite: true
 generates:
-  interfaces/index.ts:
+  interfaces/graphcms.ts:
     documents: "graphql/graphcms/**/*.graphql"
     schema: "${GRAPHCMS_ENDPOINT}"
     plugins:

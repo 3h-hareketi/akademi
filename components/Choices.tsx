@@ -1,6 +1,6 @@
 import { SVGProps, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { Choice } from "../interfaces";
+import { Choice } from "../interfaces/graphcms";
 
 interface Props {
   choices: Array<Choice>;

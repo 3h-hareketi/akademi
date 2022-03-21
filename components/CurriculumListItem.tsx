@@ -1,4 +1,4 @@
-import { Curriculum } from "../interfaces";
+import { Curriculum } from "../interfaces/graphcms";
 import Image from "next/image";
 import Link from "next/link";
 

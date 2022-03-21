@@ -4,7 +4,7 @@ import { ChevronUpIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
-import { Curriculum, getSdk } from "../../../../interfaces";
+import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../utils";
 import { Fragment } from "react";
 
