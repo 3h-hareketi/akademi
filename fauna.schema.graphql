@@ -10,6 +10,7 @@ type Result @collection(name: "results") {
   user: User! @relation(name: "results")
   curriculumName: String!
   score: Int
+  date: Time
 }
 
 type Query {
