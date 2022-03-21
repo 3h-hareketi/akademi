@@ -1,11 +1,10 @@
 CreateFunction({
   name: "GetResultsByUserId",
   body: Query(
-    Map(
+    Lambda("user", 
       Paginate(
-        Match(Index("results_by_user"), Var("userRef"))
-      ),
-      Lambda("userRef", Get(Var("userRef")))
+        Match(Index("results_by_user"), Var("user"))
+      )
     )
   )
 })
