@@ -5,7 +5,7 @@ import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
-import { client } from "../../../../utils";
+import { client } from "../../../../lib/graphCmsClient";
 import { Fragment } from "react";
 
 type Props = {

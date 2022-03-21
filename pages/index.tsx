@@ -4,7 +4,7 @@ import Link from "next/link";
 import CurriculumCard from "../components/CurriculumCard";
 import Hero from "../components/Hero";
 import { Curriculum, getSdk } from "../interfaces/graphcms";
-import { client } from "../utils";
+import { client } from "../lib/graphCmsClient";
 
 type Props = {
   curricula: Array<Curriculum>;

@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import CurriculaList from "../../components/CurriculaList";
 import { Category, Curriculum, getSdk } from "../../interfaces/graphcms";
-import { client } from "../../utils";
+import { client } from "../../lib/graphCmsClient";
 
 type Props = {
   curricula: Array<Curriculum>;
