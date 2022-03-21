@@ -1,0 +1,12 @@
+query GetResults {
+  users {
+    data {
+      results {
+        data {
+          curriculumName
+          score
+        }
+      }
+    }
+  }
+}
