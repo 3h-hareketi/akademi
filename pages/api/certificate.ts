@@ -1,15 +1,18 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import generatePdf from "../../utils/generatePdf";
 
-async function handler(request: NextApiRequest, response: NextApiResponse) {
+export default async function handler(
+  request: NextApiRequest,
+  response: NextApiResponse
+) {
   const stream = await generatePdf();
-  return {
+
+  response.status(200).json({
     statusCode: 200,
     isBase64Encoded: true,
     headers: {
-      "Content-type": "application/pdf",
+      "Content-Type": "application/pdf",
     },
     body: stream.toString("base64"),
-  };
+  });
 }
-export default handler;
