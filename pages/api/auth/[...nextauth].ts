@@ -30,4 +30,11 @@ export default NextAuth({
     },
   },
   useSecureCookies: process.env.NODE_ENV === "production" ? true : false,
+  callbacks: {
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.id = user.id;
+      return session;
+    },
+  },
 });
