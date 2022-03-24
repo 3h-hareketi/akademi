@@ -1,17 +1,21 @@
-import PDFDocument from "pdfkit";
+import path from "path";
+import { PDFDocument } from "pdf-lib";
+async function generatePdf() {
+  const formUrl = path.join(
+    "http://localhost:3000",
+    "certificate_template.pdf"
+  ); // TODO
+  const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
+  const pdfDoc = await PDFDocument.load(formPdfBytes);
 
-async function generatePdf(): Promise<Buffer> {
-  return new Promise((resolve: Function) => {
-    const doc = new PDFDocument();
-    doc.text("Certificate #1");
-    doc.end();
-    const buffers: any = [];
-    doc.on("data", buffers.push.bind(buffers));
-    doc.on("end", () => {
-      const pdfData = Buffer.concat(buffers);
-      resolve(pdfData);
-    });
-  });
+  const form = pdfDoc.getForm();
+
+  const nameField = form.getTextField("Ad Soyad");
+
+  nameField.setText("Ogrenci Ogrencioglu");
+
+  const pdfBytes = await pdfDoc.save();
+  return pdfBytes;
 }
 
 export default generatePdf;

@@ -5,7 +5,7 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  const stream = await generatePdf();
+  const certificate = await generatePdf();
 
   response.status(200).json({
     statusCode: 200,
@@ -13,6 +13,6 @@ export default async function handler(
     headers: {
       "Content-Type": "application/pdf",
     },
-    body: stream.toString("base64"),
+    body: certificate,
   });
 }
