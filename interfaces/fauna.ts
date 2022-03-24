@@ -231,6 +231,18 @@ export type UserResultsRelation = {
   disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
 };
 
+export type ResultMutationVariables = Exact<{
+  curriculumName: Scalars["String"];
+  user: ResultUserRelation;
+  score?: InputMaybe<Scalars["Int"]>;
+  date?: InputMaybe<Scalars["Time"]>;
+}>;
+
+export type ResultMutation = {
+  __typename?: "Mutation";
+  createResult: { __typename?: "Result"; _id: string };
+};
+
 export type ResultByIdQueryVariables = Exact<{
   id: Scalars["ID"];
 }>;
@@ -262,6 +274,25 @@ export type ResultsByUserIdQuery = {
   };
 };
 
+export const ResultDocument = gql`
+  mutation Result(
+    $curriculumName: String!
+    $user: ResultUserRelation!
+    $score: Int
+    $date: Time
+  ) {
+    createResult(
+      data: {
+        curriculumName: $curriculumName
+        user: $user
+        score: $score
+        date: $date
+      }
+    ) {
+      _id
+    }
+  }
+`;
 export const ResultByIdDocument = gql`
   query ResultByID($id: ID!) {
     findResultByID(id: $id) {
@@ -300,6 +331,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    Result(
+      variables: ResultMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ResultMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ResultMutation>(ResultDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Result",
+        "mutation"
+      );
+    },
     ResultByID(
       variables: ResultByIdQueryVariables,
       requestHeaders?: Dom.RequestInit["headers"]

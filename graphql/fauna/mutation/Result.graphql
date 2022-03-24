@@ -1,0 +1,17 @@
+mutation Result(
+  $curriculumName: String!
+  $user: ResultUserRelation!
+  $score: Int
+  $date: Time
+) {
+  createResult(
+    data: {
+      curriculumName: $curriculumName
+      user: $user
+      score: $score
+      date: $date
+    }
+  ) {
+    _id
+  }
+}
