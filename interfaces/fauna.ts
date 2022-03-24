@@ -244,11 +244,41 @@ export type ResultByIdQuery = {
   } | null;
 };
 
+export type ResultsByUserIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type ResultsByUserIdQuery = {
+  __typename?: "Query";
+  resultsByUserId: {
+    __typename?: "QueryResultsByUserIdPage";
+    data: Array<{
+      __typename?: "Result";
+      _id: string;
+      curriculumName: string;
+      date?: any | null;
+      score?: number | null;
+    } | null>;
+  };
+};
+
 export const ResultByIdDocument = gql`
   query ResultByID($id: ID!) {
     findResultByID(id: $id) {
       curriculumName
       date
+    }
+  }
+`;
+export const ResultsByUserIdDocument = gql`
+  query ResultsByUserID($id: ID!) {
+    resultsByUserId(userRef: $id) {
+      data {
+        _id
+        curriculumName
+        date
+        score
+      }
     }
   }
 `;
@@ -281,6 +311,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "ResultByID",
+        "query"
+      );
+    },
+    ResultsByUserID(
+      variables: ResultsByUserIdQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ResultsByUserIdQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ResultsByUserIdQuery>(
+            ResultsByUserIdDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "ResultsByUserID",
         "query"
       );
     },
