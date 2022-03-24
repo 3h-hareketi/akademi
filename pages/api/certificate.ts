@@ -27,12 +27,7 @@ export default async function handler(
 
   const buffer = Buffer.from(pdfBytes);
 
-  response.status(200).json({
-    statusCode: 200,
-    isBase64Encoded: true,
-    headers: {
-      "Content-Type": "application/pdf",
-    },
-    body: buffer.toString("base64"),
-  });
+  response.setHeader("Content-Type", "application/pdf");
+  response.setHeader("Content-Length", buffer.length);
+  response.send(buffer);
 }
