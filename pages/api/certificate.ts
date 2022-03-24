@@ -2,12 +2,23 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { PDFDocument, TextAlignment } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
+import { getSdk } from "../../interfaces/fauna";
+import { client } from "../../lib/faunaGraphQlClient";
 
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
   const session = await getSession({ req: request });
+  const sdk = getSdk(client);
+
+  const { findResultByID: data } = await sdk.ResultByID({
+    id: request.query.id as string,
+  });
+
+  if (!data) {
+    response.status(404).json("Result not found");
+  }
 
   const baseUrl =
     process.env.NODE_ENV === "production"
@@ -26,13 +37,13 @@ export default async function handler(
   const form = pdfDoc.getForm();
 
   const nameField = form.getTextField("katilimcinin adi soyadi");
-  nameField.setText(session?.user?.name || "");
+  nameField.setText(session?.user?.name || session?.user?.email || "");
   nameField.enableReadOnly();
   nameField.setAlignment(TextAlignment.Center);
   nameField.updateAppearances(customFont);
 
   const curriculumField = form.getTextField("egitimin adi");
-  curriculumField.setText("Sertifika #1");
+  curriculumField.setText(data?.curriculumName);
   curriculumField.enableReadOnly();
   curriculumField.setAlignment(TextAlignment.Center);
   curriculumField.updateAppearances(customFont);
