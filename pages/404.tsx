@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
+import NotFound from "/public/404page.png";
 export default function Custom404() {
   return (
     <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
@@ -8,7 +8,7 @@ export default function Custom404() {
         <div className="py-20 basis-1/2">
           <Image
             className="object-cover"
-            src="/404page.png"
+            src={NotFound}
             alt="3H Movement-3H Hareketi"
             width={270}
             height={300}
