@@ -1,6 +1,7 @@
+import { Session } from "next-auth";
 import path from "path";
 import { PDFDocument } from "pdf-lib";
-async function generatePdf() {
+async function generatePdf(session: Session | null) {
   const formUrl = path.join(
     "http://localhost:3000",
     "certificate_template.pdf"
@@ -12,7 +13,7 @@ async function generatePdf() {
 
   const nameField = form.getTextField("Ad Soyad");
 
-  nameField.setText("Ogrenci Ogrencioglu");
+  nameField.setText(session?.user?.name || "Kullanici Adi Yok");
 
   const pdfBytes = await pdfDoc.save();
   return pdfBytes;
