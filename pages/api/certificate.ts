@@ -9,29 +9,30 @@ export default async function handler(
   response: NextApiResponse
 ) {
   const session = await getSession({ req: request });
-  if (session) {
-    const formUrl = path.join(
-      "https://" + process.env.VERCEL_URL + "/" || "/",
-      "certificate_template.pdf"
-    );
-    const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
-    const pdfDoc = await PDFDocument.load(formPdfBytes);
 
-    const form = pdfDoc.getForm();
-
-    const nameField = form.getTextField("Ad Soyad");
-    nameField.enableReadOnly();
-
-    nameField.setText(session?.user?.name || "Kullanici Adi Yok");
-
-    const pdfBytes = await pdfDoc.save();
-
-    const buffer = Buffer.from(pdfBytes);
-
-    response.setHeader("Content-Type", "application/pdf");
-    response.setHeader("Content-Length", buffer.length);
-    response.send(buffer);
-  } else {
+  if (!session) {
     response.status(401).send("Unauthorized");
   }
+
+  const formUrl = path.join(
+    "https://" + process.env.VERCEL_URL + "/" || "/",
+    "certificate_template.pdf"
+  );
+  const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
+  const pdfDoc = await PDFDocument.load(formPdfBytes);
+
+  const form = pdfDoc.getForm();
+
+  const nameField = form.getTextField("Ad Soyad");
+  nameField.enableReadOnly();
+
+  nameField.setText(session?.user?.name || "Kullanici Adi Yok");
+
+  const pdfBytes = await pdfDoc.save();
+
+  const buffer = Buffer.from(pdfBytes);
+
+  response.setHeader("Content-Type", "application/pdf");
+  response.setHeader("Content-Length", buffer.length);
+  response.send(buffer);
 }
