@@ -29,8 +29,3 @@ const sentryWebpackPluginOptions = {
 };
 
 module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
-module.exports = {
-  serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname,
-  },
-};
