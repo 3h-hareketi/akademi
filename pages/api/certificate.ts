@@ -10,10 +10,6 @@ export default async function handler(
 ) {
   const session = await getSession({ req: request });
 
-  if (!session) {
-    response.status(401).send("Unauthorized");
-  }
-
   const formUrl = path.join(
     "https://" + process.env.VERCEL_URL + "/" || "/",
     "certificate_template.pdf"
@@ -23,10 +19,13 @@ export default async function handler(
 
   const form = pdfDoc.getForm();
 
-  const nameField = form.getTextField("Ad Soyad");
+  const nameField = form.getTextField("Katılımcının adı soyadı");
+  nameField.setText(session?.user?.name || "Kullanici Adi Yok");
   nameField.enableReadOnly();
 
-  nameField.setText(session?.user?.name || "Kullanici Adi Yok");
+  const curriculumField = form.getTextField("Eğitimin adı");
+  curriculumField.setText("Sertifika #1");
+  curriculumField.enableReadOnly();
 
   const pdfBytes = await pdfDoc.save();
 
