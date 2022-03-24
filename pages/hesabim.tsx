@@ -1,14 +1,15 @@
 import { Disclosure } from "@headlessui/react";
-import { ChevronUpIcon, UserCircleIcon } from "@heroicons/react/solid";
+import { ChevronUpIcon, UserCircleIcon, EyeIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import Choices from "../components/Choices";
+import Link from "next/link";
 const certificates = [
   {
     id: "1",
     title: "Sertifika #1",
-    content: "",
+    content:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
     id: "2",
@@ -18,7 +19,8 @@ const certificates = [
   {
     id: "3",
     title: "Sertifika #3",
-    content: "",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
 const Profile = () => {
@@ -100,10 +102,18 @@ const Profile = () => {
                             />
                           </Disclosure.Button>
                           <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                            <div className="p-5">
-                              {" "}
-                              <Interweave content={certificate.content} />
-                            </div>
+                            {" "}
+                            <h3>{certificate.content}</h3>
+                            <Link
+                              href={`/api/certificate?id=${certificate.id}`}
+                              passHref
+                            >
+                              <a href="#" className="flex text-primary-500">
+                                {" "}
+                                Sertifikayı Görüntüle
+                                <EyeIcon className="w-5 h-5 ml-2 text-primary-500" />
+                              </a>
+                            </Link>
                           </Disclosure.Panel>
                         </>
                       )}
