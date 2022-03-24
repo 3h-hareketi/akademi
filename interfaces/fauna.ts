@@ -84,6 +84,7 @@ export type MutationUpdateUserArgs = {
 /** 'Result' input values */
 export type PartialUpdateResultInput = {
   curriculumName?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["Time"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<ResultUserRelation>;
 };
@@ -91,7 +92,7 @@ export type PartialUpdateResultInput = {
 /** 'User' input values */
 export type PartialUpdateUserInput = {
   email?: InputMaybe<Scalars["String"]>;
-  emailVerified?: InputMaybe<Scalars["Int"]>;
+  emailVerified?: InputMaybe<Scalars["Time"]>;
   image?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   results?: InputMaybe<UserResultsRelation>;
@@ -104,6 +105,7 @@ export type Query = {
   /** Find a document from the collection of 'User' by its id. */
   findUserByID?: Maybe<User>;
   results: ResultPage;
+  resultsByUserId: QueryResultsByUserIdPage;
   users: UserPage;
 };
 
@@ -120,9 +122,26 @@ export type QueryResultsArgs = {
   _size?: InputMaybe<Scalars["Int"]>;
 };
 
+export type QueryResultsByUserIdArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
+  userRef: Scalars["ID"];
+};
+
 export type QueryUsersArgs = {
   _cursor?: InputMaybe<Scalars["String"]>;
   _size?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The pagination object for elements of type 'Result'. */
+export type QueryResultsByUserIdPage = {
+  __typename?: "QueryResultsByUserIdPage";
+  /** A cursor for elements coming after the current page. */
+  after?: Maybe<Scalars["String"]>;
+  /** A cursor for elements coming before the current page. */
+  before?: Maybe<Scalars["String"]>;
+  /** The elements of type 'Result' in this page. */
+  data: Array<Maybe<Result>>;
 };
 
 export type Result = {
@@ -132,6 +151,7 @@ export type Result = {
   /** The document's timestamp. */
   _ts: Scalars["Long"];
   curriculumName: Scalars["String"];
+  date?: Maybe<Scalars["Time"]>;
   score?: Maybe<Scalars["Int"]>;
   user: User;
 };
@@ -139,6 +159,7 @@ export type Result = {
 /** 'Result' input values */
 export type ResultInput = {
   curriculumName: Scalars["String"];
+  date?: InputMaybe<Scalars["Time"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<ResultUserRelation>;
 };
@@ -169,7 +190,7 @@ export type User = {
   /** The document's timestamp. */
   _ts: Scalars["Long"];
   email: Scalars["String"];
-  emailVerified?: Maybe<Scalars["Int"]>;
+  emailVerified?: Maybe<Scalars["Time"]>;
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   results: ResultPage;
@@ -183,7 +204,7 @@ export type UserResultsArgs = {
 /** 'User' input values */
 export type UserInput = {
   email: Scalars["String"];
-  emailVerified?: InputMaybe<Scalars["Int"]>;
+  emailVerified?: InputMaybe<Scalars["Time"]>;
   image?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   results?: InputMaybe<UserResultsRelation>;
@@ -210,37 +231,24 @@ export type UserResultsRelation = {
   disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
 };
 
-export type GetResultsQueryVariables = Exact<{ [key: string]: never }>;
+export type ResultByIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
 
-export type GetResultsQuery = {
+export type ResultByIdQuery = {
   __typename?: "Query";
-  users: {
-    __typename?: "UserPage";
-    data: Array<{
-      __typename?: "User";
-      results: {
-        __typename?: "ResultPage";
-        data: Array<{
-          __typename?: "Result";
-          curriculumName: string;
-          score?: number | null;
-        } | null>;
-      };
-    } | null>;
-  };
+  findResultByID?: {
+    __typename?: "Result";
+    curriculumName: string;
+    date?: any | null;
+  } | null;
 };
 
-export const GetResultsDocument = gql`
-  query GetResults {
-    users {
-      data {
-        results {
-          data {
-            curriculumName
-            score
-          }
-        }
-      }
+export const ResultByIdDocument = gql`
+  query ResultByID($id: ID!) {
+    findResultByID(id: $id) {
+      curriculumName
+      date
     }
   }
 `;
@@ -262,17 +270,17 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
-    GetResults(
-      variables?: GetResultsQueryVariables,
+    ResultByID(
+      variables: ResultByIdQueryVariables,
       requestHeaders?: Dom.RequestInit["headers"]
-    ): Promise<GetResultsQuery> {
+    ): Promise<ResultByIdQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<GetResultsQuery>(GetResultsDocument, variables, {
+          client.request<ResultByIdQuery>(ResultByIdDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "GetResults",
+        "ResultByID",
         "query"
       );
     },

@@ -2085,6 +2085,8 @@ export type Curriculum = Node & {
   slug: Scalars["String"];
   /** System stage field */
   stage: Stage;
+  /** Required success threshold for successful results in percentage. */
+  threshold: Scalars["Int"];
   title: Scalars["String"];
   /** The time the document was updated */
   updatedAt: Scalars["DateTime"];
@@ -2169,6 +2171,7 @@ export type CurriculumCreateInput = {
   description?: InputMaybe<Scalars["String"]>;
   image?: InputMaybe<AssetCreateOneInlineInput>;
   slug: Scalars["String"];
+  threshold: Scalars["Int"];
   title: Scalars["String"];
   updatedAt?: InputMaybe<Scalars["DateTime"]>;
 };
@@ -2303,6 +2306,21 @@ export type CurriculumManyWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars["String"]>;
+  threshold?: InputMaybe<Scalars["Int"]>;
+  /** All values greater than the given value. */
+  threshold_gt?: InputMaybe<Scalars["Int"]>;
+  /** All values greater than or equal the given value. */
+  threshold_gte?: InputMaybe<Scalars["Int"]>;
+  /** All values that are contained in given list. */
+  threshold_in?: InputMaybe<Array<Scalars["Int"]>>;
+  /** All values less than the given value. */
+  threshold_lt?: InputMaybe<Scalars["Int"]>;
+  /** All values less than or equal the given value. */
+  threshold_lte?: InputMaybe<Scalars["Int"]>;
+  /** All values that are not equal to given value. */
+  threshold_not?: InputMaybe<Scalars["Int"]>;
+  /** All values that are not contained in given list. */
+  threshold_not_in?: InputMaybe<Array<Scalars["Int"]>>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -2351,6 +2369,8 @@ export enum CurriculumOrderByInput {
   PublishedAtDesc = "publishedAt_DESC",
   SlugAsc = "slug_ASC",
   SlugDesc = "slug_DESC",
+  ThresholdAsc = "threshold_ASC",
+  ThresholdDesc = "threshold_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
@@ -2363,6 +2383,7 @@ export type CurriculumUpdateInput = {
   description?: InputMaybe<Scalars["String"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   slug?: InputMaybe<Scalars["String"]>;
+  threshold?: InputMaybe<Scalars["Int"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -2385,6 +2406,7 @@ export type CurriculumUpdateManyInlineInput = {
 
 export type CurriculumUpdateManyInput = {
   description?: InputMaybe<Scalars["String"]>;
+  threshold?: InputMaybe<Scalars["Int"]>;
 };
 
 export type CurriculumUpdateManyWithNestedWhereInput = {
@@ -2537,6 +2559,21 @@ export type CurriculumWhereInput = {
   slug_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   slug_starts_with?: InputMaybe<Scalars["String"]>;
+  threshold?: InputMaybe<Scalars["Int"]>;
+  /** All values greater than the given value. */
+  threshold_gt?: InputMaybe<Scalars["Int"]>;
+  /** All values greater than or equal the given value. */
+  threshold_gte?: InputMaybe<Scalars["Int"]>;
+  /** All values that are contained in given list. */
+  threshold_in?: InputMaybe<Array<Scalars["Int"]>>;
+  /** All values less than the given value. */
+  threshold_lt?: InputMaybe<Scalars["Int"]>;
+  /** All values less than or equal the given value. */
+  threshold_lte?: InputMaybe<Scalars["Int"]>;
+  /** All values that are not equal to given value. */
+  threshold_not?: InputMaybe<Scalars["Int"]>;
+  /** All values that are not contained in given list. */
+  threshold_not_in?: InputMaybe<Array<Scalars["Int"]>>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
