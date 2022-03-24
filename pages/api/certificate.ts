@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import PDFDocument from "pdfkit";
+import generatePdf from "../../utils/generatePdf";
 
 async function handler(request: NextApiRequest, response: NextApiResponse) {
-  const doc = new PDFDocument({ size: [10, 10], margin: 1 });
-  console.log(doc);
-
+  const stream = await generatePdf();
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      message: `PDF generation succesful`,
-    }),
+    isBase64Encoded: true,
+    headers: {
+      "Content-type": "application/pdf",
+    },
+    body: stream.toString("base64"),
   };
 }
 export default handler;
