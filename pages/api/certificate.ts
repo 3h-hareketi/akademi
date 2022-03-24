@@ -19,6 +19,7 @@ export default async function handler(
   const form = pdfDoc.getForm();
 
   const nameField = form.getTextField("Ad Soyad");
+  nameField.enableReadOnly();
 
   nameField.setText(session?.user?.name || "Kullanici Adi Yok");
 
