@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { PDFDocument, TextAlignment } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
+
 export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
