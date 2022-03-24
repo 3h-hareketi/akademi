@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { Curriculum, getSdk } from "../../../../interfaces";
-import { client } from "../../../../utils";
+import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
+import { client } from "../../../../lib/graphCmsClient";
 import Image from "next/image";
 import Link from "next/link";
 

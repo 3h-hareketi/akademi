@@ -1,0 +1,4 @@
+CreateIndex({
+  "name": "results",
+  "source": Collection("results")
+})

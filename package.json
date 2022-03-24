@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "generate": "graphql-codegen --config codegen.yml"
+    "generate": "graphql-codegen --config codegen.yml",
+    "migration": "fauna-schema-migrate"
   },
   "dependencies": {
     "@headlessui/react": "^1.5.0",
@@ -30,6 +31,7 @@
     "tslog": "^3.3.3"
   },
   "devDependencies": {
+    "@fauna-labs/fauna-schema-migrate": "^2.2.1",
     "@graphql-codegen/cli": "2.6.2",
     "@graphql-codegen/typescript": "2.4.8",
     "@graphql-codegen/typescript-graphql-request": "^4.4.4",

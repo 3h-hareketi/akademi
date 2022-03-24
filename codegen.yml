@@ -1,9 +1,22 @@
 overwrite: true
-schema: "${GRAPHCMS_ENDPOINT}"
-documents: "graphql/**/*.graphql"
 generates:
-  interfaces/index.ts:
+  interfaces/graphcms.ts:
+    documents: "graphql/graphcms/**/*.graphql"
+    schema: "${GRAPHCMS_ENDPOINT}"
     plugins:
       - "typescript"
       - "typescript-operations"
       - "typescript-graphql-request"
+  interfaces/fauna.ts:
+    documents: "graphql/fauna/**/*.graphql"
+    schema:
+      - "${FAUNA_ENDPOINT}":
+          headers:
+            Authorization: "Bearer ${FAUNA_SECRET}"
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
+hooks:
+  afterOneFileWrite:
+    - prettier --write
