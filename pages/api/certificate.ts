@@ -8,26 +8,30 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  const session = await getSession();
-  const formUrl = path.join(
-    "https://" + process.env.VERCEL_URL + "/" || "/",
-    "certificate_template.pdf"
-  );
-  const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
-  const pdfDoc = await PDFDocument.load(formPdfBytes);
+  const session = await getSession({ req: request });
+  if (session) {
+    const formUrl = path.join(
+      "https://" + process.env.VERCEL_URL + "/" || "/",
+      "certificate_template.pdf"
+    );
+    const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
+    const pdfDoc = await PDFDocument.load(formPdfBytes);
 
-  const form = pdfDoc.getForm();
+    const form = pdfDoc.getForm();
 
-  const nameField = form.getTextField("Ad Soyad");
-  nameField.enableReadOnly();
+    const nameField = form.getTextField("Ad Soyad");
+    nameField.enableReadOnly();
 
-  nameField.setText(session?.user?.name || "Kullanici Adi Yok");
+    nameField.setText(session?.user?.name || "Kullanici Adi Yok");
 
-  const pdfBytes = await pdfDoc.save();
+    const pdfBytes = await pdfDoc.save();
 
-  const buffer = Buffer.from(pdfBytes);
+    const buffer = Buffer.from(pdfBytes);
 
-  response.setHeader("Content-Type", "application/pdf");
-  response.setHeader("Content-Length", buffer.length);
-  response.send(buffer);
+    response.setHeader("Content-Type", "application/pdf");
+    response.setHeader("Content-Length", buffer.length);
+    response.send(buffer);
+  } else {
+    response.status(401).send("Unauthorized");
+  }
 }
