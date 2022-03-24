@@ -9,19 +9,6 @@ export default async function handler(
   response: NextApiResponse
 ) {
   const session = await getSession();
-  const pdfBytes = await generatePdf(session);
-  const buffer = Buffer.from(pdfBytes);
-
-  response.status(200).json({
-    statusCode: 200,
-    isBase64Encoded: true,
-    headers: {
-      "Content-Type": "application/pdf",
-    },
-    body: buffer.toString("base64"),
-  });
-}
-async function generatePdf(session: Session | null) {
   const formUrl = path.join(
     "http://localhost:3000",
     "certificate_template.pdf"
@@ -36,5 +23,15 @@ async function generatePdf(session: Session | null) {
   nameField.setText(session?.user?.name || "Kullanici Adi Yok");
 
   const pdfBytes = await pdfDoc.save();
-  return pdfBytes;
+
+  const buffer = Buffer.from(pdfBytes);
+
+  response.status(200).json({
+    statusCode: 200,
+    isBase64Encoded: true,
+    headers: {
+      "Content-Type": "application/pdf",
+    },
+    body: buffer.toString("base64"),
+  });
 }
