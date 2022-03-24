@@ -12,7 +12,7 @@ export default async function handler(
   const formUrl = path.join(
     process.env.NEXTAUTH_URL || "/",
     "certificate_template.pdf"
-  ); // TODO
+  );
   const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
   const pdfDoc = await PDFDocument.load(formPdfBytes);
 
