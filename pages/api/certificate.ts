@@ -10,7 +10,7 @@ export default async function handler(
 ) {
   const session = await getSession();
   const formUrl = path.join(
-    "http://" + process.env.VERCEL_URL + "/" || "/",
+    "https://" + process.env.VERCEL_URL + "/" || "/",
     "certificate_template.pdf"
   );
   const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
