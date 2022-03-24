@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { Session } from "next-auth";
-import path from "path";
 import { PDFDocument } from "pdf-lib";
 
 export default async function handler(
@@ -10,10 +8,11 @@ export default async function handler(
 ) {
   const session = await getSession({ req: request });
 
-  const formUrl = path.join(
-    "https://" + process.env.VERCEL_URL + "/" || "/",
-    "certificate_template.pdf"
-  );
+  const formUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://" + process.env.VERCEL_URL
+      : "http://localhost:3000" + "/certificate_template.pdf";
+
   const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
   const pdfDoc = await PDFDocument.load(formPdfBytes);
 
