@@ -9,15 +9,12 @@ export default async function handler(
 ) {
   const session = await getSession({ req: request });
 
-  const formUrl =
+  const baseUrl =
     process.env.NODE_ENV === "production"
       ? "https://" + process.env.VERCEL_URL
-      : "http://localhost:3000" + "/certificate_template.pdf";
-
-  const fontUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://" + process.env.VERCEL_URL
-      : "http://localhost:3000" + "/Merriweather-Italic.ttf";
+      : "http://localhost:3000";
+  const formUrl = baseUrl + "/certificate_template.pdf";
+  const fontUrl = baseUrl + "/Merriweather-Italic.ttf";
 
   const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
   const pdfDoc = await PDFDocument.load(formPdfBytes);
