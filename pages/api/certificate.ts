@@ -3,10 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import PDFDocument from "pdfkit";
 // import PDF from "../../services/PDF";
 
-export const handler = async (
-  request: NextApiRequest,
-  response: NextApiResponse
-) => {
+export default async (request: NextApiRequest, response: NextApiResponse) => {
   const doc = new PDFDocument({ size: [10, 10], margin: 1 });
   console.log(doc);
 
