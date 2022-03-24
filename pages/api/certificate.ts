@@ -18,11 +18,11 @@ export default async function handler(
 
   const form = pdfDoc.getForm();
 
-  const nameField = form.getTextField("Katılımcının adı soyadı");
+  const nameField = form.getTextField("katilimcinin adi soyadi");
   nameField.setText(session?.user?.name || "Kullanici Adi Yok");
   nameField.enableReadOnly();
 
-  const curriculumField = form.getTextField("Eğitimin adı");
+  const curriculumField = form.getTextField("egitimin adi");
   curriculumField.setText("Sertifika #1");
   curriculumField.enableReadOnly();
 
