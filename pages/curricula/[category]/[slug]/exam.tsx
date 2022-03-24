@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
-import { Interweave } from "interweave";
+import { ALLOWED_TAG_LIST, Interweave } from "interweave";
 import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
@@ -45,7 +45,10 @@ const Exam = (props: Props) => {
                   <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                     <div className="p-5">
                       {" "}
-                      <Interweave content={article.content.html} />
+                      <Interweave
+                        content={article.content.html}
+                        allowList={new Array(...ALLOWED_TAG_LIST, "iframe")}
+                      />
                       {article.choices && <Choices choices={article.choices} />}
                     </div>
                   </Disclosure.Panel>
