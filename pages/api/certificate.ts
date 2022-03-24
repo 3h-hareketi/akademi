@@ -1,9 +1,7 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { NextApiRequest, NextApiResponse } from "next";
 import PDFDocument from "pdfkit";
-// import PDF from "../../services/PDF";
 
-export default async (request: NextApiRequest, response: NextApiResponse) => {
+async function handler(request: NextApiRequest, response: NextApiResponse) {
   const doc = new PDFDocument({ size: [10, 10], margin: 1 });
   console.log(doc);
 
@@ -13,4 +11,5 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
       message: `PDF generation succesful`,
     }),
   };
-};
+}
+export default handler;
