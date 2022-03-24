@@ -10,7 +10,7 @@ export default async function handler(
 ) {
   const session = await getSession();
   const formUrl = path.join(
-    "http://localhost:3000",
+    process.env.NEXTAUTH_URL || "/",
     "certificate_template.pdf"
   ); // TODO
   const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer());
