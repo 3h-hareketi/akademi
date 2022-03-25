@@ -6069,6 +6069,7 @@ export type CurriculumBySlugQuery = {
     title: string;
     slug: string;
     description?: string | null;
+    threshold: number;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
     category?: { __typename?: "Category"; title: string; slug: string } | null;
     articles: Array<{
@@ -6077,7 +6078,11 @@ export type CurriculumBySlugQuery = {
       title?: string | null;
       order: number;
       content: { __typename?: "ArticleContentRichText"; html: string };
-      choices: Array<{ __typename?: "Choice"; choice: string }>;
+      choices: Array<{
+        __typename?: "Choice";
+        choice: string;
+        correct: boolean;
+      }>;
     }>;
   } | null;
 };
@@ -6132,6 +6137,7 @@ export const CurriculumBySlugDocument = gql`
       title
       slug
       description
+      threshold
       image {
         fileName
         url
@@ -6149,6 +6155,7 @@ export const CurriculumBySlugDocument = gql`
         }
         choices {
           choice
+          correct
         }
       }
     }

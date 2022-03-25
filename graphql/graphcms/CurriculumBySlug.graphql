@@ -1,8 +1,9 @@
 query CurriculumBySlug($slug: String!) {
-  curriculum(where: { slug: $slug }) {
+  curriculum(where: {slug: $slug}) {
     title
     slug
     description
+    threshold
     image {
       fileName
       url
@@ -20,6 +21,7 @@ query CurriculumBySlug($slug: String!) {
       }
       choices {
         choice
+        correct
       }
     }
   }
