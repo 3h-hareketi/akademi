@@ -7,6 +7,8 @@ import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
 import { Fragment, useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 type Props = {
   curriculum: Curriculum;
@@ -14,9 +16,20 @@ type Props = {
 
 const Exam = ({ curriculum }: Props) => {
   const { status } = useSession({ required: true });
+  const router = useRouter();
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
 
-  const submitResult = () => {};
+  const submitResult = () => {
+    axios
+      .post("/api/result", {
+        slug: curriculum.slug,
+        score: correctAnswerCount,
+      })
+      .then((res) => {
+        router.push(`/api/certificate/?id=${res.data.result}`);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="py-10 mx-auto bg-gray-50">
