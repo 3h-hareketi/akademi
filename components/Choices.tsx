@@ -1,13 +1,30 @@
-import { SVGProps, useState } from "react";
+import { Dispatch, SVGProps, useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { Choice } from "../interfaces/graphcms";
 
-interface Props {
-  choices: Array<Choice>;
-}
+type Props = {
+  choices: Choice[];
+  correctAnswerCount: number;
+  setCorrectAnswerCount: Dispatch<number>;
+};
 
-export default function Choices(props: Props) {
-  const [selected, setSelected] = useState(props.choices[0]);
+const Choices = ({
+  choices,
+  correctAnswerCount,
+  setCorrectAnswerCount,
+}: Props) => {
+  const [selected, setSelected] = useState<Choice>();
+
+  useEffect(() => {
+    if (selected?.correct) {
+      setCorrectAnswerCount(correctAnswerCount + 1);
+    }
+
+    if (correctAnswerCount > 0 && !selected?.correct) {
+      setCorrectAnswerCount(correctAnswerCount - 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
 
   return (
     <div className="w-full px-4 py-16">
@@ -15,10 +32,10 @@ export default function Choices(props: Props) {
         <RadioGroup value={selected} onChange={setSelected}>
           {/* <RadioGroup.Label className="sr-only">Choice</RadioGroup.Label> */}
           <div className="space-y-2">
-            {props.choices.map((choice) => (
+            {choices.map((choice) => (
               <RadioGroup.Option
                 key={choice.choice}
-                value={choice.choice}
+                value={choice}
                 className={({ active, checked }) =>
                   `${
                     active
@@ -59,7 +76,26 @@ export default function Choices(props: Props) {
                       </div>
                       {checked && (
                         <div className="flex-shrink-0 text-white">
-                          <CheckIcon className="w-6 h-6" />
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            className="w-6 h-6"
+                          >
+                            <circle
+                              cx={12}
+                              cy={12}
+                              r={12}
+                              fill="#fff"
+                              opacity="0.2"
+                            />
+                            <path
+                              d="M7 13l3 3 7-7"
+                              stroke="#fff"
+                              strokeWidth={1.5}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
                         </div>
                       )}
                     </div>
@@ -72,19 +108,6 @@ export default function Choices(props: Props) {
       </div>
     </div>
   );
-}
+};
 
-function CheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
-      <path
-        d="M7 13l3 3 7-7"
-        stroke="#fff"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+export default Choices;

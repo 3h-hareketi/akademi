@@ -1,7 +1,0 @@
-CreateIndex({
-  "name": "result_by_user",
-  "source": Collection("results"),
-  "terms": [{
-    "field": ["data", "user"]
-  }]
-})

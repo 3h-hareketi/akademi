@@ -94,12 +94,14 @@ const Footer = () => (
             href="https://vercel.com/?utm_source=[3h-hareketi]&utm_campaign=oss"
             passHref
           >
-            <Image
-              src="/1618983297-powered-by-vercel.svg"
-              alt="Powered by Vercel"
-              width="212"
-              height="44"
-            />
+            <a>
+              <Image
+                src="/1618983297-powered-by-vercel.svg"
+                alt="Powered by Vercel"
+                width="212"
+                height="44"
+              />
+            </a>
           </Link>
         </div>
       </div>

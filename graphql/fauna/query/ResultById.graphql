@@ -1,0 +1,6 @@
+query ResultByID($id: ID!) {
+  findResultByID(id: $id) {
+    curriculumName
+    date
+  }
+}
