@@ -5,16 +5,22 @@ import { getSdk as getGraphCmsSdk } from "../../interfaces/graphcms";
 import { client as faunaClient } from "../../lib/faunaGraphQlClient";
 import { client as graphCmsClient } from "../../lib/graphCmsClient";
 
-type Data = {
+type Request = {
+  slug: string;
+  score: number;
+};
+
+type Response = {
   result?: string;
   message?: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Response>
 ) {
   const session = await getSession({ req });
+  const date = new Date();
 
   if (!session) {
     res.status(401).json({ message: "Not authenticated" });
@@ -24,25 +30,34 @@ export default async function handler(
     res.status(405).json({ message: "Method not allowed" });
   }
 
-  if (!req.query.slug) {
+  const data: Request = JSON.parse(JSON.stringify(req.body));
+
+  if (!data.slug) {
     res.status(400).json({ message: "Missing slug" });
   }
 
-  if (!req.query.score) {
+  if (!data.score) {
     res.status(400).json({ message: "Missing score" });
   }
 
   const graphCmsSdk = getGraphCmsSdk(graphCmsClient);
   const { curriculum } = await graphCmsSdk.CurriculumBySlug({
-    slug: req.query.slug as string,
+    slug: data.slug,
   });
+
+  const requiredCorrectAnswerCount =
+    (curriculum?.articles?.length! * curriculum?.threshold!) / 100;
+
+  if (data.score < requiredCorrectAnswerCount) {
+    res.status(200).json({ message: "Score is not enough" });
+  }
 
   const faunaSdk = getFaunaSdk(faunaClient);
   const { createResult: result } = await faunaSdk.Result({
     curriculumName: curriculum!.title,
-    user: { connect: session?.user?.id! },
-    score: parseInt(req.query.score as string),
-    date: Date.now(),
+    user: { connect: session!.user.id },
+    score: data.score,
+    date: date.toISOString(),
   });
 
   res.status(200).json({ result: result._id });
