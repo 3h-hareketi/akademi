@@ -24,10 +24,7 @@ const CurriculumCard = ({ curriculum }: Props) => (
         <h3 className="mb-4 text-2xl font-bold font-heading">
           {curriculum.title}
         </h3>
-        <a
-          className="flex font-bold text-primary-500 hover:text-primary-700"
-          href="#"
-        >
+        <div className="flex font-bold text-primary-500 hover:text-primary-700">
           <svg
             className="w-6 h-6 mr-3"
             xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +42,7 @@ const CurriculumCard = ({ curriculum }: Props) => (
           >
             Kurs detayları
           </Link>
-        </a>
+        </div>
       </div>
     </div>
   </div>
