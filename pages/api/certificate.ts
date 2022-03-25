@@ -4,6 +4,7 @@ import { PDFDocument, TextAlignment } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
 import { getSdk } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
+import baseUrl from "../../lib/baseUrl";
 
 export default async function handler(
   request: NextApiRequest,
@@ -20,10 +21,6 @@ export default async function handler(
     response.status(404).json("Result not found");
   }
 
-  const baseUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://" + process.env.VERCEL_URL
-      : "http://localhost:3000";
   const formUrl = baseUrl + "/certificate_template.pdf";
   const fontUrl = baseUrl + "/Merriweather-Italic.ttf";
 
