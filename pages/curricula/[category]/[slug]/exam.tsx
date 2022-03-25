@@ -6,22 +6,25 @@ import { useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 type Props = {
   curriculum: Curriculum;
 };
 
-const Exam = (props: Props) => {
+const Exam = ({ curriculum }: Props) => {
   const { status } = useSession({ required: true });
+  const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
+
+  const submitResult = () => {};
 
   return (
     <div className="py-10 mx-auto bg-gray-50">
       <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
         <h2 className="mb-10 text-4xl font-bold lg:text-5xl font-heading">
-          {props.curriculum.title}
+          {curriculum.title}
         </h2>
-        {props.curriculum.articles.map((article) => (
+        {curriculum.articles.map((article) => (
           <Disclosure key={article.id} as="div" className="mt-6">
             {({ open }) => (
               <>
@@ -46,7 +49,13 @@ const Exam = (props: Props) => {
                     <div className="p-5">
                       {" "}
                       <Interweave content={article.content.html} />
-                      {article.choices && <Choices choices={article.choices} />}
+                      {article.choices && (
+                        <Choices
+                          choices={article.choices}
+                          correctAnswerCount={correctAnswerCount}
+                          setCorrectAnswerCount={setCorrectAnswerCount}
+                        />
+                      )}
                     </div>
                   </Disclosure.Panel>
                 </Transition>
@@ -56,12 +65,12 @@ const Exam = (props: Props) => {
         ))}
         <div className="flex mt-12">
           {" "}
-          <a
+          <button
             className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
-            href="#"
+            onClick={submitResult}
           >
             Tamamla
-          </a>
+          </button>
         </div>
       </div>
     </div>

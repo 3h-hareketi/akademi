@@ -1,13 +1,30 @@
-import { SVGProps, useState } from "react";
+import { Dispatch, SVGProps, useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { Choice } from "../interfaces/graphcms";
 
-interface Props {
-  choices: Array<Choice>;
-}
+type Props = {
+  choices: Choice[];
+  correctAnswerCount: number;
+  setCorrectAnswerCount: Dispatch<number>;
+};
 
-const Choices = (props: Props) => {
-  const [selected, setSelected] = useState(props.choices[0]);
+const Choices = ({
+  choices,
+  correctAnswerCount,
+  setCorrectAnswerCount,
+}: Props) => {
+  const [selected, setSelected] = useState<Choice>();
+
+  useEffect(() => {
+    if (selected?.correct) {
+      setCorrectAnswerCount(correctAnswerCount + 1);
+    }
+
+    if (correctAnswerCount > 0 && !selected?.correct) {
+      setCorrectAnswerCount(correctAnswerCount - 1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected]);
 
   return (
     <div className="w-full px-4 py-16">
@@ -15,10 +32,10 @@ const Choices = (props: Props) => {
         <RadioGroup value={selected} onChange={setSelected}>
           {/* <RadioGroup.Label className="sr-only">Choice</RadioGroup.Label> */}
           <div className="space-y-2">
-            {props.choices.map((choice) => (
+            {choices.map((choice) => (
               <RadioGroup.Option
                 key={choice.choice}
-                value={choice.choice}
+                value={choice}
                 className={({ active, checked }) =>
                   `${
                     active
