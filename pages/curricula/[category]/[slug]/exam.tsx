@@ -18,10 +18,10 @@ const Exam = ({ curriculum }: Props) => {
   const { status } = useSession({ required: true });
   const router = useRouter();
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
-  const [submit, setSubmit] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const submitResult = () => {
-    setSubmit(true);
+    setIsSubmitting(true);
     axios
       .post("/api/result", {
         slug: curriculum.slug,
@@ -84,9 +84,13 @@ const Exam = ({ curriculum }: Props) => {
         <div className="flex mt-12">
           {" "}
           <button
-            className="px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
+            className={`${
+              isSubmitting
+                ? "bg-gray-600"
+                : "bg-primary-500 hover:bg-primary-700"
+            } px-6 py-2 ml-auto font-bold leading-loose transition duration-200 md:inline-block rounded-l-xl rounded-t-xl text-gray-50`}
             onClick={submitResult}
-            disabled={submit}
+            disabled={isSubmitting}
           >
             Tamamla
           </button>
