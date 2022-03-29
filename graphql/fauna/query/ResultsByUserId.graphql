@@ -1,10 +1,11 @@
 query ResultsByUserID($id: ID!) {
-	resultsByUserId(userRef: $id) {
-    data {
-      _id
-      curriculumName
-      date
-      score
+	findUserByID(id: $id) {
+    results {
+      data {
+        curriculumName
+        score
+        date
+      }
     }
   }
 }
