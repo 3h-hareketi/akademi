@@ -5,11 +5,11 @@ import { Dispatch, Fragment, SetStateAction } from "react";
 import BlurImage from "./BlurImage";
 import UserDropdown from "./UserDropdown";
 import HLogo from "/public/3h-logo.svg";
-
-const Navbar = (
-  navbarOpen: boolean,
-  setNavbarOpen: Dispatch<SetStateAction<boolean>>
-) => {
+type Props = {
+  navbarOpen: boolean;
+  setNavbarOpen: Dispatch<SetStateAction<boolean>>;
+};
+const Navbar = (props: Props) => {
   const { data: session } = useSession();
 
   return (
@@ -19,7 +19,7 @@ const Navbar = (
           <div className="mr-auto lg:hidden">
             <button
               className="flex items-center p-3 text-primary-500 navbar-burger"
-              onClick={() => setNavbarOpen(true)}
+              onClick={() => props.setNavbarOpen(true)}
             >
               <svg
                 className="block w-4 h-4 fill-current"
@@ -123,12 +123,12 @@ const Navbar = (
         show={true}
         as={Fragment}
         enter="transition-all duration-1000"
-        enterFrom={navbarOpen ? "-left-80" : "left-0"}
-        enterTo={navbarOpen ? "left-0" : "left-0"}
+        enterFrom={props.navbarOpen ? "-left-80" : "left-0"}
+        enterTo={props.navbarOpen ? "left-0" : "left-0"}
       >
         <div
           className={`fixed top-0 bottom-0 left-0 z-50 w-5/6 max-w-sm navbar-menu ${
-            !navbarOpen && "hidden"
+            !props.navbarOpen && "hidden"
           }`}
         >
           <div className="fixed inset-0 bg-gray-800 opacity-25 navbar-backdrop"></div>
@@ -145,7 +145,7 @@ const Navbar = (
               </a>
               <button
                 className="navbar-close"
-                onClick={() => setNavbarOpen(false)}
+                onClick={() => props.setNavbarOpen(false)}
               >
                 <svg
                   className="w-6 h-6 text-gray-400 cursor-pointer hover:text-gray-500"
