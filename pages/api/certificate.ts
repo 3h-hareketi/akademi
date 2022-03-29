@@ -33,18 +33,16 @@ export default async function handler(
 
   const form = pdfDoc.getForm();
 
-  const nameField = form.getTextField("katilimcinin adi soyadi");
+  const nameField = form.getTextField("Katilimcinin adi soyadi");
   nameField.setText(session?.user?.name || session?.user?.email || "");
-  nameField.enableReadOnly();
   nameField.setAlignment(TextAlignment.Center);
   nameField.updateAppearances(customFont);
 
-  const curriculumField = form.getTextField("egitimin adi");
+  const curriculumField = form.getTextField("egitimin ismi");
   curriculumField.setText(data?.curriculumName);
-  curriculumField.enableReadOnly();
   curriculumField.setAlignment(TextAlignment.Center);
   curriculumField.updateAppearances(customFont);
-
+  form.flatten();
   const pdfBytes = await pdfDoc.save();
 
   const buffer = Buffer.from(pdfBytes);
