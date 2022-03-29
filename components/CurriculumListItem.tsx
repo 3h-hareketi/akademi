@@ -43,7 +43,9 @@ const CurriculumListItem = ({ curriculum }: Props) => (
           </a>
         </Link>
         <span className="mx-2 text-gray-400">•</span>
-        <span className="text-gray-400">8 konu</span>
+        <span className="text-gray-400">
+          {curriculum.articles?.length} konu
+        </span>
       </div>
       <p className="text-gray-500">{curriculum.description}</p>
     </div>
