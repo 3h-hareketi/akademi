@@ -4,8 +4,8 @@ import { Interweave } from "interweave";
 import { GetServerSideProps } from "next";
 import { Session } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "../components/BlurImage";
 import { getSdk, ResultFragment } from "../interfaces/fauna";
 import { client } from "../lib/faunaGraphQlClient";
 
@@ -26,7 +26,7 @@ const Profile = ({ results }: Props) => {
               <div className="flex justify-center w-full px-4 lg:w-3/12 lg:order-2">
                 <div className="mt-10 rounded-full">
                   {session?.user?.image ? (
-                    <Image
+                    <BlurImage
                       alt="profile image"
                       src={session?.user?.image || "/placeholder.jpeg"}
                       className="rounded-full"

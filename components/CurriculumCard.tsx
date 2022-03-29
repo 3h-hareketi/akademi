@@ -1,6 +1,6 @@
 import { Curriculum } from "../interfaces/graphcms";
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "./BlurImage";
 
 interface Props {
   curriculum: Curriculum;
@@ -10,7 +10,7 @@ const CurriculumCard = ({ curriculum }: Props) => (
   <div key={curriculum.id} className="w-full px-4 mb-8 md:w-1/2 lg:w-1/3">
     <div className="bg-white rounded shadow-md">
       <div className="relative h-64">
-        <Image
+        <BlurImage
           className="rounded-t"
           src={curriculum.image?.url || "/placeholder.jpeg"}
           alt=""
