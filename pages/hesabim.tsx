@@ -6,12 +6,12 @@ import { Session } from "next-auth";
 import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { getSdk, ResultsByUserIdQuery } from "../interfaces/fauna";
+import { getSdk, ResultFragment } from "../interfaces/fauna";
 import { client } from "../lib/faunaGraphQlClient";
 
 type Props = {
   session: Session | undefined;
-  results: ResultsByUserIdQuery["resultsByUserId"]["data"];
+  results: ResultFragment[];
 };
 
 const Profile = ({ results }: Props) => {
@@ -139,14 +139,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const sdk = getSdk(client);
-  const { resultsByUserId: results } = await sdk.ResultsByUserID({
+  const { findUserByID: user } = await sdk.ResultsByUserID({
     id: session.user.id,
   });
 
   return {
     props: {
       session: await getSession(context),
-      results: results.data,
+      results: user?.results.data,
     },
   };
 };

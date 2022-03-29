@@ -1,10 +1,15 @@
+fragment Result on Result {
+  _id
+  curriculumName
+  score
+  date
+}
+
 query ResultsByUserID($id: ID!) {
 	findUserByID(id: $id) {
     results {
       data {
-        curriculumName
-        score
-        date
+        ...Result
       }
     }
   }

@@ -238,6 +238,14 @@ export type ResultByIdQuery = {
   } | null;
 };
 
+export type ResultFragment = {
+  __typename?: "Result";
+  _id: string;
+  curriculumName: string;
+  score?: number | null;
+  date?: any | null;
+};
+
 export type ResultsByUserIdQueryVariables = Exact<{
   id: Scalars["ID"];
 }>;
@@ -250,6 +258,7 @@ export type ResultsByUserIdQuery = {
       __typename?: "ResultPage";
       data: Array<{
         __typename?: "Result";
+        _id: string;
         curriculumName: string;
         score?: number | null;
         date?: any | null;
@@ -258,6 +267,14 @@ export type ResultsByUserIdQuery = {
   } | null;
 };
 
+export const ResultFragmentDoc = gql`
+  fragment Result on Result {
+    _id
+    curriculumName
+    score
+    date
+  }
+`;
 export const ResultDocument = gql`
   mutation Result(
     $curriculumName: String!
@@ -290,13 +307,12 @@ export const ResultsByUserIdDocument = gql`
     findUserByID(id: $id) {
       results {
         data {
-          curriculumName
-          score
-          date
+          ...Result
         }
       }
     }
   }
+  ${ResultFragmentDoc}
 `;
 
 export type SdkFunctionWrapper = <T>(
