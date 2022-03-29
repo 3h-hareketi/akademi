@@ -3,19 +3,17 @@ type User @collection(name: "users") {
   email: String! @unique(index: "user_by_email")
   emailVerified: Time
   image: String
-  results: [Result!] @relation(name: "results")
+  results: [Result] @relation
 }
 
 type Result @collection(name: "results") {
-  user: User! @relation(name: "results")
+  user: User!
   curriculumName: String!
   score: Int
   date: Time
 }
 
 type Query {
-  users: [User!]!
-  results: [Result!]! @index(name: "results")
-  resultsByUserId(userRef: ID!): [Result!]!
-    @resolver(name: "GetResultsByUserId", paginated: true)
+  users: [User]
+  results: [Result] @index(name: "results")
 }
