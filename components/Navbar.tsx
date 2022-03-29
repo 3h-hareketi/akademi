@@ -1,8 +1,9 @@
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import BlurImage from "./BlurImage";
 import UserDropdown from "./UserDropdown";
+import HLogo from "/public/3h-logo.svg";
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false); // mobile navbar (hamburger)
@@ -91,10 +92,10 @@ const Navbar = () => {
           <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:transform lg:-translate-y-1/2 lg:-translate-x-1/2">
             <Link href="/" passHref>
               <a className="text-3xl font-bold leading-none">
-                <Image
+                <BlurImage
                   className="h-12"
-                  src="/3h-logo.png"
-                  alt=""
+                  src={HLogo}
+                  alt="3H Logo"
                   width="130"
                   height="140"
                 />
@@ -124,9 +125,9 @@ const Navbar = () => {
         <nav className="relative flex flex-col w-full h-full px-6 py-6 overflow-y-auto bg-white border-r">
           <div className="flex items-center mb-8">
             <a className="mr-auto text-3xl font-bold leading-none" href="#">
-              <Image
+              <BlurImage
                 className="h-10"
-                src="/3h-logo.png"
+                src={HLogo}
                 alt=""
                 width="100"
                 height="100"

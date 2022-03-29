@@ -1,6 +1,6 @@
 import { Curriculum } from "../interfaces/graphcms";
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "./BlurImage";
 
 type Props = {
   curriculum: Curriculum;
@@ -12,7 +12,7 @@ const CurriculumListItem = ({ curriculum }: Props) => (
       <div className="flex object-cover w-full h-full rounded">
         <div className="mx-auto">
           {" "}
-          <Image
+          <BlurImage
             className="rounded"
             src={curriculum.image?.url || "/placeholder.jpeg"}
             alt=""

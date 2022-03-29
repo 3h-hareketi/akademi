@@ -1,15 +1,17 @@
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "./BlurImage";
+import VercelLogo from "/public/1618983297-powered-by-vercel.svg";
+import HLogo from "/public/3h-logo.svg";
 
 const Footer = () => (
   <section>
     <div className="py-10 bg-white">
       <div className="max-w-md mx-auto text-center">
         <a className="inline-block mx-auto leading-none" href="#">
-          <Image
+          <BlurImage
             className="h-12"
-            src="/3h-logo.png"
-            alt=""
+            src={HLogo}
+            alt="3H Logo"
             width="140"
             height="140"
           />
@@ -95,8 +97,8 @@ const Footer = () => (
             passHref
           >
             <a>
-              <Image
-                src="/1618983297-powered-by-vercel.svg"
+              <BlurImage
+                src={VercelLogo}
                 alt="Powered by Vercel"
                 width="212"
                 height="44"
