@@ -1,29 +1,20 @@
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon, UserCircleIcon, EyeIcon } from "@heroicons/react/solid";
 import { Interweave } from "interweave";
-import { useSession } from "next-auth/react";
+import { GetServerSideProps } from "next";
+import { Session } from "next-auth";
+import { getSession, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-const certificates = [
-  {
-    id: "1",
-    title: "Sertifika #1",
-    content:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    id: "2",
-    title: "Klasik Liberalizm",
-    content: "",
-  },
-  {
-    id: "3",
-    title: "Sertifika #3",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  },
-];
-const Profile = () => {
+import { getSdk, ResultFragment } from "../interfaces/fauna";
+import { client } from "../lib/faunaGraphQlClient";
+
+type Props = {
+  session: Session | undefined;
+  results: ResultFragment[];
+};
+
+const Profile = ({ results }: Props) => {
   const { data: session } = useSession({ required: true });
 
   return (
@@ -89,12 +80,18 @@ const Profile = () => {
                     görüntüleyebilirsiniz.
                   </p>
 
-                  {certificates.map((certificate) => (
-                    <Disclosure key={certificate.id} as="div" className="mt-2">
+                  {results.map((certificate) => (
+                    <Disclosure
+                      key={certificate?._id}
+                      as="div"
+                      className="mt-2"
+                    >
                       {({ open }) => (
                         <>
                           <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left rounded-lg h-14 text-primary-900 bg-primary-100 hover:bg-primary-200 focus:outline-none focus-visible:ring focus-visible:ring-primaryShade focus-visible:ring-opacity-75">
-                            <span className="my-auto">{certificate.title}</span>
+                            <span className="my-auto">
+                              {certificate?.curriculumName}
+                            </span>
                             <ChevronUpIcon
                               className={`${
                                 !open ? "transform rotate-180" : ""
@@ -103,9 +100,9 @@ const Profile = () => {
                           </Disclosure.Button>
                           <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                             {" "}
-                            <h3>{certificate.content}</h3>
+                            <h3>{"Detailsbsdfsdf"}</h3>
                             <Link
-                              href={`/api/certificate?id=${certificate.id}`}
+                              href={`/api/certificate?id=${certificate?._id}`}
                               passHref
                             >
                               <a href="#" className="flex text-primary-500">
@@ -128,4 +125,30 @@ const Profile = () => {
     </section>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  const sdk = getSdk(client);
+  const { findUserByID: user } = await sdk.ResultsByUserID({
+    id: session.user.id,
+  });
+
+  return {
+    props: {
+      session: await getSession(context),
+      results: user?.results.data,
+    },
+  };
+};
+
 export default Profile;

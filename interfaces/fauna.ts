@@ -105,7 +105,6 @@ export type Query = {
   /** Find a document from the collection of 'User' by its id. */
   findUserByID?: Maybe<User>;
   results: ResultPage;
-  resultsByUserId: QueryResultsByUserIdPage;
   users: UserPage;
 };
 
@@ -122,26 +121,9 @@ export type QueryResultsArgs = {
   _size?: InputMaybe<Scalars["Int"]>;
 };
 
-export type QueryResultsByUserIdArgs = {
-  _cursor?: InputMaybe<Scalars["String"]>;
-  _size?: InputMaybe<Scalars["Int"]>;
-  userRef: Scalars["ID"];
-};
-
 export type QueryUsersArgs = {
   _cursor?: InputMaybe<Scalars["String"]>;
   _size?: InputMaybe<Scalars["Int"]>;
-};
-
-/** The pagination object for elements of type 'Result'. */
-export type QueryResultsByUserIdPage = {
-  __typename?: "QueryResultsByUserIdPage";
-  /** A cursor for elements coming after the current page. */
-  after?: Maybe<Scalars["String"]>;
-  /** A cursor for elements coming before the current page. */
-  before?: Maybe<Scalars["String"]>;
-  /** The elements of type 'Result' in this page. */
-  data: Array<Maybe<Result>>;
 };
 
 export type Result = {
@@ -256,24 +238,43 @@ export type ResultByIdQuery = {
   } | null;
 };
 
+export type ResultFragment = {
+  __typename?: "Result";
+  _id: string;
+  curriculumName: string;
+  score?: number | null;
+  date?: any | null;
+};
+
 export type ResultsByUserIdQueryVariables = Exact<{
   id: Scalars["ID"];
 }>;
 
 export type ResultsByUserIdQuery = {
   __typename?: "Query";
-  resultsByUserId: {
-    __typename?: "QueryResultsByUserIdPage";
-    data: Array<{
-      __typename?: "Result";
-      _id: string;
-      curriculumName: string;
-      date?: any | null;
-      score?: number | null;
-    } | null>;
-  };
+  findUserByID?: {
+    __typename?: "User";
+    results: {
+      __typename?: "ResultPage";
+      data: Array<{
+        __typename?: "Result";
+        _id: string;
+        curriculumName: string;
+        score?: number | null;
+        date?: any | null;
+      } | null>;
+    };
+  } | null;
 };
 
+export const ResultFragmentDoc = gql`
+  fragment Result on Result {
+    _id
+    curriculumName
+    score
+    date
+  }
+`;
 export const ResultDocument = gql`
   mutation Result(
     $curriculumName: String!
@@ -303,15 +304,15 @@ export const ResultByIdDocument = gql`
 `;
 export const ResultsByUserIdDocument = gql`
   query ResultsByUserID($id: ID!) {
-    resultsByUserId(userRef: $id) {
-      data {
-        _id
-        curriculumName
-        date
-        score
+    findUserByID(id: $id) {
+      results {
+        data {
+          ...Result
+        }
       }
     }
   }
+  ${ResultFragmentDoc}
 `;
 
 export type SdkFunctionWrapper = <T>(
