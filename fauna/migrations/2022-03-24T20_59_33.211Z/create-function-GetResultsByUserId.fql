@@ -1,4 +1,0 @@
-CreateFunction({
-  "name": "GetResultsByUserId",
-  "body": Query(Lambda("user", Paginate(Match(Index("results_by_user"), Var("user")))))
-})
