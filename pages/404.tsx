@@ -1,18 +1,18 @@
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "../components/BlurImage";
 import NotFound from "/public/404page.png";
-export default function Custom404() {
+
+const Custom404 = () => {
   return (
     <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
       <div className="flex flex-wrap justify-center mx-auto">
         <div className="py-20 basis-1/2">
-          <Image
+          <BlurImage
             className="object-cover"
             src={NotFound}
-            alt="3H Movement-3H Hareketi"
+            alt="3H Hareketi 404 Logo"
             width={270}
             height={300}
-            placeholder="blur"
           />
           <p className="py-3 text-l">
             Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış
@@ -31,4 +31,6 @@ export default function Custom404() {
       </div>
     </div>
   );
-}
+};
+
+export default Custom404;
