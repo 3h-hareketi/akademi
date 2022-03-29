@@ -29,7 +29,7 @@ const Layout = ({ children }: Props) => {
         }}
       />
       <LogoJsonLd
-        logo={`${process.env.NEXTAUTH_URL}/3h-logo.pngg`}
+        logo={`${process.env.NEXTAUTH_URL}/3h-logo.png`}
         url={process.env.NEXTAUTH_URL!}
       />
       <OrganizationJsonLd
