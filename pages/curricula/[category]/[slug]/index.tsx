@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
-import Image from "next/image";
 import Link from "next/link";
+import BlurImage from "../../../../components/BlurImage";
 
 const Curriculum = ({
   title,
@@ -47,7 +47,7 @@ const Curriculum = ({
             </div>
           </div>
           <div className="w-full lg:w-1/2">
-            <Image
+            <BlurImage
               className="rounded-xl"
               src={image?.url || "/placeholder.jpeg"}
               alt=""

@@ -2,9 +2,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/solid";
 import { DefaultSession } from "next-auth";
 import { signOut } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
+import BlurImage from "./BlurImage";
 
 type Props = {
   user: DefaultSession["user"];
@@ -18,7 +18,7 @@ const UserDropdown = ({ user }: Props) => {
           {user?.image ? (
             <Menu.Button>
               {" "}
-              <Image
+              <BlurImage
                 src={user?.image}
                 alt=""
                 width={"32px"}
