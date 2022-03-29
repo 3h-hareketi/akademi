@@ -6031,6 +6031,7 @@ export type CurriculaQuery = {
     description?: string | null;
     category?: { __typename?: "Category"; title: string; slug: string } | null;
     image?: { __typename?: "Asset"; url: string } | null;
+    articles: Array<{ __typename?: "Article"; id: string }>;
   }>;
 };
 
@@ -6108,6 +6109,9 @@ export const CurriculaDocument = gql`
       }
       image {
         url
+      }
+      articles {
+        id
       }
     }
   }
