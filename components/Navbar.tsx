@@ -86,10 +86,7 @@ const Navbar = (props: Props) => {
             </li>
             <li>
               <Link href="/curricula" passHref>
-                <a
-                  className="text-sm text-gray-400 hover:text-gray-500"
-                  onClick={() => props.setNavbarOpen(false)}
-                >
+                <a className="text-sm text-gray-400 hover:text-gray-500">
                   Kurslar
                 </a>
               </Link>
@@ -140,7 +137,11 @@ const Navbar = (props: Props) => {
           ></div>
           <nav className="relative flex flex-col w-full h-full px-6 py-6 overflow-y-auto bg-white border-r">
             <div className="flex items-center mb-8">
-              <a className="mr-auto text-3xl font-bold leading-none" href="#">
+              <a
+                className="mr-auto text-3xl font-bold leading-none"
+                href="#"
+                onClick={() => props.setNavbarOpen(false)}
+              >
                 <BlurImage
                   className="h-10"
                   src={HLogo}
@@ -173,7 +174,10 @@ const Navbar = (props: Props) => {
               <ul>
                 <li className="mb-1">
                   <Link href="/" passHref>
-                    <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500">
+                    <a
+                      className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
+                      onClick={() => props.setNavbarOpen(false)}
+                    >
                       Anasayfa
                     </a>
                   </Link>
@@ -181,6 +185,7 @@ const Navbar = (props: Props) => {
                 <li className="mb-1">
                   <a
                     className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
+                    onClick={() => props.setNavbarOpen(false)}
                     href="https://3hhareketi.org"
                     target="_blank"
                     rel="noreferrer"
@@ -190,7 +195,10 @@ const Navbar = (props: Props) => {
                 </li>
                 <li className="mb-1">
                   <Link href="/curricula" passHref>
-                    <a className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500">
+                    <a
+                      className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
+                      onClick={() => props.setNavbarOpen(false)}
+                    >
                       Kurslar
                     </a>
                   </Link>
