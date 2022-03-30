@@ -1,8 +1,8 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { ALLOWED_TAG_LIST, Interweave } from "interweave";
-import { useSession } from "next-auth/react";
+import { getCsrfToken, getSession, useSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
@@ -108,33 +108,28 @@ const Exam = ({ curriculum }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req, params } = context;
+  const session = await getSession({ req });
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
-    slug: context.params?.slug as string,
+    slug: params?.slug as string,
   });
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/giris",
+      },
+    };
+  }
 
   return {
     props: {
+      csrfToken: await getCsrfToken(context),
       curriculum,
     },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const sdk = getSdk(client);
-  const { curricula } = await sdk.Curricula();
-
-  return {
-    paths: curricula.map((curriculum) => {
-      return {
-        params: {
-          category: curriculum.category?.slug,
-          slug: curriculum.slug,
-        },
-      };
-    }),
-    fallback: false,
   };
 };
 
