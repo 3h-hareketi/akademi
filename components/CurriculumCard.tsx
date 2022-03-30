@@ -38,7 +38,7 @@ const CurriculumCard = ({ curriculum }: Props) => (
             ></path>
           </svg>
           <Link
-            href={`/curricula/${curriculum.category?.slug}/${curriculum.slug}`}
+            href={`/egitimler/${curriculum.category?.slug}/${curriculum.slug}`}
           >
             Kurs detayları
           </Link>

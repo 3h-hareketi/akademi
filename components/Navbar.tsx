@@ -87,7 +87,7 @@ const Navbar = (props: Props) => {
               </svg>
             </li>
             <li>
-              <Link href="/curricula" passHref>
+              <Link href="/egitimler" passHref>
                 <a className="text-sm text-gray-400 hover:text-gray-500">
                   Kurslar
                 </a>
@@ -196,7 +196,7 @@ const Navbar = (props: Props) => {
                   </a>
                 </li>
                 <li className="mb-1">
-                  <Link href="/curricula" passHref>
+                  <Link href="/egitimler" passHref>
                     <a
                       className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
                       onClick={() => props.setNavbarOpen(false)}

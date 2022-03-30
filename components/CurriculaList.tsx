@@ -40,7 +40,7 @@ const CurriculaList = ({ curricula, categories }: Props) => {
                   Kategoriler
                 </h4>
                 <ul>
-                  <Link href={`/curricula`} passHref>
+                  <Link href={`/egitimler`} passHref>
                     <a
                       className={
                         currentCategory === undefined
@@ -53,7 +53,7 @@ const CurriculaList = ({ curricula, categories }: Props) => {
                   </Link>
                   {categories.map((category) => (
                     <li key={category.slug}>
-                      <Link href={`/curricula/${category.slug}`} passHref>
+                      <Link href={`/egitimler/${category.slug}`} passHref>
                         <a
                           className={
                             currentCategory === category.slug
