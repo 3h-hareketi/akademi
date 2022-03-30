@@ -101,8 +101,8 @@ const Footer = () => (
               <BlurImage
                 src={VercelLogo}
                 alt="Powered by Vercel"
-                width="212"
-                height="44"
+                width="160"
+                height="33"
               />
             </a>
           </Link>
@@ -111,8 +111,8 @@ const Footer = () => (
               <BlurImage
                 src={KorsanDao}
                 alt="korsanDAO Logo"
-                width="174"
-                height="40"
+                width="144"
+                height="33"
               />
             </a>
           </Link>
