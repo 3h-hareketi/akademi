@@ -137,7 +137,7 @@ const Home = ({ curricula }: Props) => {
 
 export async function getStaticProps() {
   const sdk = getSdk(client);
-  const { curricula } = await sdk.Curricula();
+  const { curricula } = await sdk.FeaturedCurricula();
 
   return {
     props: {

@@ -1,0 +1,18 @@
+query FeaturedCurricula {
+  curricula(where: { featured: true }, orderBy: createdAt_DESC, first: 6) {
+    id
+    slug
+    title
+    description
+    category {
+      title
+      slug
+    }
+    image {
+      url
+    }
+    articles {
+      id
+    }
+  }
+}

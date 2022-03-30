@@ -2072,6 +2072,7 @@ export type Curriculum = Node & {
   description?: Maybe<Scalars["String"]>;
   /** Get the document in other stages */
   documentInStages: Array<Curriculum>;
+  featured: Scalars["Boolean"];
   /** List of Curriculum versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -2169,6 +2170,7 @@ export type CurriculumCreateInput = {
   category?: InputMaybe<CategoryCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]>;
   description?: InputMaybe<Scalars["String"]>;
+  featured: Scalars["Boolean"];
   image?: InputMaybe<AssetCreateOneInlineInput>;
   slug: Scalars["String"];
   threshold: Scalars["Int"];
@@ -2248,6 +2250,9 @@ export type CurriculumManyWhereInput = {
   description_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   description_starts_with?: InputMaybe<Scalars["String"]>;
+  featured?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  featured_not?: InputMaybe<Scalars["Boolean"]>;
   id?: InputMaybe<Scalars["ID"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]>;
@@ -2363,6 +2368,8 @@ export enum CurriculumOrderByInput {
   CreatedAtDesc = "createdAt_DESC",
   DescriptionAsc = "description_ASC",
   DescriptionDesc = "description_DESC",
+  FeaturedAsc = "featured_ASC",
+  FeaturedDesc = "featured_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
   PublishedAtAsc = "publishedAt_ASC",
@@ -2381,6 +2388,7 @@ export type CurriculumUpdateInput = {
   articles?: InputMaybe<ArticleUpdateManyInlineInput>;
   category?: InputMaybe<CategoryUpdateOneInlineInput>;
   description?: InputMaybe<Scalars["String"]>;
+  featured?: InputMaybe<Scalars["Boolean"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   slug?: InputMaybe<Scalars["String"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
@@ -2406,6 +2414,7 @@ export type CurriculumUpdateManyInlineInput = {
 
 export type CurriculumUpdateManyInput = {
   description?: InputMaybe<Scalars["String"]>;
+  featured?: InputMaybe<Scalars["Boolean"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -2501,6 +2510,9 @@ export type CurriculumWhereInput = {
   description_not_starts_with?: InputMaybe<Scalars["String"]>;
   /** All values starting with the given string. */
   description_starts_with?: InputMaybe<Scalars["String"]>;
+  featured?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  featured_not?: InputMaybe<Scalars["Boolean"]>;
   id?: InputMaybe<Scalars["ID"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]>;
@@ -6088,6 +6100,22 @@ export type CurriculumBySlugQuery = {
   } | null;
 };
 
+export type FeaturedCurriculaQueryVariables = Exact<{ [key: string]: never }>;
+
+export type FeaturedCurriculaQuery = {
+  __typename?: "Query";
+  curricula: Array<{
+    __typename?: "Curriculum";
+    id: string;
+    slug: string;
+    title: string;
+    description?: string | null;
+    category?: { __typename?: "Category"; title: string; slug: string } | null;
+    image?: { __typename?: "Asset"; url: string } | null;
+    articles: Array<{ __typename?: "Article"; id: string }>;
+  }>;
+};
+
 export const CategoriesDocument = gql`
   query Categories {
     categories {
@@ -6165,6 +6193,26 @@ export const CurriculumBySlugDocument = gql`
     }
   }
 `;
+export const FeaturedCurriculaDocument = gql`
+  query FeaturedCurricula {
+    curricula(where: { featured: true }, orderBy: createdAt_DESC, first: 6) {
+      id
+      slug
+      title
+      description
+      category {
+        title
+        slug
+      }
+      image {
+        url
+      }
+      articles {
+        id
+      }
+    }
+  }
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
@@ -6238,6 +6286,21 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
         "CurriculumBySlug",
+        "query"
+      );
+    },
+    FeaturedCurricula(
+      variables?: FeaturedCurriculaQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<FeaturedCurriculaQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<FeaturedCurriculaQuery>(
+            FeaturedCurriculaDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "FeaturedCurricula",
         "query"
       );
     },
