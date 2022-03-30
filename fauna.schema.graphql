@@ -11,7 +11,7 @@ type Submit @collection(name: "submits") {
   answers: [Answer!]! @relation
 }
 
-type Answer @collection(name: "anwers") {
+type Answer @collection(name: "answers") {
   submit: Submit!
   articleId: String!
   answer: String
