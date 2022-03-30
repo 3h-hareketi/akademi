@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { DefaultSeo, LogoJsonLd, OrganizationJsonLd } from "next-seo";
 import { useRouter } from "next/router";
+import { useSwipeable } from "react-swipeable";
 
 type Props = {
   children: React.ReactNode;
@@ -10,9 +11,17 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter();
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const slideHandler = useSwipeable({
+    onSwipedRight: () => setNavbarOpen(true),
+    onSwipedLeft: () => setNavbarOpen(false),
+  });
 
   return (
-    <div className="flex flex-col justify-between h-screen subpixel-antialiased">
+    <div
+      className="flex flex-col justify-between h-screen subpixel-antialiased"
+      {...slideHandler}
+    >
       <DefaultSeo
         titleTemplate="%s | 3H Akademi"
         defaultTitle="3H Akademi"
@@ -58,7 +67,7 @@ const Layout = ({ children }: Props) => {
           { "@type": "NGO", name: "Atlas Network" },
         ]}
       />
-      <Navbar />
+      <Navbar navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
       <main className="mb-auto">{children}</main>
       <Footer />
     </div>
