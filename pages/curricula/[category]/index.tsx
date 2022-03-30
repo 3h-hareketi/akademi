@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { NextSeo } from "next-seo";
 import CurriculaList from "../../../components/CurriculaList";
 import { Curriculum, Category, getSdk } from "../../../interfaces/graphcms";
 import { client } from "../../../lib/graphCmsClient";
@@ -6,10 +7,14 @@ import { client } from "../../../lib/graphCmsClient";
 type Props = {
   curricula: Array<Curriculum>;
   categories: Array<Category>;
+  activeCategory: Category;
 };
 
-const Category = ({ curricula, categories }: Props) => (
-  <CurriculaList curricula={curricula} categories={categories} />
+const Category = ({ curricula, categories, activeCategory }: Props) => (
+  <>
+    <NextSeo title={`${activeCategory.title} Eğitimlerimiz`} />
+    <CurriculaList curricula={curricula} categories={categories} />
+  </>
 );
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -19,9 +24,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
   const curricula = category?.curricula;
   const { categories } = await sdk.Categories();
+  const activeCategory = categories.find(
+    (category) => category.slug === (params?.category as string)
+  );
 
   return {
-    props: { curricula, categories },
+    props: { curricula, categories, activeCategory },
   };
 };
 
