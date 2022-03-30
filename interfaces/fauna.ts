@@ -25,39 +25,113 @@ export type Scalars = {
   Time: any;
 };
 
+export type Answer = {
+  __typename?: "Answer";
+  /** The document's ID. */
+  _id: Scalars["ID"];
+  /** The document's timestamp. */
+  _ts: Scalars["Long"];
+  answer?: Maybe<Scalars["String"]>;
+  articleId: Scalars["String"];
+  submission: Submission;
+};
+
+/** 'Answer' input values */
+export type AnswerInput = {
+  answer?: InputMaybe<Scalars["String"]>;
+  articleId: Scalars["String"];
+  submission?: InputMaybe<AnswerSubmissionRelation>;
+};
+
+/** The pagination object for elements of type 'Answer'. */
+export type AnswerPage = {
+  __typename?: "AnswerPage";
+  /** A cursor for elements coming after the current page. */
+  after?: Maybe<Scalars["String"]>;
+  /** A cursor for elements coming before the current page. */
+  before?: Maybe<Scalars["String"]>;
+  /** The elements of type 'Answer' in this page. */
+  data: Array<Maybe<Answer>>;
+};
+
+/** Allow manipulating the relationship between the types 'Answer' and 'Submission' using the field 'Answer.submission'. */
+export type AnswerSubmissionRelation = {
+  /** Connect a document of type 'Submission' with the current document using its ID. */
+  connect?: InputMaybe<Scalars["ID"]>;
+  /** Create a document of type 'Submission' and associate it with the current document. */
+  create?: InputMaybe<SubmissionInput>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
+  /** Create a new document in the collection of 'Answer' */
+  createAnswer: Answer;
   /** Create a new document in the collection of 'Result' */
   createResult: Result;
+  /** Create a new document in the collection of 'Submission' */
+  createSubmission: Submission;
   /** Create a new document in the collection of 'User' */
   createUser: User;
+  /** Delete an existing document in the collection of 'Answer' */
+  deleteAnswer?: Maybe<Answer>;
   /** Delete an existing document in the collection of 'Result' */
   deleteResult?: Maybe<Result>;
+  /** Delete an existing document in the collection of 'Submission' */
+  deleteSubmission?: Maybe<Submission>;
   /** Delete an existing document in the collection of 'User' */
   deleteUser?: Maybe<User>;
+  /** Partially updates an existing document in the collection of 'Answer'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateAnswer?: Maybe<Answer>;
   /** Partially updates an existing document in the collection of 'Result'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
   partialUpdateResult?: Maybe<Result>;
+  /** Partially updates an existing document in the collection of 'Submission'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateSubmission?: Maybe<Submission>;
   /** Partially updates an existing document in the collection of 'User'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
   partialUpdateUser?: Maybe<User>;
+  /** Update an existing document in the collection of 'Answer' */
+  updateAnswer?: Maybe<Answer>;
   /** Update an existing document in the collection of 'Result' */
   updateResult?: Maybe<Result>;
+  /** Update an existing document in the collection of 'Submission' */
+  updateSubmission?: Maybe<Submission>;
   /** Update an existing document in the collection of 'User' */
   updateUser?: Maybe<User>;
+};
+
+export type MutationCreateAnswerArgs = {
+  data: AnswerInput;
 };
 
 export type MutationCreateResultArgs = {
   data: ResultInput;
 };
 
+export type MutationCreateSubmissionArgs = {
+  data: SubmissionInput;
+};
+
 export type MutationCreateUserArgs = {
   data: UserInput;
+};
+
+export type MutationDeleteAnswerArgs = {
+  id: Scalars["ID"];
 };
 
 export type MutationDeleteResultArgs = {
   id: Scalars["ID"];
 };
 
+export type MutationDeleteSubmissionArgs = {
+  id: Scalars["ID"];
+};
+
 export type MutationDeleteUserArgs = {
+  id: Scalars["ID"];
+};
+
+export type MutationPartialUpdateAnswerArgs = {
+  data: PartialUpdateAnswerInput;
   id: Scalars["ID"];
 };
 
@@ -66,8 +140,18 @@ export type MutationPartialUpdateResultArgs = {
   id: Scalars["ID"];
 };
 
+export type MutationPartialUpdateSubmissionArgs = {
+  data: PartialUpdateSubmissionInput;
+  id: Scalars["ID"];
+};
+
 export type MutationPartialUpdateUserArgs = {
   data: PartialUpdateUserInput;
+  id: Scalars["ID"];
+};
+
+export type MutationUpdateAnswerArgs = {
+  data: AnswerInput;
   id: Scalars["ID"];
 };
 
@@ -76,9 +160,21 @@ export type MutationUpdateResultArgs = {
   id: Scalars["ID"];
 };
 
+export type MutationUpdateSubmissionArgs = {
+  data: SubmissionInput;
+  id: Scalars["ID"];
+};
+
 export type MutationUpdateUserArgs = {
   data: UserInput;
   id: Scalars["ID"];
+};
+
+/** 'Answer' input values */
+export type PartialUpdateAnswerInput = {
+  answer?: InputMaybe<Scalars["String"]>;
+  articleId?: InputMaybe<Scalars["String"]>;
+  submission?: InputMaybe<AnswerSubmissionRelation>;
 };
 
 /** 'Result' input values */
@@ -87,6 +183,13 @@ export type PartialUpdateResultInput = {
   date?: InputMaybe<Scalars["Time"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<ResultUserRelation>;
+};
+
+/** 'Submission' input values */
+export type PartialUpdateSubmissionInput = {
+  answers?: InputMaybe<SubmissionAnswersRelation>;
+  score?: InputMaybe<Scalars["Int"]>;
+  user?: InputMaybe<SubmissionUserRelation>;
 };
 
 /** 'User' input values */
@@ -100,15 +203,27 @@ export type PartialUpdateUserInput = {
 
 export type Query = {
   __typename?: "Query";
+  /** Find a document from the collection of 'Answer' by its id. */
+  findAnswerByID?: Maybe<Answer>;
   /** Find a document from the collection of 'Result' by its id. */
   findResultByID?: Maybe<Result>;
+  /** Find a document from the collection of 'Submission' by its id. */
+  findSubmissionByID?: Maybe<Submission>;
   /** Find a document from the collection of 'User' by its id. */
   findUserByID?: Maybe<User>;
   results: ResultPage;
   users: UserPage;
 };
 
+export type QueryFindAnswerByIdArgs = {
+  id: Scalars["ID"];
+};
+
 export type QueryFindResultByIdArgs = {
+  id: Scalars["ID"];
+};
+
+export type QueryFindSubmissionByIdArgs = {
   id: Scalars["ID"];
 };
 
@@ -159,6 +274,47 @@ export type ResultPage = {
 
 /** Allow manipulating the relationship between the types 'Result' and 'User' using the field 'Result.user'. */
 export type ResultUserRelation = {
+  /** Connect a document of type 'User' with the current document using its ID. */
+  connect?: InputMaybe<Scalars["ID"]>;
+  /** Create a document of type 'User' and associate it with the current document. */
+  create?: InputMaybe<UserInput>;
+};
+
+export type Submission = {
+  __typename?: "Submission";
+  /** The document's ID. */
+  _id: Scalars["ID"];
+  /** The document's timestamp. */
+  _ts: Scalars["Long"];
+  answers: AnswerPage;
+  score?: Maybe<Scalars["Int"]>;
+  user: User;
+};
+
+export type SubmissionAnswersArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Allow manipulating the relationship between the types 'Submission' and 'Answer'. */
+export type SubmissionAnswersRelation = {
+  /** Connect one or more documents of type 'Answer' with the current document using their IDs. */
+  connect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Create one or more documents of type 'Answer' and associate them with the current document. */
+  create?: InputMaybe<Array<InputMaybe<AnswerInput>>>;
+  /** Disconnect the given documents of type 'Answer' from the current document using their IDs. */
+  disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+};
+
+/** 'Submission' input values */
+export type SubmissionInput = {
+  answers?: InputMaybe<SubmissionAnswersRelation>;
+  score?: InputMaybe<Scalars["Int"]>;
+  user?: InputMaybe<SubmissionUserRelation>;
+};
+
+/** Allow manipulating the relationship between the types 'Submission' and 'User' using the field 'Submission.user'. */
+export type SubmissionUserRelation = {
   /** Connect a document of type 'User' with the current document using its ID. */
   connect?: InputMaybe<Scalars["ID"]>;
   /** Create a document of type 'User' and associate it with the current document. */

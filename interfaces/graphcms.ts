@@ -2078,6 +2078,7 @@ export type Curriculum = Node & {
   /** The unique identifier */
   id: Scalars["ID"];
   image?: Maybe<Asset>;
+  manualApproval: Scalars["Boolean"];
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars["DateTime"]>;
   /** User that last published this document */
@@ -2172,6 +2173,7 @@ export type CurriculumCreateInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured: Scalars["Boolean"];
   image?: InputMaybe<AssetCreateOneInlineInput>;
+  manualApproval: Scalars["Boolean"];
   slug: Scalars["String"];
   threshold: Scalars["Int"];
   title: Scalars["String"];
@@ -2273,6 +2275,9 @@ export type CurriculumManyWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]>;
   image?: InputMaybe<AssetWhereInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  manualApproval_not?: InputMaybe<Scalars["Boolean"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]>;
@@ -2372,6 +2377,8 @@ export enum CurriculumOrderByInput {
   FeaturedDesc = "featured_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ManualApprovalAsc = "manualApproval_ASC",
+  ManualApprovalDesc = "manualApproval_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
   SlugAsc = "slug_ASC",
@@ -2390,6 +2397,7 @@ export type CurriculumUpdateInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured?: InputMaybe<Scalars["Boolean"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
   title?: InputMaybe<Scalars["String"]>;
@@ -2415,6 +2423,7 @@ export type CurriculumUpdateManyInlineInput = {
 export type CurriculumUpdateManyInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured?: InputMaybe<Scalars["Boolean"]>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -2533,6 +2542,9 @@ export type CurriculumWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]>;
   image?: InputMaybe<AssetWhereInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  manualApproval_not?: InputMaybe<Scalars["Boolean"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]>;
