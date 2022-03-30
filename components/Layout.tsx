@@ -56,7 +56,9 @@ const Layout = ({ children }: Props) => {
         }}
         sameAs={[
           "https://www.facebook.com/3hhareketi/",
+          "https://www.instagram.com/3hhareketi/",
           "https://twitter.com/3hhareketi",
+          "https://www.youtube.com/channel/UCpNJRC7fCGASPkltHxGJesQ",
           "https://www.linkedin.com/company/the-3h-movement/about/",
         ]}
         url="https://www.3hhareketi.org/"
