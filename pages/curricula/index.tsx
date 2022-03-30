@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import { NextSeo } from "next-seo";
 import CurriculaList from "../../components/CurriculaList";
 import { Category, Curriculum, getSdk } from "../../interfaces/graphcms";
 import { client } from "../../lib/graphCmsClient";
@@ -9,7 +10,10 @@ type Props = {
 };
 
 const Curricula = ({ curricula, categories }: Props) => (
-  <CurriculaList curricula={curricula} categories={categories} />
+  <>
+    <NextSeo title="Eğitimlerimiz" />
+    <CurriculaList curricula={curricula} categories={categories} />
+  </>
 );
 
 export const getStaticProps: GetStaticProps = async () => {
