@@ -13,10 +13,10 @@ const Layout = ({ children }: Props) => {
   const router = useRouter();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const slideHandler = useSwipeable({
-    // trackMouse: true, // For testing on desktop
     onSwipedRight: () => setNavbarOpen(true),
     onSwipedLeft: () => setNavbarOpen(false),
   });
+
   return (
     <div
       className="flex flex-col justify-between h-screen subpixel-antialiased"

@@ -5,10 +5,12 @@ import { Dispatch, Fragment, SetStateAction } from "react";
 import BlurImage from "./BlurImage";
 import UserDropdown from "./UserDropdown";
 import HLogo from "/public/3h-logo.svg";
+
 type Props = {
   navbarOpen: boolean;
   setNavbarOpen: Dispatch<SetStateAction<boolean>>;
 };
+
 const Navbar = (props: Props) => {
   const { data: session } = useSession();
 
@@ -306,4 +308,5 @@ const Navbar = (props: Props) => {
     </section>
   );
 };
+
 export default Navbar;
