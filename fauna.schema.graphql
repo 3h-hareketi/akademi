@@ -6,6 +6,17 @@ type User @collection(name: "users") {
   results: [Result] @relation
 }
 
+type Submit @collection(name: "submits") {
+  user: User!
+  answers: [Answer!]! @relation
+}
+
+type Answer @collection(name: "anwers") {
+  submit: Submit!
+  articleId: String!
+  answer: String
+}
+
 type Result @collection(name: "results") {
   user: User!
   curriculumName: String!
