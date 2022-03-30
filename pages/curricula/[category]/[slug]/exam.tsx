@@ -36,7 +36,11 @@ const Exam = ({ curriculum }: Props) => {
 
   return (
     <>
-      <NextSeo noindex={true} />
+      <NextSeo
+        title={curriculum.title}
+        description={curriculum.description || ""}
+        noindex={true}
+      />
       <div className="py-10 mx-auto bg-gray-50">
         <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
           <h2 className="mb-10 text-4xl font-bold lg:text-5xl font-heading">
