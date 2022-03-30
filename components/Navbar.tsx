@@ -124,7 +124,7 @@ const Navbar = (props: Props) => {
       <Transition
         show={true}
         as={Fragment}
-        enter="transition-all duration-1000"
+        enter="transition-all duration-500"
         enterFrom={props.navbarOpen ? "-left-80" : "left-0"}
         enterTo={"left-0"}
       >
