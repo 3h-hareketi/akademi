@@ -86,7 +86,10 @@ const Navbar = (props: Props) => {
             </li>
             <li>
               <Link href="/curricula" passHref>
-                <a className="text-sm text-gray-400 hover:text-gray-500">
+                <a
+                  className="text-sm text-gray-400 hover:text-gray-500"
+                  onClick={() => props.setNavbarOpen(false)}
+                >
                   Kurslar
                 </a>
               </Link>
@@ -131,7 +134,10 @@ const Navbar = (props: Props) => {
             !props.navbarOpen && "hidden"
           }`}
         >
-          <div className="fixed inset-0 bg-gray-800 opacity-25 navbar-backdrop"></div>
+          <div
+            className="fixed inset-0 bg-gray-800 opacity-25 navbar-backdrop"
+            onClick={() => props.setNavbarOpen(false)}
+          ></div>
           <nav className="relative flex flex-col w-full h-full px-6 py-6 overflow-y-auto bg-white border-r">
             <div className="flex items-center mb-8">
               <a className="mr-auto text-3xl font-bold leading-none" href="#">

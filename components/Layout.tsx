@@ -21,7 +21,6 @@ const Layout = ({ children }: Props) => {
     <div
       className="flex flex-col justify-between h-screen subpixel-antialiased"
       {...slideHandler}
-      onClick={() => setNavbarOpen(false)}
     >
       <DefaultSeo
         titleTemplate="%s | 3H Akademi"
