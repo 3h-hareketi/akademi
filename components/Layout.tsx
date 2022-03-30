@@ -13,7 +13,7 @@ const Layout = ({ children }: Props) => {
   const router = useRouter();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const slideHandler = useSwipeable({
-    trackMouse: true,
+    // trackMouse: true, // For testing on desktop
     onSwipedRight: () => setNavbarOpen(true),
     onSwipedLeft: () => setNavbarOpen(false),
   });
