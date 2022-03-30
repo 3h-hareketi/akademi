@@ -20,7 +20,7 @@ const CurriculaList = ({ curricula, categories }: Props) => {
             <div className="w-full lg:w-1/2">
               <span className="font-bold text-primary-500">3H Akademi</span>
               <h2 className="text-4xl font-bold lg:text-5xl font-heading">
-                Kurslar
+                Eğitimler
               </h2>
             </div>
             <div className="hidden w-1/2 text-right lg:block">

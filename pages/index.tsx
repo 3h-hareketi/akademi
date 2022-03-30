@@ -102,12 +102,12 @@ const Home = ({ curricula }: Props) => {
                     Buradan başlayın!
                   </span>
                   <h2 className="mt-2 text-4xl font-bold lg:text-5xl font-heading">
-                    Öne Çıkan Kurslar
+                    Öne Çıkan Eğitimler
                   </h2>
                 </div>
                 <Link href="/egitimler" passHref>
                   <a className="hidden px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 md:inline-block rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
-                    Daha Fazla Kurs Gör
+                    Daha Fazla Eğitim Gör
                   </a>
                 </Link>
               </div>
@@ -123,7 +123,7 @@ const Home = ({ curricula }: Props) => {
                     className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 md:hidden rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
                     href="#"
                   >
-                    Daha Fazla Kurs Gör
+                    Daha Fazla Eğitim Gör
                   </a>
                 </Link>
               </div>

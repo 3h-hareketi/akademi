@@ -40,7 +40,7 @@ const CurriculumCard = ({ curriculum }: Props) => (
           <Link
             href={`/egitimler/${curriculum.category?.slug}/${curriculum.slug}`}
           >
-            Kurs detayları
+            Eğitim detayları
           </Link>
         </div>
       </div>

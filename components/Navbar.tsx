@@ -89,7 +89,7 @@ const Navbar = (props: Props) => {
             <li>
               <Link href="/egitimler" passHref>
                 <a className="text-sm text-gray-400 hover:text-gray-500">
-                  Kurslar
+                  Eğitimler
                 </a>
               </Link>
             </li>
@@ -201,7 +201,7 @@ const Navbar = (props: Props) => {
                       className="block p-4 text-sm font-semibold text-gray-400 rounded hover:bg-gray-50 hover:text-primary-500"
                       onClick={() => props.setNavbarOpen(false)}
                     >
-                      Kurslar
+                      Eğitimler
                     </a>
                   </Link>
                 </li>

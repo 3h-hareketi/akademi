@@ -32,7 +32,7 @@ const Hero = () => (
                 </svg>
               </span>
               <h3 className="px-8 mb-4 text-2xl font-bold font-heading">
-                Kurslara katılın
+                Eğitimlere katılın
               </h3>
               <p className="text-gray-500">
                 Fusce quam tellus, placerat eu metus ut, viverra aliquet purus.
