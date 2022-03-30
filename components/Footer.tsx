@@ -2,6 +2,7 @@ import Link from "next/link";
 import BlurImage from "./BlurImage";
 import VercelLogo from "/public/1618983297-powered-by-vercel.svg";
 import HLogo from "/public/3h-logo.svg";
+import KorsanDao from "/public/korsandao-logo.svg";
 
 const Footer = () => (
   <section>
@@ -106,8 +107,21 @@ const Footer = () => (
             </a>
           </Link>
         </div>
+        <div className="flex justify-center mt-8 space-x-2 lg:space-x-4">
+          <Link href="https://www.korsandao.com" passHref>
+            <a>
+              <BlurImage
+                src={KorsanDao}
+                alt="korsanDAO Logo"
+                width="174"
+                height="40"
+              />
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   </section>
 );
+
 export default Footer;
