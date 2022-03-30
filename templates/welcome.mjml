@@ -8,19 +8,19 @@
     </mj-attributes>
     <mj-style inline="inline">
       .body-section {
-      -webkit-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
-      box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
+        -webkit-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
+        box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15);
       }
     </mj-style>
     <mj-style inline="inline">
       .text-link {
-      color: #5e6ebf
+        color: #5e6ebf
       }
     </mj-style>
     <mj-style inline="inline">
       .footer-link {
-      color: #888888
+        color: #888888
       }
     </mj-style>
 
