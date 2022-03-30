@@ -1,7 +1,0 @@
-CreateIndex({
-  "name": "answer_submit_by_submit",
-  "source": Collection("answers"),
-  "terms": [{
-    "field": ["data", "submit"]
-  }]
-})

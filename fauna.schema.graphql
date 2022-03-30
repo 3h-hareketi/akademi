@@ -6,13 +6,13 @@ type User @collection(name: "users") {
   results: [Result] @relation
 }
 
-type Submit @collection(name: "submits") {
+type Submission @collection(name: "submisiions") {
   user: User!
   answers: [Answer!]! @relation
 }
 
 type Answer @collection(name: "answers") {
-  submit: Submit!
+  submission: Submission!
   articleId: String!
   answer: String
 }

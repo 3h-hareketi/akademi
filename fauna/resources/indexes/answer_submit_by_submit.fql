@@ -1,5 +1,5 @@
 CreateIndex({
-  name: "answer_submit_by_submit",
+  name: "answer_submission_by_submission",
   source: Collection("answers"),
-  terms: [{ field: ["data", "submit"] }],
+  terms: [{ field: ["data", "submission"] }],
 })
