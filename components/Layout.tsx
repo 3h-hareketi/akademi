@@ -32,7 +32,7 @@ const Layout = ({ children }: Props) => {
           site_name: "3H Akademi",
           images: [
             {
-              url: `${process.env.NEXTAUTH_URL}/3h-logo.png`,
+              url: `${process.env.NEXTAUTH_URL}/3h-logo.jpg`,
               width: 1200,
               height: 1200,
               alt: "3H Akademi",
