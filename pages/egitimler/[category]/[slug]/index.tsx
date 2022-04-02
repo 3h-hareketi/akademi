@@ -3,7 +3,7 @@ import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
 import Link from "next/link";
 import BlurImage from "../../../../components/BlurImage";
-import { NextSeo } from "next-seo";
+import { CourseJsonLd } from "next-seo";
 
 const Curriculum = ({
   title,
@@ -14,7 +14,12 @@ const Curriculum = ({
   articles,
 }: Curriculum) => (
   <>
-    <NextSeo title={title} description={description || ""} />
+    {/* <NextSeo title={title} description={description || ""} /> */}
+    <CourseJsonLd
+      courseName={title}
+      description={description || ""}
+      provider={{ name: "3H Akademi", url: "https://www.3hhareketi.org/" }}
+    />
     <section>
       <div className="py-20 bg-gray-50 radius-for-skewed">
         <div className="container px-4 mx-auto">
