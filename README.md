@@ -1,6 +1,6 @@
 # 3H Akademi
 
-![Powered by Vercel](/public/1618983297-powered-by-vercel.svg)(https://vercel.com/?utm_source=3h-hareketi&utm_campaign=oss)
+[![Powered by Vercel](/public/1618983297-powered-by-vercel.svg)](https://vercel.com/?utm_source=3h-hareketi&utm_campaign=oss)
 
 ## Getting Started
 
