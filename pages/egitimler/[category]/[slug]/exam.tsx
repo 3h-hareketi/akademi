@@ -84,8 +84,23 @@ const Exam = ({ curriculum }: Props) => {
                           )}
                           {article.textAnswer && (
                             <>
-                              <label htmlFor={article.id}>Cevabınız</label>
-                              <textarea id={article.id} name={article.id} />
+                              <div className="md:w-1/2">
+                                <label
+                                  htmlFor={article.id}
+                                  className="block text-sm font-medium text-gray-700"
+                                >
+                                  {" "}
+                                  Cevabınız
+                                </label>
+                                <div className="mt-1">
+                                  <textarea
+                                    id={article.id}
+                                    name={article.id}
+                                    rows={3}
+                                    className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                                  ></textarea>
+                                </div>
+                              </div>
                             </>
                           )}
                         </div>
