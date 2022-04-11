@@ -4,6 +4,7 @@ query CurriculumBySlug($slug: String!) {
     slug
     description
     threshold
+    manualApproval
     image {
       fileName
       url
@@ -19,6 +20,7 @@ query CurriculumBySlug($slug: String!) {
       content {
         html
       }
+      textAnswer
       choices {
         choice
         correct

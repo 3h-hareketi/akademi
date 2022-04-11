@@ -62,6 +62,7 @@ export type Article = Node & {
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
+  textAnswer: Scalars["Boolean"];
   title?: Maybe<Scalars["String"]>;
   /** The time the document was updated */
   updatedAt: Scalars["DateTime"];
@@ -157,6 +158,7 @@ export type ArticleCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]>;
   curriculum?: InputMaybe<CurriculumCreateOneInlineInput>;
   order: Scalars["Int"];
+  textAnswer: Scalars["Boolean"];
   title?: InputMaybe<Scalars["String"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]>;
 };
@@ -267,6 +269,9 @@ export type ArticleManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  textAnswer_not?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -313,6 +318,8 @@ export enum ArticleOrderByInput {
   OrderDesc = "order_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
+  TextAnswerAsc = "textAnswer_ASC",
+  TextAnswerDesc = "textAnswer_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
@@ -324,6 +331,7 @@ export type ArticleUpdateInput = {
   content?: InputMaybe<Scalars["RichTextAST"]>;
   curriculum?: InputMaybe<CurriculumUpdateOneInlineInput>;
   order?: InputMaybe<Scalars["Int"]>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -347,6 +355,7 @@ export type ArticleUpdateManyInlineInput = {
 export type ArticleUpdateManyInput = {
   content?: InputMaybe<Scalars["RichTextAST"]>;
   order?: InputMaybe<Scalars["Int"]>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -476,6 +485,9 @@ export type ArticleWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  textAnswer_not?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -6095,6 +6107,7 @@ export type CurriculumBySlugQuery = {
     slug: string;
     description?: string | null;
     threshold: number;
+    manualApproval: boolean;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
     category?: { __typename?: "Category"; title: string; slug: string } | null;
     articles: Array<{
@@ -6102,6 +6115,7 @@ export type CurriculumBySlugQuery = {
       id: string;
       title?: string | null;
       order: number;
+      textAnswer: boolean;
       content: { __typename?: "ArticleContentRichText"; html: string };
       choices: Array<{
         __typename?: "Choice";
@@ -6182,6 +6196,7 @@ export const CurriculumBySlugDocument = gql`
       slug
       description
       threshold
+      manualApproval
       image {
         fileName
         url
@@ -6197,6 +6212,7 @@ export const CurriculumBySlugDocument = gql`
         content {
           html
         }
+        textAnswer
         choices {
           choice
           correct
