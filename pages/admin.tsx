@@ -2,6 +2,10 @@ import { useMemo } from "react";
 import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
 import Image from "next/image";
 import Link from "next/link";
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import { getSdk } from "../interfaces/fauna";
+import { client } from "../lib/faunaGraphQlClient";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -194,3 +198,26 @@ export default function Admin() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req } = context;
+  const session = await getSession({ req });
+  const sdk = getSdk(client);
+  const { results, submissions } = await sdk.resultsAndSubmissions();
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/giris",
+      },
+    };
+  }
+
+  return {
+    props: {
+      results,
+      submissions,
+    },
+  };
+};
