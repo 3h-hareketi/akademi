@@ -1,0 +1,4 @@
+CreateIndex({
+  "name": "answers",
+  "source": Collection("answers")
+})
