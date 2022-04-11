@@ -28,4 +28,6 @@ type Result @collection(name: "results") {
 type Query {
   users: [User]
   results: [Result] @index(name: "results")
+  answers: [Answer] @index(name: "answers")
+  submissions: [Submission] @index(name: "submissions")
 }
