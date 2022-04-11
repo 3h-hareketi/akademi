@@ -1,13 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 import { useMemo } from "react";
 import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
 import Image from "next/image";
 import Link from "next/link";
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Admin() {
   const data = useMemo(
@@ -21,6 +19,17 @@ export default function Admin() {
         },
         event: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
         eventType: "Sınav",
+        id: "123",
+      },
+      {
+        user: {
+          name: "Jim Cooper",
+          email: "jim.cooper@example.com",
+          image:
+            "https://lh3.googleusercontent.com/a-/AOh14GgINwldyYIwSgpUVNVwxTuB_DNZScdRAbmjicWagw=s288-p-no",
+        },
+        event: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
+        eventType: "Başvuru",
         id: "123",
       },
     ],
