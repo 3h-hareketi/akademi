@@ -22,6 +22,7 @@ query resultsAndSubmissions {
   submissions {
     data {
       _id
+      curriculumName
       user {
         ...User
       }

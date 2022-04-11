@@ -188,6 +188,7 @@ export type PartialUpdateResultInput = {
 /** 'Submission' input values */
 export type PartialUpdateSubmissionInput = {
   answers?: InputMaybe<SubmissionAnswersRelation>;
+  curriculumName?: InputMaybe<Scalars["String"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<SubmissionUserRelation>;
 };
@@ -299,6 +300,7 @@ export type Submission = {
   /** The document's timestamp. */
   _ts: Scalars["Long"];
   answers: AnswerPage;
+  curriculumName: Scalars["String"];
   score?: Maybe<Scalars["Int"]>;
   user: User;
 };
@@ -321,6 +323,7 @@ export type SubmissionAnswersRelation = {
 /** 'Submission' input values */
 export type SubmissionInput = {
   answers?: InputMaybe<SubmissionAnswersRelation>;
+  curriculumName: Scalars["String"];
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<SubmissionUserRelation>;
 };
@@ -463,6 +466,7 @@ export type ResultsAndSubmissionsQuery = {
     data: Array<{
       __typename?: "Submission";
       _id: string;
+      curriculumName: string;
       user: {
         __typename?: "User";
         name?: string | null;
@@ -565,6 +569,7 @@ export const ResultsAndSubmissionsDocument = gql`
     submissions {
       data {
         _id
+        curriculumName
         user {
           ...User
         }
