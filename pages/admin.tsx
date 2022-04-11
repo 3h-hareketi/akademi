@@ -33,7 +33,7 @@ export default function Example() {
       {
         Header: "Kullanıcı",
 
-        accessor: "user", // accessor is the "key" in the data
+        accessor: "user",
         Cell: ({ value }: any) => (
           <div className="flex items-center">
             <div className="flex-shrink-0 w-10 h-10">
@@ -150,9 +150,6 @@ export default function Example() {
                             </span>
                           </th>
                         ))}
-                        <th scope="col" className="relative px-6 py-3">
-                          <span className="sr-only">Onayla</span>
-                        </th>
                       </tr>
                     ))}
                   </thead>
