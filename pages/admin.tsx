@@ -88,15 +88,18 @@ export default function Example() {
   );
   const {
     getTableProps,
-
     getTableBodyProps,
-
     headerGroups,
-
     rows,
-
     prepareRow,
-  } = useTable({ columns, data });
+    setGlobalFilter,
+  } = useTable({ columns, data }, useGlobalFilter, useSortBy);
+
+  const handleFilterInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+
+    setGlobalFilter(value);
+  };
 
   return (
     <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
@@ -104,6 +107,17 @@ export default function Example() {
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5">
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    type="text"
+                    onChange={handleFilterInputChange}
+                    id="search"
+                    placeholder="Ara..."
+                    className="block w-full h-8 max-w-lg border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm"
+                  />
+                </div>
+              </div>
               <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table
                   className="min-w-full divide-y divide-gray-200"
@@ -128,13 +142,13 @@ export default function Example() {
                             {columnIdx !== headerGroup.headers.length - 1
                               ? column.render("Header")
                               : null}
-                            {/* <span>
+                            <span>
                               {column.isSorted
                                 ? column.isSortedDesc
                                   ? " ↑"
                                   : " ↓"
                                 : ""}
-                            </span> */}
+                            </span>
                           </th>
                         ))}
                         <th scope="col" className="relative px-6 py-3">
