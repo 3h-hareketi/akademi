@@ -9,7 +9,7 @@ import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Example() {
+export default function Admin() {
   const data = useMemo(
     () => [
       {
@@ -34,7 +34,7 @@ export default function Example() {
         Header: "Kullanıcı",
 
         accessor: "user",
-        Cell: ({ value }: any) => (
+        Cell: ({ value }) => (
           <div className="flex items-center">
             <div className="flex-shrink-0 w-10 h-10">
               <Image
@@ -58,7 +58,7 @@ export default function Example() {
       {
         Header: "Aktivite",
         accessor: "event",
-        Cell: ({ value }: any) => (
+        Cell: ({ value }) => (
           <div className="text-sm text-gray-900">{value}</div>
         ),
       },
@@ -66,7 +66,7 @@ export default function Example() {
         Header: "Tür",
 
         accessor: "eventType",
-        Cell: ({ value }: any) => (
+        Cell: ({ value }) => (
           <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
             {value}
           </span>
@@ -76,7 +76,7 @@ export default function Example() {
         Header: "Onayla",
 
         accessor: "id",
-        Cell: ({ value }: any) => (
+        Cell: ({ value }) => (
           <Link href={`/exam/${value}`} passHref>
             <a className="text-indigo-600 hover:text-indigo-900">Gör</a>
           </Link>
@@ -175,51 +175,6 @@ export default function Example() {
                         </tr>
                       );
                     })}
-
-                    {/* {data.map((event, eventIdx) => (
-                      <tr key={eventIdx}>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            <div className="flex-shrink-0 w-10 h-10">
-                              <Image
-                                className="w-10 h-10 rounded-full"
-                                src={event.user.image}
-                                alt=""
-                                height={"40px"}
-                                width={"40px"}
-                              />
-                            </div>
-                            <div className="ml-4">
-                              <div className="text-sm font-medium text-gray-900">
-                                {event.user.name}
-                              </div>
-                              <div className="text-sm text-gray-500">
-                                {event.user.email}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
-                            {event.event}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                            {event.eventType}
-                          </span>
-                        </td>
-
-                        <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                          <a
-                            href="#"
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            Gör
-                          </a>
-                        </td>
-                      </tr>
-                    ))} */}
                   </tbody>
                 </table>
               </div>
