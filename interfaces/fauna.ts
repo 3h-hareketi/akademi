@@ -417,7 +417,7 @@ export type ResultByIdQuery = {
   } | null;
 };
 
-export type UserFragmentFragment = {
+export type UserFragment = {
   __typename?: "User";
   name?: string | null;
   email: string;
@@ -502,8 +502,8 @@ export type ResultsByUserIdQuery = {
   } | null;
 };
 
-export const UserFragmentFragmentDoc = gql`
-  fragment UserFragment on User {
+export const UserFragmentDoc = gql`
+  fragment User on User {
     name
     email
     image
@@ -515,10 +515,10 @@ export const UserResultFragmentDoc = gql`
     curriculumName
     date
     user {
-      ...UserFragment
+      ...User
     }
   }
-  ${UserFragmentFragmentDoc}
+  ${UserFragmentDoc}
 `;
 export const ResultFragmentDoc = gql`
   fragment Result on Result {
@@ -566,13 +566,13 @@ export const ResultsAndSubmissionsDocument = gql`
       data {
         _id
         user {
-          ...UserFragment
+          ...User
         }
       }
     }
   }
   ${UserResultFragmentDoc}
-  ${UserFragmentFragmentDoc}
+  ${UserFragmentDoc}
 `;
 export const ResultsByUserIdDocument = gql`
   query ResultsByUserID($id: ID!) {

@@ -1,4 +1,4 @@
-fragment UserFragment on User {
+fragment User on User {
   name
   email
   image
@@ -9,7 +9,7 @@ fragment UserResult on Result {
   curriculumName
   date
   user {
-    ...UserFragment
+    ...User
   }
 }
 
@@ -23,7 +23,7 @@ query resultsAndSubmissions {
     data {
       _id
       user {
-        ...UserFragment
+        ...User
       }
       
     }
