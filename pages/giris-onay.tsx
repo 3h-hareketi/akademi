@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { MailIcon } from "@heroicons/react/solid";
 const VerifyRequest = () => {
   return (
