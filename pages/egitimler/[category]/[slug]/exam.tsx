@@ -68,9 +68,10 @@ const Exam = ({ curriculum }: Props) => {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                      <div className="p-5">
+                      <div className="p-5 aspect-video">
                         {" "}
                         <Interweave
+                          className="interweave-content"
                           content={article.content.html}
                           allowList={new Array(...ALLOWED_TAG_LIST, "iframe")}
                         />
