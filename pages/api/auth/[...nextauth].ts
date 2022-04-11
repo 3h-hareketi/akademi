@@ -48,6 +48,7 @@ export default NextAuth({
   ],
   pages: {
     signIn: "/giris",
+    verifyRequest: "/giris-onay",
   },
   logger: {
     debug(code, metadata) {
