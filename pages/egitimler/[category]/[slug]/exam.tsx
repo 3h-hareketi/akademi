@@ -84,7 +84,7 @@ const Exam = ({ curriculum }: Props) => {
                           )}
                           {article.textAnswer && (
                             <>
-                              <div className="md:w-1/2">
+                              <div className="mx-auto md:w-1/2">
                                 <label
                                   htmlFor={article.id}
                                   className="block text-sm font-medium text-gray-700"
