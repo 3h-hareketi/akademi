@@ -131,10 +131,9 @@ export default function Example() {
                       >
                         {headerGroup.headers.map((column, columnIdx) => (
                           <th
-                            {...column
-                              .getHeaderProps
-                              //   column.getSortByToggleProps()
-                              ()}
+                            {...column.getHeaderProps(
+                              column.getSortByToggleProps()
+                            )}
                             scope="col"
                             className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                             key={column.id}
