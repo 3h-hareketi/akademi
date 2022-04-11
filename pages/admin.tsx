@@ -5,7 +5,7 @@ function classNames(...classes: string[]) {
 }
 
 import { useMemo } from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ export default function Example() {
     []
   );
 
-  const columns = useMemo(
+  const columns: Array<Column> = useMemo(
     () => [
       {
         Header: "Kullanıcı",
