@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Dispatch, Fragment, SetStateAction } from "react";
 import BlurImage from "./BlurImage";
@@ -212,11 +212,15 @@ const Navbar = (props: Props) => {
                 {session ? (
                   <>
                     <div className="text-center">{session.user?.email}</div>
-                    <Link href="/api/auth/signout" passHref>
-                      <a className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl">
-                        Çıkış
-                      </a>
-                    </Link>
+                    <a
+                      href="#"
+                      className="block px-4 py-3 mb-3 text-xs font-semibold leading-none text-center hover:leading-loose bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl"
+                      onClick={() => {
+                        signOut({ callbackUrl: `/giris` });
+                      }}
+                    >
+                      Çıkış
+                    </a>
                   </>
                 ) : (
                   <Link href="/giris" passHref>
