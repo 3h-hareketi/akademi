@@ -9,6 +9,7 @@ type User @collection(name: "users") {
 type Submission @collection(name: "submissions") {
   user: User!
   answers: [Answer!]! @relation
+  curriculumName: String!
   score: Int
 }
 
