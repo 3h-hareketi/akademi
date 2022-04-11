@@ -203,6 +203,7 @@ export type PartialUpdateUserInput = {
 
 export type Query = {
   __typename?: "Query";
+  answers: AnswerPage;
   /** Find a document from the collection of 'Answer' by its id. */
   findAnswerByID?: Maybe<Answer>;
   /** Find a document from the collection of 'Result' by its id. */
@@ -212,7 +213,13 @@ export type Query = {
   /** Find a document from the collection of 'User' by its id. */
   findUserByID?: Maybe<User>;
   results: ResultPage;
+  submissions: SubmissionPage;
   users: UserPage;
+};
+
+export type QueryAnswersArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
 };
 
 export type QueryFindAnswerByIdArgs = {
@@ -232,6 +239,11 @@ export type QueryFindUserByIdArgs = {
 };
 
 export type QueryResultsArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
+};
+
+export type QuerySubmissionsArgs = {
   _cursor?: InputMaybe<Scalars["String"]>;
   _size?: InputMaybe<Scalars["Int"]>;
 };
@@ -311,6 +323,17 @@ export type SubmissionInput = {
   answers?: InputMaybe<SubmissionAnswersRelation>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<SubmissionUserRelation>;
+};
+
+/** The pagination object for elements of type 'Submission'. */
+export type SubmissionPage = {
+  __typename?: "SubmissionPage";
+  /** A cursor for elements coming after the current page. */
+  after?: Maybe<Scalars["String"]>;
+  /** A cursor for elements coming before the current page. */
+  before?: Maybe<Scalars["String"]>;
+  /** The elements of type 'Submission' in this page. */
+  data: Array<Maybe<Submission>>;
 };
 
 /** Allow manipulating the relationship between the types 'Submission' and 'User' using the field 'Submission.user'. */
@@ -394,6 +417,62 @@ export type ResultByIdQuery = {
   } | null;
 };
 
+export type UserFragmentFragment = {
+  __typename?: "User";
+  name?: string | null;
+  email: string;
+  image?: string | null;
+};
+
+export type UserResultFragment = {
+  __typename?: "Result";
+  _id: string;
+  curriculumName: string;
+  date?: any | null;
+  user: {
+    __typename?: "User";
+    name?: string | null;
+    email: string;
+    image?: string | null;
+  };
+};
+
+export type ResultsAndSubmissionsQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type ResultsAndSubmissionsQuery = {
+  __typename?: "Query";
+  results: {
+    __typename?: "ResultPage";
+    data: Array<{
+      __typename?: "Result";
+      _id: string;
+      curriculumName: string;
+      date?: any | null;
+      user: {
+        __typename?: "User";
+        name?: string | null;
+        email: string;
+        image?: string | null;
+      };
+    } | null>;
+  };
+  submissions: {
+    __typename?: "SubmissionPage";
+    data: Array<{
+      __typename?: "Submission";
+      _id: string;
+      user: {
+        __typename?: "User";
+        name?: string | null;
+        email: string;
+        image?: string | null;
+      };
+    } | null>;
+  };
+};
+
 export type ResultFragment = {
   __typename?: "Result";
   _id: string;
@@ -423,6 +502,24 @@ export type ResultsByUserIdQuery = {
   } | null;
 };
 
+export const UserFragmentFragmentDoc = gql`
+  fragment UserFragment on User {
+    name
+    email
+    image
+  }
+`;
+export const UserResultFragmentDoc = gql`
+  fragment UserResult on Result {
+    _id
+    curriculumName
+    date
+    user {
+      ...UserFragment
+    }
+  }
+  ${UserFragmentFragmentDoc}
+`;
 export const ResultFragmentDoc = gql`
   fragment Result on Result {
     _id
@@ -457,6 +554,25 @@ export const ResultByIdDocument = gql`
       date
     }
   }
+`;
+export const ResultsAndSubmissionsDocument = gql`
+  query resultsAndSubmissions {
+    results {
+      data {
+        ...UserResult
+      }
+    }
+    submissions {
+      data {
+        _id
+        user {
+          ...UserFragment
+        }
+      }
+    }
+  }
+  ${UserResultFragmentDoc}
+  ${UserFragmentFragmentDoc}
 `;
 export const ResultsByUserIdDocument = gql`
   query ResultsByUserID($id: ID!) {
@@ -513,6 +629,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "ResultByID",
+        "query"
+      );
+    },
+    resultsAndSubmissions(
+      variables?: ResultsAndSubmissionsQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ResultsAndSubmissionsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ResultsAndSubmissionsQuery>(
+            ResultsAndSubmissionsDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "resultsAndSubmissions",
         "query"
       );
     },
