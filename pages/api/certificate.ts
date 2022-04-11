@@ -34,11 +34,13 @@ export default async function handler(
   const form = pdfDoc.getForm();
 
   const nameField = form.getTextField("Katilimcinin adi soyadi");
+
   nameField.setText(session?.user?.name || session?.user?.email || "");
   nameField.setAlignment(TextAlignment.Center);
   nameField.updateAppearances(customFont);
 
   const curriculumField = form.getTextField("egitimin ismi");
+
   curriculumField.setText(data?.curriculumName);
   curriculumField.setAlignment(TextAlignment.Center);
   curriculumField.updateAppearances(customFont);
