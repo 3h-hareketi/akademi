@@ -28,13 +28,15 @@ const Validation = ({ submission, articles }: Props) => {
   };
 
   return (
-    <NextSeo
-      title={submission.curriculumName}
-      description={
-        submission.user.name + submission.curriculumName + " Submission " || ""
-      }
-      noindex={true}
-    >
+    <>
+      <NextSeo
+        title={submission.curriculumName}
+        description={
+          submission.user.name + submission.curriculumName + " Submission " ||
+          ""
+        }
+        noindex={true}
+      />
       <div className="py-10 mx-auto bg-gray-50">
         <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
           <h2 className="mb-10 text-4xl font-bold lg:text-5xl font-heading">
@@ -125,7 +127,7 @@ const Validation = ({ submission, articles }: Props) => {
           </div>
         </div>
       </div>
-    </NextSeo>
+    </>
   );
 };
 
