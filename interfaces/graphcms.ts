@@ -6048,6 +6048,19 @@ export enum _SystemDateTimeFieldVariation {
   Localization = "localization",
 }
 
+export type ArticleByIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type ArticleByIdQuery = {
+  __typename?: "Query";
+  article?: {
+    __typename?: "Article";
+    id: string;
+    title?: string | null;
+  } | null;
+};
+
 export type CategoriesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type CategoriesQuery = {
@@ -6142,6 +6155,14 @@ export type FeaturedCurriculaQuery = {
   }>;
 };
 
+export const ArticleByIdDocument = gql`
+  query ArticleById($id: ID!) {
+    article(where: { id: $id }) {
+      id
+      title
+    }
+  }
+`;
 export const CategoriesDocument = gql`
   query Categories {
     categories {
@@ -6259,6 +6280,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    ArticleById(
+      variables: ArticleByIdQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ArticleByIdQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleByIdQuery>(ArticleByIdDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "ArticleById",
+        "query"
+      );
+    },
     Categories(
       variables?: CategoriesQueryVariables,
       requestHeaders?: Dom.RequestInit["headers"]

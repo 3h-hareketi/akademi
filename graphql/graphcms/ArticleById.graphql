@@ -1,0 +1,6 @@
+query ArticleById($id: ID!) {
+  article(where: { id: $id }) {
+    id
+    title
+  }
+}
