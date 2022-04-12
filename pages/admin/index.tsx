@@ -195,7 +195,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                             {row.cells.map((cell, cellIdx) => (
                               <td
                                 className={classNames(
-                                  "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                                  "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
                                 )}
                                 key={cell.value}
                               >
@@ -220,7 +220,11 @@ const Admin = ({ submissionsAndResults }: Props) => {
                         disabled={!canPreviousPage}
                       >
                         {
-                          <div className="w-4 h-4">
+                          <div
+                            className={`w-4 h-4 ${
+                              !canPreviousPage ? "text-gray-300" : ""
+                            }`}
+                          >
                             <ChevronDoubleLeftIcon />
                           </div>
                         }
@@ -229,7 +233,11 @@ const Admin = ({ submissionsAndResults }: Props) => {
                         onClick={() => previousPage()}
                         disabled={!canPreviousPage}
                       >
-                        <div className="w-4 h-4">
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
                           <ChevronLeftIcon />
                         </div>{" "}
                       </button>{" "}
@@ -237,7 +245,11 @@ const Admin = ({ submissionsAndResults }: Props) => {
                         onClick={() => nextPage()}
                         disabled={!canNextPage}
                       >
-                        <div className="w-4 h-4">
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
                           <ChevronRightIcon />
                         </div>{" "}
                       </button>{" "}
@@ -245,7 +257,11 @@ const Admin = ({ submissionsAndResults }: Props) => {
                         onClick={() => gotoPage(pageCount - 1)}
                         disabled={!canNextPage}
                       >
-                        <div className="w-4 h-4">
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
                           <ChevronDoubleRightIcon />
                         </div>{" "}
                       </button>{" "}
