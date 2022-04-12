@@ -13,6 +13,13 @@ import { getSession } from "next-auth/react";
 import { getSdk, UserFragment } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
 import { NextSeo } from "next-seo";
+import {
+  ArrowLeftIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/solid";
 
 type DataRow = {
   user: UserFragment;
@@ -202,58 +209,83 @@ const Admin = ({ submissionsAndResults }: Props) => {
                       })}
                     </tbody>
                   </table>
+                  <div className="flex flex-row pagination">
+                    <span className="mt-3 ml-3 mr-auto">
+                      Sayfa{" "}
+                      <strong>
+                        {pageIndex + 1} / {pageOptions.length}
+                      </strong>{" "}
+                    </span>
+                    <div className="mx-auto mt-3">
+                      <button
+                        onClick={() => gotoPage(0)}
+                        disabled={!canPreviousPage}
+                      >
+                        {
+                          <div className="w-4 h-4">
+                            <ChevronDoubleLeftIcon />
+                          </div>
+                        }
+                      </button>{" "}
+                      <button
+                        onClick={() => previousPage()}
+                        disabled={!canPreviousPage}
+                      >
+                        <div className="w-4 h-4">
+                          <ChevronLeftIcon />
+                        </div>{" "}
+                      </button>{" "}
+                      <button
+                        onClick={() => nextPage()}
+                        disabled={!canNextPage}
+                      >
+                        <div className="w-4 h-4">
+                          <ChevronRightIcon />
+                        </div>{" "}
+                      </button>{" "}
+                      <button
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}
+                      >
+                        <div className="w-4 h-4">
+                          <ChevronDoubleRightIcon />
+                        </div>{" "}
+                      </button>{" "}
+                    </div>
+
+                    {/* <span>
+                      | Sayfa numarası:{" "}
+                      <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={(e) => {
+                          const page = e.target.value
+                            ? Number(e.target.value) - 1
+                            : 0;
+
+                          gotoPage(page);
+                        }}
+                        className="w-16 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      />
+                    </span>{" "} */}
+                    <select
+                      value={pageSize}
+                      onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                      }}
+                      className="ml-auto"
+                    >
+                      {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                          {pageSize} adet
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="pagination">
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-            {"<<"}
-          </button>{" "}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            {"<"}
-          </button>{" "}
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            {">"}
-          </button>{" "}
-          <button
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-          >
-            {">>"}
-          </button>{" "}
-          <span>
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageOptions.length}
-            </strong>{" "}
-          </span>
-          <span>
-            | Go to page:{" "}
-            <input
-              type="number"
-              defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-
-                gotoPage(page);
-              }}
-              style={{ width: "100px" }}
-            />
-          </span>{" "}
-          <select
-            value={pageSize}
-            onChange={(e) => {
-              setPageSize(Number(e.target.value));
-            }}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </>
