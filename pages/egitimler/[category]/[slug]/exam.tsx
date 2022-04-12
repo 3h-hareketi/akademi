@@ -14,6 +14,7 @@ import {
 import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client as graphCmsClient } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
+import checkIfUserHasResultOrSubmit from "../../../../lib/checkIfUserHasResultOrSubmit";
 
 type Props = {
   curriculum: Curriculum;
@@ -143,15 +144,11 @@ export const getServerSideProps: GetServerSideProps = handle({
       slug: params?.slug as string,
     });
 
-    const { findUserByID: user } = await faunaSdk.ResultsByUserID({
-      id: session.user.id,
+    // Check if user has already passed the exam
+    await checkIfUserHasResultOrSubmit({
+      userId: session.user.id,
+      curriculum: curriculum,
     });
-
-    for (const result of user?.results?.data || []) {
-      if (result?.curriculumName === curriculum?.title) {
-        return redirect(`/api/certificate?id=${result?._id}`, 302);
-      }
-    }
 
     return {
       props: {
@@ -175,27 +172,32 @@ export const getServerSideProps: GetServerSideProps = handle({
     });
 
     // Check user if already passed
-    const { findUserByID: user } = await faunaSdk.ResultsByUserID({
-      id: session.user.id,
+    await checkIfUserHasResultOrSubmit({
+      userId: session.user.id,
+      curriculum: curriculum,
     });
-
-    for (const result of user?.results?.data || []) {
-      if (result?.curriculumName === curriculum?.title) {
-        return redirect(`/api/certificate?id=${result?._id}`, 302);
-      }
-    }
 
     const score = parseInt(req.body.correctAnswerCount as string);
     const requiredCorrectAnswerCount =
       (curriculum?.articles?.length! * curriculum?.threshold!) / 100;
 
     if (curriculum?.manualApproval) {
-      await faunaSdk.Submission({
+      const submission = await faunaSdk.Submission({
         curriculumName: curriculum!.title,
         user: { connect: session!.user.id },
         score: score,
         date: new Date(),
       });
+
+      for (const article of curriculum.articles) {
+        if (article.textAnswer) {
+          await faunaSdk.Answer({
+            submission: { connect: submission.createSubmission._id },
+            articleId: article.id,
+            answer: req.body[article.id] as string,
+          });
+        }
+      }
 
       return redirect(
         `/egitimler/${curriculum.category?.slug}/${curriculum.slug}/dogrulama-bekliyor`,
