@@ -165,7 +165,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                                 column.getSortByToggleProps()
                               )}
                               scope="col"
-                              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase"
                               key={column.id}
                             >
                               {columnIdx !== headerGroup.headers.length - 1
