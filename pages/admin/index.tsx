@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-import { getSdk, UserFragment } from "../interfaces/fauna";
-import { client } from "../lib/faunaGraphQlClient";
+import { getSdk, UserFragment } from "../../interfaces/fauna";
+import { client } from "../../lib/faunaGraphQlClient";
 
 type DataRow = {
   user: UserFragment;
