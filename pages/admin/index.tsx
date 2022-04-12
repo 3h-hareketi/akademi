@@ -20,16 +20,16 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/solid";
 
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 type DataRow = {
   user: UserFragment;
   curriculumName: string;
   type: "result" | "submission";
   id: string;
 };
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 type Props = {
   submissionsAndResults: DataRow[];
