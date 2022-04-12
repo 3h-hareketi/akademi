@@ -14,7 +14,7 @@ type Props = {
   csrfToken: string;
 };
 
-const Curriculum = ({ curriculum, resultId, csrfToken }: Props) => (
+const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
   <>
     <NextSeo
       title={curriculum.title}
@@ -121,4 +121,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Curriculum;
+export default CurriculumDetail;
