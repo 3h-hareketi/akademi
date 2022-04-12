@@ -201,6 +201,7 @@ export type PartialUpdateUserInput = {
   image?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   results?: InputMaybe<UserResultsRelation>;
+  submissions?: InputMaybe<UserSubmissionsRelation>;
 };
 
 export type Query = {
@@ -361,9 +362,15 @@ export type User = {
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   results: ResultPage;
+  submissions: SubmissionPage;
 };
 
 export type UserResultsArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
+};
+
+export type UserSubmissionsArgs = {
   _cursor?: InputMaybe<Scalars["String"]>;
   _size?: InputMaybe<Scalars["Int"]>;
 };
@@ -375,6 +382,7 @@ export type UserInput = {
   image?: InputMaybe<Scalars["String"]>;
   name?: InputMaybe<Scalars["String"]>;
   results?: InputMaybe<UserResultsRelation>;
+  submissions?: InputMaybe<UserSubmissionsRelation>;
 };
 
 /** The pagination object for elements of type 'User'. */
@@ -395,6 +403,16 @@ export type UserResultsRelation = {
   /** Create one or more documents of type 'Result' and associate them with the current document. */
   create?: InputMaybe<Array<InputMaybe<ResultInput>>>;
   /** Disconnect the given documents of type 'Result' from the current document using their IDs. */
+  disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+};
+
+/** Allow manipulating the relationship between the types 'User' and 'Submission'. */
+export type UserSubmissionsRelation = {
+  /** Connect one or more documents of type 'Submission' with the current document using their IDs. */
+  connect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Create one or more documents of type 'Submission' and associate them with the current document. */
+  create?: InputMaybe<Array<InputMaybe<SubmissionInput>>>;
+  /** Disconnect the given documents of type 'Submission' from the current document using their IDs. */
   disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
 };
 
@@ -501,6 +519,33 @@ export type ResultsAndSubmissionsQuery = {
       };
     } | null>;
   };
+};
+
+export type ResultsAndSubmissionsByUserIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type ResultsAndSubmissionsByUserIdQuery = {
+  __typename?: "Query";
+  findUserByID?: {
+    __typename?: "User";
+    results: {
+      __typename?: "ResultPage";
+      data: Array<{
+        __typename?: "Result";
+        _id: string;
+        curriculumName: string;
+      } | null>;
+    };
+    submissions: {
+      __typename?: "SubmissionPage";
+      data: Array<{
+        __typename?: "Submission";
+        _id: string;
+        curriculumName: string;
+      } | null>;
+    };
+  } | null;
 };
 
 export type ResultFragment = {
@@ -666,6 +711,24 @@ export const ResultsAndSubmissionsDocument = gql`
   ${UserResultFragmentDoc}
   ${UserFragmentDoc}
 `;
+export const ResultsAndSubmissionsByUserIdDocument = gql`
+  query ResultsAndSubmissionsByUserId($id: ID!) {
+    findUserByID(id: $id) {
+      results {
+        data {
+          _id
+          curriculumName
+        }
+      }
+      submissions {
+        data {
+          _id
+          curriculumName
+        }
+      }
+    }
+  }
+`;
 export const ResultsByUserIdDocument = gql`
   query ResultsByUserID($id: ID!) {
     findUserByID(id: $id) {
@@ -785,6 +848,21 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
         "resultsAndSubmissions",
+        "query"
+      );
+    },
+    ResultsAndSubmissionsByUserId(
+      variables: ResultsAndSubmissionsByUserIdQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ResultsAndSubmissionsByUserIdQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ResultsAndSubmissionsByUserIdQuery>(
+            ResultsAndSubmissionsByUserIdDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "ResultsAndSubmissionsByUserId",
         "query"
       );
     },

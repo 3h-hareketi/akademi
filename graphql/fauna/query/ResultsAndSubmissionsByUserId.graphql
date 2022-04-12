@@ -1,0 +1,16 @@
+query ResultsAndSubmissionsByUserId($id: ID!) {
+  findUserByID(id: $id) {
+    results {
+      data {
+        _id
+        curriculumName
+      }
+    }
+    submissions {
+      data {
+        _id
+        curriculumName
+      }
+    }
+  }
+}
