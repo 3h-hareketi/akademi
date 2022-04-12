@@ -1,0 +1,7 @@
+CreateIndex({
+  "name": "submission_user_by_user",
+  "source": Collection("submissions"),
+  "terms": [{
+    "field": ["data", "user"]
+  }]
+})

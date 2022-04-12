@@ -4,6 +4,7 @@ type User @collection(name: "users") {
   emailVerified: Time
   image: String
   results: [Result] @relation
+  submissions: [Submission] @relation
 }
 
 type Submission @collection(name: "submissions") {
