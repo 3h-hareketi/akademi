@@ -506,6 +506,35 @@ export type ResultsByUserIdQuery = {
   } | null;
 };
 
+export type SubmissionsByIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type SubmissionsByIdQuery = {
+  __typename?: "Query";
+  findSubmissionByID?: {
+    __typename?: "Submission";
+    score?: number | null;
+    curriculumName: string;
+    answers: {
+      __typename?: "AnswerPage";
+      data: Array<{
+        __typename?: "Answer";
+        _id: string;
+        answer?: string | null;
+        articleId: string;
+      } | null>;
+    };
+    user: {
+      __typename?: "User";
+      _id: string;
+      name?: string | null;
+      email: string;
+      image?: string | null;
+    };
+  } | null;
+};
+
 export const UserFragmentDoc = gql`
   fragment User on User {
     name
@@ -591,6 +620,27 @@ export const ResultsByUserIdDocument = gql`
   }
   ${ResultFragmentDoc}
 `;
+export const SubmissionsByIdDocument = gql`
+  query SubmissionsById($id: ID!) {
+    findSubmissionByID(id: $id) {
+      score
+      answers {
+        data {
+          _id
+          answer
+          articleId
+        }
+      }
+      curriculumName
+      user {
+        _id
+        name
+        email
+        image
+      }
+    }
+  }
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
@@ -664,6 +714,21 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders }
           ),
         "ResultsByUserID",
+        "query"
+      );
+    },
+    SubmissionsById(
+      variables: SubmissionsByIdQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<SubmissionsByIdQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<SubmissionsByIdQuery>(
+            SubmissionsByIdDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "SubmissionsById",
         "query"
       );
     },
