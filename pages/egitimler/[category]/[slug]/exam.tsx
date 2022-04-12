@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { ALLOWED_TAG_LIST, Interweave } from "interweave";
-import { getCsrfToken, getSession, useSession } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 import Choices from "../../../../components/Choices";
 import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
 import { client } from "../../../../lib/graphCmsClient";
@@ -16,7 +16,6 @@ type Props = {
 };
 
 const Exam = ({ curriculum }: Props) => {
-  const { status } = useSession({ required: true });
   const router = useRouter();
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
