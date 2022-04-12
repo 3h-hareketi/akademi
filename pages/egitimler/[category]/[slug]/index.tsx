@@ -105,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: session.user.id,
     });
 
-    user?.results.data.map((result) => {
+    user?.results.data.find((result) => {
       if (result?.curriculumName === curriculum?.title) {
         resultId = result?._id!;
       }
