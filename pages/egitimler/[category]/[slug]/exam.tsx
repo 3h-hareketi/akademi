@@ -134,10 +134,6 @@ const Exam = ({ curriculum }: Props) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, params } = context;
   const session = await getSession({ req });
-  const sdk = getSdk(client);
-  const { curriculum } = await sdk.CurriculumBySlug({
-    slug: params?.slug as string,
-  });
 
   if (!session) {
     return {
@@ -147,6 +143,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
+
+  const sdk = getSdk(client);
+  const { curriculum } = await sdk.CurriculumBySlug({
+    slug: params?.slug as string,
+  });
 
   return {
     props: {
