@@ -189,6 +189,7 @@ export type PartialUpdateResultInput = {
 export type PartialUpdateSubmissionInput = {
   answers?: InputMaybe<SubmissionAnswersRelation>;
   curriculumName?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["Time"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<SubmissionUserRelation>;
 };
@@ -301,6 +302,7 @@ export type Submission = {
   _ts: Scalars["Long"];
   answers: AnswerPage;
   curriculumName: Scalars["String"];
+  date?: Maybe<Scalars["Time"]>;
   score?: Maybe<Scalars["Int"]>;
   user: User;
 };
@@ -324,6 +326,7 @@ export type SubmissionAnswersRelation = {
 export type SubmissionInput = {
   answers?: InputMaybe<SubmissionAnswersRelation>;
   curriculumName: Scalars["String"];
+  date?: InputMaybe<Scalars["Time"]>;
   score?: InputMaybe<Scalars["Int"]>;
   user?: InputMaybe<SubmissionUserRelation>;
 };
@@ -405,6 +408,18 @@ export type ResultMutationVariables = Exact<{
 export type ResultMutation = {
   __typename?: "Mutation";
   createResult: { __typename?: "Result"; _id: string };
+};
+
+export type SubmissionMutationVariables = Exact<{
+  curriculumName: Scalars["String"];
+  user: SubmissionUserRelation;
+  score?: InputMaybe<Scalars["Int"]>;
+  date?: InputMaybe<Scalars["Time"]>;
+}>;
+
+export type SubmissionMutation = {
+  __typename?: "Mutation";
+  createSubmission: { __typename?: "Submission"; _id: string };
 };
 
 export type ResultByIdQueryVariables = Exact<{
@@ -580,6 +595,25 @@ export const ResultDocument = gql`
     }
   }
 `;
+export const SubmissionDocument = gql`
+  mutation Submission(
+    $curriculumName: String!
+    $user: SubmissionUserRelation!
+    $score: Int
+    $date: Time
+  ) {
+    createSubmission(
+      data: {
+        curriculumName: $curriculumName
+        user: $user
+        score: $score
+        date: $date
+      }
+    ) {
+      _id
+    }
+  }
+`;
 export const ResultByIdDocument = gql`
   query ResultByID($id: ID!) {
     findResultByID(id: $id) {
@@ -670,6 +704,20 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "Result",
+        "mutation"
+      );
+    },
+    Submission(
+      variables: SubmissionMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<SubmissionMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<SubmissionMutation>(SubmissionDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Submission",
         "mutation"
       );
     },
