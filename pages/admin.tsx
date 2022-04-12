@@ -73,9 +73,18 @@ const Admin = ({ submissionsAndResults }: Props) => {
         Header: "Onayla",
 
         accessor: "id",
-        Cell: ({ value }) => (
-          <Link href={`/exam/${value}`} passHref>
-            <a className="text-indigo-600 hover:text-indigo-900">Gör</a>
+        Cell: ({ value, row }) => (
+          <Link
+            href={
+              row.values.type === "submission"
+                ? `/admin/degerlendirme/[id]`
+                : `/api/certificate?id=${value}`
+            }
+            passHref
+          >
+            <a className="text-indigo-600 hover:text-indigo-900">
+              {row.values.type === "submission" ? "Değerlendir" : "Görüntüle"}
+            </a>
           </Link>
         ),
       },
