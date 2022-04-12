@@ -4,14 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-import { getSdk } from "../interfaces/fauna";
+import { getSdk, UserFragment } from "../interfaces/fauna";
 import { client } from "../lib/faunaGraphQlClient";
+
+type DataRow = {
+  user: UserFragment;
+  curriculumName: string;
+  type: "result" | "submission";
+  id: string;
+};
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Admin() {
+const Admin = () => {
   const data = useMemo(
     () => [
       {
@@ -21,8 +28,8 @@ export default function Admin() {
           image:
             "https://lh3.googleusercontent.com/a-/AOh14GgINwldyYIwSgpUVNVwxTuB_DNZScdRAbmjicWagw=s288-p-no",
         },
-        event: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
-        eventType: "Sınav",
+        curriculumName: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
+        type: "result" as DataRow["type"],
         id: "123",
       },
       {
@@ -32,8 +39,8 @@ export default function Admin() {
           image:
             "https://lh3.googleusercontent.com/a-/AOh14GgINwldyYIwSgpUVNVwxTuB_DNZScdRAbmjicWagw=s288-p-no",
         },
-        event: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
-        eventType: "Başvuru",
+        curriculumName: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
+        type: "submission" as DataRow["type"],
         id: "123",
       },
     ],
@@ -41,7 +48,7 @@ export default function Admin() {
     []
   );
 
-  const columns: Array<Column> = useMemo(
+  const columns: Array<Column<DataRow>> = useMemo(
     () => [
       {
         Header: "Kullanıcı",
@@ -52,7 +59,7 @@ export default function Admin() {
             <div className="flex-shrink-0 w-10 h-10">
               <Image
                 className="w-10 h-10 rounded-full"
-                src={value.image}
+                src={value.image || "/images/avatar.png"}
                 alt=""
                 height={"40px"}
                 width={"40px"}
@@ -70,7 +77,8 @@ export default function Admin() {
 
       {
         Header: "Aktivite",
-        accessor: "event",
+
+        accessor: "curriculumName",
         Cell: ({ value }) => (
           <div className="text-sm text-gray-900">{value}</div>
         ),
@@ -78,7 +86,7 @@ export default function Admin() {
       {
         Header: "Tür",
 
-        accessor: "eventType",
+        accessor: "type",
         Cell: ({ value }) => (
           <span className="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
             {value}
@@ -197,13 +205,11 @@ export default function Admin() {
       </div>
     </div>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
   const session = await getSession({ req });
-  const sdk = getSdk(client);
-  const { results, submissions } = await sdk.resultsAndSubmissions();
 
   if (!session) {
     return {
@@ -215,9 +221,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {
-      results,
-      submissions,
-    },
+    props: {},
   };
 };
+
+export default Admin;
