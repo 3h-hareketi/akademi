@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   return (
     <section>
@@ -108,7 +108,9 @@ const Navbar = (props: Props) => {
             </Link>
           </div>
 
-          {session ? (
+          {status === "loading" ? (
+            <div className="w-10 h-10"></div>
+          ) : session ? (
             <div className="ml-auto">
               <UserDropdown user={session.user} />
             </div>
