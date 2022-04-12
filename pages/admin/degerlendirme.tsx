@@ -23,10 +23,6 @@ type Props = {
 const Validation = ({ submission, articles }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const submitEvaluation = () => {
-    setIsSubmitting(true);
-  };
-
   return (
     <>
       <NextSeo
@@ -119,7 +115,9 @@ const Validation = ({ submission, articles }: Props) => {
                   ? "bg-gray-600"
                   : "bg-primary-500 hover:bg-primary-700"
               } px-6 py-2 ml-auto font-bold leading-loose transition duration-200 md:inline-block rounded-l-xl rounded-t-xl text-gray-50`}
-              onClick={submitEvaluation}
+              onClick={() => {
+                setIsSubmitting(true);
+              }}
               disabled={isSubmitting}
             >
               Değerlendirmeyi tamamla
