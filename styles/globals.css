@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.interweave-content iframe {
+  width: unset;
+  height: unset;
+}

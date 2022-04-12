@@ -7,6 +7,8 @@ import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import BlurImage from "../../../../components/BlurImage";
+import { CourseJsonLd } from "next-seo";
+
 
 type Props = {
   curriculum: Curriculum;
@@ -19,6 +21,10 @@ const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
     <NextSeo
       title={curriculum.title}
       description={curriculum.description || ""}
+    <CourseJsonLd
+      courseName={title}
+      description={description || ""}
+      provider={{ name: "3H Akademi", url: "https://www.3hhareketi.org/" }}
     />
     <section>
       <div className="py-20 bg-gray-50 radius-for-skewed">
