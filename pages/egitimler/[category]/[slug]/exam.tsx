@@ -1,37 +1,27 @@
+import { Fragment, useState } from "react";
 import { GetServerSideProps } from "next";
+import { NextSeo } from "next-seo";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { ALLOWED_TAG_LIST, Interweave } from "interweave";
-import { getCsrfToken, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
+import { handle, redirect } from "next-runtime";
 import Choices from "../../../../components/Choices";
-import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
-import { client } from "../../../../lib/graphCmsClient";
-import { Fragment, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { NextSeo } from "next-seo";
+import {
+  Curriculum,
+  getSdk as getGraphCmsSdk,
+} from "../../../../interfaces/graphcms";
+import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
+import { client as graphCmsClient } from "../../../../lib/graphCmsClient";
+import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 
 type Props = {
   curriculum: Curriculum;
 };
 
 const Exam = ({ curriculum }: Props) => {
-  const router = useRouter();
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-
-  const submitResult = () => {
-    setIsSubmitting(true);
-    axios
-      .post("/api/result", {
-        slug: curriculum.slug,
-        score: correctAnswerCount,
-      })
-      .then((res) => {
-        router.push(`/api/certificate/?id=${res.data.result}`);
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <>
@@ -40,12 +30,17 @@ const Exam = ({ curriculum }: Props) => {
         description={curriculum.description || ""}
         noindex={true}
       />
-      <div className="py-10 mx-auto bg-gray-50">
-        <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
-          <h2 className="mb-10 text-4xl font-bold lg:text-5xl font-heading">
-            {curriculum.title}
-          </h2>
-          <form action="/api/submit" method="POST">
+      <form method="POST">
+        <div className="py-10 mx-auto bg-gray-50">
+          <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:py-12 lg:px-8">
+            <h2 className="mb-10 text-4xl font-bold lg:text-5xl font-heading">
+              {curriculum.title}
+            </h2>
+            <input
+              type="hidden"
+              name="correctAnswerCount"
+              value={correctAnswerCount}
+            />
             {curriculum.articles.map((article) => (
               <Disclosure key={article.id} as="div" className="mt-6">
                 {({ open }) => (
@@ -109,51 +104,98 @@ const Exam = ({ curriculum }: Props) => {
                 )}
               </Disclosure>
             ))}
-          </form>
-          <div className="flex mt-12">
-            {" "}
-            <button
-              className={`${
-                isSubmitting
-                  ? "bg-gray-600"
-                  : "bg-primary-500 hover:bg-primary-700"
-              } px-6 py-2 ml-auto font-bold leading-loose transition duration-200 md:inline-block rounded-l-xl rounded-t-xl text-gray-50`}
-              onClick={submitResult}
-              disabled={isSubmitting}
-            >
-              Tamamla
-            </button>
+            <div className="flex mt-12">
+              {" "}
+              <button
+                className={`${
+                  isSubmitting
+                    ? "bg-gray-600"
+                    : "bg-primary-500 hover:bg-primary-700"
+                } px-6 py-2 ml-auto font-bold leading-loose transition duration-200 md:inline-block rounded-l-xl rounded-t-xl text-gray-50`}
+                type="submit"
+                disabled={isSubmitting}
+                onClick={(e) => {
+                  setIsSubmitting(true);
+                }}
+              >
+                Tamamla
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req, params } = context;
-  const session = await getSession({ req });
+export const getServerSideProps: GetServerSideProps = handle({
+  async get(context) {
+    const { req, params } = context;
+    const session = await getSession({ req });
 
-  if (!session) {
+    if (!session) {
+      return redirect("/giris", 302);
+    }
+
+    const sdk = getGraphCmsSdk(graphCmsClient);
+    const { curriculum } = await sdk.CurriculumBySlug({
+      slug: params?.slug as string,
+    });
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/giris",
+      props: {
+        curriculum,
       },
     };
-  }
+  },
+  async post(context) {
+    const { req, params } = context;
+    const session = await getSession({ req });
 
-  const sdk = getSdk(client);
-  const { curriculum } = await sdk.CurriculumBySlug({
-    slug: params?.slug as string,
-  });
+    if (!session) {
+      return redirect("/giris", 302);
+    }
 
-  return {
-    props: {
-      csrfToken: await getCsrfToken(context),
-      curriculum,
-    },
-  };
-};
+    const graphCmsSdk = getGraphCmsSdk(graphCmsClient);
+    const faunaSdk = getFaunaSdk(faunaClient);
+    const { curriculum } = await graphCmsSdk.CurriculumBySlug({
+      slug: params?.slug as string,
+    });
+
+    const score = parseInt(req.body.correctAnswerCount as string);
+    const requiredCorrectAnswerCount =
+      (curriculum?.articles?.length! * curriculum?.threshold!) / 100;
+
+    if (curriculum?.manualApproval) {
+      await faunaSdk.Submission({
+        curriculumName: curriculum!.title,
+        user: { connect: session!.user.id },
+        score: score,
+        date: new Date(),
+      });
+
+      return redirect(
+        `/egitimler/${curriculum.category?.slug}/${curriculum.slug}/dogrulama-bekliyor`,
+        302
+      );
+    } else {
+      if (score < requiredCorrectAnswerCount) {
+        return redirect(
+          `/egitimler/${curriculum?.category?.slug}/${curriculum?.slug}/basarisiz`,
+          302
+        );
+      }
+
+      const { createResult: result } = await faunaSdk.Result({
+        curriculumName: curriculum!.title,
+        user: { connect: session!.user.id },
+        score: score,
+        date: new Date(),
+      });
+
+      return redirect(`/api/certificate?id=${result._id}`, 302);
+    }
+  },
+});
 
 export default Exam;
