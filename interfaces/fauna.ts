@@ -398,6 +398,17 @@ export type UserResultsRelation = {
   disconnect?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
 };
 
+export type AnswerMutationVariables = Exact<{
+  submission: AnswerSubmissionRelation;
+  articleId: Scalars["String"];
+  answer?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type AnswerMutation = {
+  __typename?: "Mutation";
+  createAnswer: { __typename?: "Answer"; _id: string };
+};
+
 export type ResultMutationVariables = Exact<{
   curriculumName: Scalars["String"];
   user: ResultUserRelation;
@@ -576,6 +587,19 @@ export const ResultFragmentDoc = gql`
     date
   }
 `;
+export const AnswerDocument = gql`
+  mutation Answer(
+    $submission: AnswerSubmissionRelation!
+    $articleId: String!
+    $answer: String
+  ) {
+    createAnswer(
+      data: { submission: $submission, articleId: $articleId, answer: $answer }
+    ) {
+      _id
+    }
+  }
+`;
 export const ResultDocument = gql`
   mutation Result(
     $curriculumName: String!
@@ -693,6 +717,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    Answer(
+      variables: AnswerMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<AnswerMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<AnswerMutation>(AnswerDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Answer",
+        "mutation"
+      );
+    },
     Result(
       variables: ResultMutationVariables,
       requestHeaders?: Dom.RequestInit["headers"]
