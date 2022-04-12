@@ -11,6 +11,7 @@ type Submission @collection(name: "submissions") {
   answers: [Answer!]! @relation
   curriculumName: String!
   score: Int
+  date: Time
 }
 
 type Answer @collection(name: "answers") {
