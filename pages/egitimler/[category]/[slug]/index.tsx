@@ -9,7 +9,6 @@ import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import BlurImage from "../../../../components/BlurImage";
 import { CourseJsonLd } from "next-seo";
 
-
 type Props = {
   curriculum: Curriculum;
   resultId: boolean;
@@ -21,9 +20,10 @@ const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
     <NextSeo
       title={curriculum.title}
       description={curriculum.description || ""}
+    />
     <CourseJsonLd
-      courseName={title}
-      description={description || ""}
+      courseName={curriculum.title}
+      description={curriculum.description || ""}
       provider={{ name: "3H Akademi", url: "https://www.3hhareketi.org/" }}
     />
     <section>
