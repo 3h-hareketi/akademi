@@ -206,14 +206,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // Accept only in-house emails
-  if (!session.user.email?.includes("@3hhareketi.org")) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/giris",
-      },
-    };
-  }
+  // if (!session.user.email?.includes("@3hhareketi.org")) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: "/giris",
+  //     },
+  //   };
+  // }
 
   const sdk = getSdk(client);
   const { results, submissions } = await sdk.resultsAndSubmissions();
