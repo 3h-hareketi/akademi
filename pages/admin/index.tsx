@@ -1,5 +1,11 @@
 import { useMemo } from "react";
-import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
+import {
+  Column,
+  useGlobalFilter,
+  useSortBy,
+  useTable,
+  usePagination,
+} from "react-table";
 import Image from "next/image";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
@@ -7,6 +13,12 @@ import { getSession } from "next-auth/react";
 import { getSdk, UserFragment } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
 import { NextSeo } from "next-seo";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/solid";
 
 type DataRow = {
   user: UserFragment;
@@ -42,7 +54,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                 width={"40px"}
               />
             </div>
-            <div className="ml-4">
+            <div className="mx-auto">
               <div className="text-sm font-medium text-gray-900">
                 {value.name}
               </div>
@@ -97,10 +109,19 @@ const Admin = ({ submissionsAndResults }: Props) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, useSortBy);
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = useTable({ columns, data }, useGlobalFilter, useSortBy, usePagination);
 
   const handleFilterInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -144,7 +165,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                                 column.getSortByToggleProps()
                               )}
                               scope="col"
-                              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase"
                               key={column.id}
                             >
                               {columnIdx !== headerGroup.headers.length - 1
@@ -166,7 +187,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                       className="bg-white divide-y divide-gray-200"
                       {...getTableBodyProps()}
                     >
-                      {rows.map((row) => {
+                      {page.map((row) => {
                         prepareRow(row);
 
                         return (
@@ -174,7 +195,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                             {row.cells.map((cell, cellIdx) => (
                               <td
                                 className={classNames(
-                                  "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                                  "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
                                 )}
                                 key={cell.value}
                               >
@@ -186,6 +207,95 @@ const Admin = ({ submissionsAndResults }: Props) => {
                       })}
                     </tbody>
                   </table>
+                  <div className="flex flex-row pagination">
+                    <span className="mt-3 ml-3 mr-auto">
+                      Sayfa{" "}
+                      <strong>
+                        {pageIndex + 1} / {pageOptions.length}
+                      </strong>{" "}
+                    </span>
+                    <div className="mx-auto mt-3">
+                      <button
+                        onClick={() => gotoPage(0)}
+                        disabled={!canPreviousPage}
+                      >
+                        {
+                          <div
+                            className={`w-4 h-4 ${
+                              !canPreviousPage ? "text-gray-300" : ""
+                            }`}
+                          >
+                            <ChevronDoubleLeftIcon />
+                          </div>
+                        }
+                      </button>{" "}
+                      <button
+                        onClick={() => previousPage()}
+                        disabled={!canPreviousPage}
+                      >
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
+                          <ChevronLeftIcon />
+                        </div>{" "}
+                      </button>{" "}
+                      <button
+                        onClick={() => nextPage()}
+                        disabled={!canNextPage}
+                      >
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
+                          <ChevronRightIcon />
+                        </div>{" "}
+                      </button>{" "}
+                      <button
+                        onClick={() => gotoPage(pageCount - 1)}
+                        disabled={!canNextPage}
+                      >
+                        <div
+                          className={`w-4 h-4 ${
+                            !canPreviousPage ? "text-gray-300" : ""
+                          }`}
+                        >
+                          <ChevronDoubleRightIcon />
+                        </div>{" "}
+                      </button>{" "}
+                    </div>
+
+                    {/* <span>
+                      | Sayfa numarası:{" "}
+                      <input
+                        type="number"
+                        defaultValue={pageIndex + 1}
+                        onChange={(e) => {
+                          const page = e.target.value
+                            ? Number(e.target.value) - 1
+                            : 0;
+
+                          gotoPage(page);
+                        }}
+                        className="w-16 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                      />
+                    </span>{" "} */}
+                    <select
+                      value={pageSize}
+                      onChange={(e) => {
+                        setPageSize(Number(e.target.value));
+                      }}
+                      className="ml-auto"
+                    >
+                      {[10, 20, 30, 40, 50].map((pageSize) => (
+                        <option key={pageSize} value={pageSize}>
+                          {pageSize} adet
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
