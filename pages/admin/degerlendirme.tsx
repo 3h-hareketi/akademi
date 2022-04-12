@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
+import { NextSeo } from "next-seo";
 import { getSdk, Submission } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
 
@@ -7,7 +8,9 @@ type Props = {
   submission: Submission;
 };
 
-const Validation = ({ submission }: Props) => {};
+const Validation = ({ submission }: Props) => {
+  return <NextSeo title="Eğitim Değerlendirme" noindex={true} />;
+};
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;

@@ -6,6 +6,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { getSdk, UserFragment } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
+import { NextSeo } from "next-seo";
 
 type DataRow = {
   user: UserFragment;
@@ -108,87 +109,90 @@ const Admin = ({ submissionsAndResults }: Props) => {
   };
 
   return (
-    <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
-      <div className="flex flex-wrap justify-center mx-auto">
-        <div className="flex flex-col">
-          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5">
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    onChange={handleFilterInputChange}
-                    id="search"
-                    placeholder="Ara..."
-                    className="block w-full h-8 max-w-lg border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm"
-                  />
+    <>
+      <NextSeo title="Yönetim" noindex={true} />
+      <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
+        <div className="flex flex-wrap justify-center mx-auto">
+          <div className="flex flex-col">
+            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5">
+                  <div className="mt-1 sm:mt-0 sm:col-span-2">
+                    <input
+                      type="text"
+                      onChange={handleFilterInputChange}
+                      id="search"
+                      placeholder="Ara..."
+                      className="block w-full h-8 max-w-lg border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                <table
-                  className="min-w-full divide-y divide-gray-200"
-                  {...getTableProps()}
-                >
-                  <thead className="bg-gray-50">
-                    {headerGroups.map((headerGroup) => (
-                      <tr
-                        {...headerGroup.getHeaderGroupProps()}
-                        key={headerGroup.id}
-                      >
-                        {headerGroup.headers.map((column, columnIdx) => (
-                          <th
-                            {...column.getHeaderProps(
-                              column.getSortByToggleProps()
-                            )}
-                            scope="col"
-                            className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
-                            key={column.id}
-                          >
-                            {columnIdx !== headerGroup.headers.length - 1
-                              ? column.render("Header")
-                              : null}
-                            <span>
-                              {column.isSorted
-                                ? column.isSortedDesc
-                                  ? " ↑"
-                                  : " ↓"
-                                : ""}
-                            </span>
-                          </th>
-                        ))}
-                      </tr>
-                    ))}
-                  </thead>
-                  <tbody
-                    className="bg-white divide-y divide-gray-200"
-                    {...getTableBodyProps()}
+                <div className="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                  <table
+                    className="min-w-full divide-y divide-gray-200"
+                    {...getTableProps()}
                   >
-                    {rows.map((row) => {
-                      prepareRow(row);
-
-                      return (
-                        <tr {...row.getRowProps()} key={row.id}>
-                          {row.cells.map((cell, cellIdx) => (
-                            <td
-                              className={classNames(
-                                "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    <thead className="bg-gray-50">
+                      {headerGroups.map((headerGroup) => (
+                        <tr
+                          {...headerGroup.getHeaderGroupProps()}
+                          key={headerGroup.id}
+                        >
+                          {headerGroup.headers.map((column, columnIdx) => (
+                            <th
+                              {...column.getHeaderProps(
+                                column.getSortByToggleProps()
                               )}
-                              key={cell.value}
+                              scope="col"
+                              className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                              key={column.id}
                             >
-                              {cell.render("Cell")}
-                            </td>
+                              {columnIdx !== headerGroup.headers.length - 1
+                                ? column.render("Header")
+                                : null}
+                              <span>
+                                {column.isSorted
+                                  ? column.isSortedDesc
+                                    ? " ↑"
+                                    : " ↓"
+                                  : ""}
+                              </span>
+                            </th>
                           ))}
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                      ))}
+                    </thead>
+                    <tbody
+                      className="bg-white divide-y divide-gray-200"
+                      {...getTableBodyProps()}
+                    >
+                      {rows.map((row) => {
+                        prepareRow(row);
+
+                        return (
+                          <tr {...row.getRowProps()} key={row.id}>
+                            {row.cells.map((cell, cellIdx) => (
+                              <td
+                                className={classNames(
+                                  "border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                                )}
+                                key={cell.value}
+                              >
+                                {cell.render("Cell")}
+                              </td>
+                            ))}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
