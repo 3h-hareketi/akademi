@@ -54,7 +54,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                 width={"40px"}
               />
             </div>
-            <div className="ml-4">
+            <div className="mx-auto">
               <div className="text-sm font-medium text-gray-900">
                 {value.name}
               </div>
