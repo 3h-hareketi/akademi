@@ -14,7 +14,6 @@ import { getSdk, UserFragment } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
 import { NextSeo } from "next-seo";
 import {
-  ArrowLeftIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
@@ -110,7 +109,6 @@ const Admin = ({ submissionsAndResults }: Props) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setGlobalFilter,
     page,
