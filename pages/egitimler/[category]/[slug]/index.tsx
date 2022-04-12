@@ -116,7 +116,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       csrfToken: await getCsrfToken(context),
       resultId: resultId,
-      ...curriculum,
+      curriculum: curriculum,
     },
   };
 };
