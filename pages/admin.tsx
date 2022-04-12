@@ -18,36 +18,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Admin = () => {
-  const data = useMemo(
-    () => [
-      {
-        user: {
-          name: "Jane Cooper",
-          email: "jane.cooper@example.com",
-          image:
-            "https://lh3.googleusercontent.com/a-/AOh14GgINwldyYIwSgpUVNVwxTuB_DNZScdRAbmjicWagw=s288-p-no",
-        },
-        curriculumName: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
-        type: "result" as DataRow["type"],
-        id: "123",
-      },
-      {
-        user: {
-          name: "Jim Cooper",
-          email: "jim.cooper@example.com",
-          image:
-            "https://lh3.googleusercontent.com/a-/AOh14GgINwldyYIwSgpUVNVwxTuB_DNZScdRAbmjicWagw=s288-p-no",
-        },
-        curriculumName: "Liberalizm 101 - Jane Cooper Sınav Sonucu",
-        type: "submission" as DataRow["type"],
-        id: "123",
-      },
-    ],
+type Props = {
+  submissionsAndResults: DataRow[];
+};
 
-    []
-  );
-
+const Admin = ({ submissionsAndResults }: Props) => {
+  const data = useMemo(() => submissionsAndResults, [submissionsAndResults]);
   const columns: Array<Column<DataRow>> = useMemo(
     () => [
       {
@@ -220,8 +196,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const sdk = getSdk(client);
+  const { results, submissions } = await sdk.resultsAndSubmissions();
+
+  const resultData = results.data.map((result) => {
+    return {
+      user: result?.user,
+      curriculumName: result?.curriculumName,
+      type: "result",
+      id: result?._id,
+    };
+  });
+
+  const submissionData = submissions.data.map((submission) => {
+    return {
+      user: submission?.user,
+      curriculumName: submission?.curriculumName,
+      type: "submission",
+      id: submission?._id,
+    };
+  });
+
   return {
-    props: {},
+    props: {
+      submissionsAndResults: submissionData.concat(resultData),
+    },
   };
 };
 
