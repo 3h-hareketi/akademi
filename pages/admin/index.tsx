@@ -1,5 +1,11 @@
 import { useMemo } from "react";
-import { Column, useGlobalFilter, useSortBy, useTable } from "react-table";
+import {
+  Column,
+  useGlobalFilter,
+  useSortBy,
+  useTable,
+  usePagination,
+} from "react-table";
 import Image from "next/image";
 import Link from "next/link";
 import { GetServerSideProps } from "next";
@@ -100,7 +106,17 @@ const Admin = ({ submissionsAndResults }: Props) => {
     rows,
     prepareRow,
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, useSortBy);
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = useTable({ columns, data }, useGlobalFilter, useSortBy, usePagination);
 
   const handleFilterInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
@@ -166,7 +182,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
                       className="bg-white divide-y divide-gray-200"
                       {...getTableBodyProps()}
                     >
-                      {rows.map((row) => {
+                      {page.map((row) => {
                         prepareRow(row);
 
                         return (
@@ -190,6 +206,54 @@ const Admin = ({ submissionsAndResults }: Props) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="pagination">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            {"<<"}
+          </button>{" "}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            {"<"}
+          </button>{" "}
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            {">"}
+          </button>{" "}
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {">>"}
+          </button>{" "}
+          <span>
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{" "}
+          </span>
+          <span>
+            | Go to page:{" "}
+            <input
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+
+                gotoPage(page);
+              }}
+              style={{ width: "100px" }}
+            />
+          </span>{" "}
+          <select
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </>
