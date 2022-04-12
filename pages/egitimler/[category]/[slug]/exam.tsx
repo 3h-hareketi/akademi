@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 import { ALLOWED_TAG_LIST, Interweave } from "interweave";
-import { getSession } from "next-auth/react";
+import { getCsrfToken, getSession } from "next-auth/react";
 import { handle, redirect } from "next-runtime";
 import Choices from "../../../../components/Choices";
 import {
@@ -137,10 +137,21 @@ export const getServerSideProps: GetServerSideProps = handle({
       return redirect("/giris", 302);
     }
 
-    const sdk = getGraphCmsSdk(graphCmsClient);
-    const { curriculum } = await sdk.CurriculumBySlug({
+    const graphCmsSdk = getGraphCmsSdk(graphCmsClient);
+    const faunaSdk = getFaunaSdk(faunaClient);
+    const { curriculum } = await graphCmsSdk.CurriculumBySlug({
       slug: params?.slug as string,
     });
+
+    const { findUserByID: user } = await faunaSdk.ResultsByUserID({
+      id: session.user.id,
+    });
+
+    for (const result of user?.results?.data || []) {
+      if (result?.curriculumName === curriculum?.title) {
+        return redirect(`/api/certificate?id=${result?._id}`, 302);
+      }
+    }
 
     return {
       props: {
@@ -150,6 +161,7 @@ export const getServerSideProps: GetServerSideProps = handle({
   },
   async post(context) {
     const { req, params } = context;
+    const csrfToken = await getCsrfToken({ req });
     const session = await getSession({ req });
 
     if (!session) {
@@ -161,6 +173,17 @@ export const getServerSideProps: GetServerSideProps = handle({
     const { curriculum } = await graphCmsSdk.CurriculumBySlug({
       slug: params?.slug as string,
     });
+
+    // Check user if already passed
+    const { findUserByID: user } = await faunaSdk.ResultsByUserID({
+      id: session.user.id,
+    });
+
+    for (const result of user?.results?.data || []) {
+      if (result?.curriculumName === curriculum?.title) {
+        return redirect(`/api/certificate?id=${result?._id}`, 302);
+      }
+    }
 
     const score = parseInt(req.body.correctAnswerCount as string);
     const requiredCorrectAnswerCount =
