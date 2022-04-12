@@ -26,10 +26,11 @@ const Validation = ({ submission, articles }: Props) => {
   return (
     <>
       <NextSeo
-        title={submission.curriculumName}
+        title={submission.curriculumName + " Değerlendirme"}
         description={
-          submission.user.name + submission.curriculumName + " Submission " ||
-          ""
+          submission.user.name +
+            submission.curriculumName +
+            " Değerlendirme Sayfası" || ""
         }
         noindex={true}
       />
