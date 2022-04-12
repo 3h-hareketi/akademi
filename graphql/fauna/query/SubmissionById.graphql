@@ -1,0 +1,19 @@
+query SubmissionsById($id: ID!) {
+  findSubmissionByID(id: $id) {
+    score
+    answers {
+      data {
+        _id
+        answer
+        articleId
+      }
+    }
+    curriculumName
+    user {
+      _id
+      name
+      email
+      image
+    }
+  }
+}

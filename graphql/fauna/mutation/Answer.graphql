@@ -1,0 +1,15 @@
+mutation Answer(
+  $submission: AnswerSubmissionRelation!
+  $articleId: String!
+  $answer: String
+) {
+  createAnswer(
+    data: {
+      submission: $submission
+      articleId: $articleId
+      answer: $answer
+    }
+  ) {
+    _id
+  }
+}

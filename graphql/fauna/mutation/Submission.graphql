@@ -1,0 +1,17 @@
+mutation Submission(
+  $curriculumName: String!
+  $user: SubmissionUserRelation!
+  $score: Int
+  $date: Time
+) {
+  createSubmission(
+    data: {
+      curriculumName: $curriculumName
+      user: $user
+      score: $score
+      date: $date
+    }
+  ) {
+    _id
+  }
+}

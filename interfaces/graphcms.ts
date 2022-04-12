@@ -62,6 +62,7 @@ export type Article = Node & {
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
+  textAnswer: Scalars["Boolean"];
   title?: Maybe<Scalars["String"]>;
   /** The time the document was updated */
   updatedAt: Scalars["DateTime"];
@@ -157,6 +158,7 @@ export type ArticleCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]>;
   curriculum?: InputMaybe<CurriculumCreateOneInlineInput>;
   order: Scalars["Int"];
+  textAnswer: Scalars["Boolean"];
   title?: InputMaybe<Scalars["String"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]>;
 };
@@ -267,6 +269,9 @@ export type ArticleManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  textAnswer_not?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -313,6 +318,8 @@ export enum ArticleOrderByInput {
   OrderDesc = "order_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
+  TextAnswerAsc = "textAnswer_ASC",
+  TextAnswerDesc = "textAnswer_DESC",
   TitleAsc = "title_ASC",
   TitleDesc = "title_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
@@ -324,6 +331,7 @@ export type ArticleUpdateInput = {
   content?: InputMaybe<Scalars["RichTextAST"]>;
   curriculum?: InputMaybe<CurriculumUpdateOneInlineInput>;
   order?: InputMaybe<Scalars["Int"]>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -347,6 +355,7 @@ export type ArticleUpdateManyInlineInput = {
 export type ArticleUpdateManyInput = {
   content?: InputMaybe<Scalars["RichTextAST"]>;
   order?: InputMaybe<Scalars["Int"]>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
 };
 
@@ -476,6 +485,9 @@ export type ArticleWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  textAnswer?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  textAnswer_not?: InputMaybe<Scalars["Boolean"]>;
   title?: InputMaybe<Scalars["String"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]>;
@@ -2078,6 +2090,7 @@ export type Curriculum = Node & {
   /** The unique identifier */
   id: Scalars["ID"];
   image?: Maybe<Asset>;
+  manualApproval: Scalars["Boolean"];
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars["DateTime"]>;
   /** User that last published this document */
@@ -2172,6 +2185,7 @@ export type CurriculumCreateInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured: Scalars["Boolean"];
   image?: InputMaybe<AssetCreateOneInlineInput>;
+  manualApproval: Scalars["Boolean"];
   slug: Scalars["String"];
   threshold: Scalars["Int"];
   title: Scalars["String"];
@@ -2273,6 +2287,9 @@ export type CurriculumManyWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]>;
   image?: InputMaybe<AssetWhereInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  manualApproval_not?: InputMaybe<Scalars["Boolean"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]>;
@@ -2372,6 +2389,8 @@ export enum CurriculumOrderByInput {
   FeaturedDesc = "featured_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  ManualApprovalAsc = "manualApproval_ASC",
+  ManualApprovalDesc = "manualApproval_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
   SlugAsc = "slug_ASC",
@@ -2390,6 +2409,7 @@ export type CurriculumUpdateInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured?: InputMaybe<Scalars["Boolean"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
   slug?: InputMaybe<Scalars["String"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
   title?: InputMaybe<Scalars["String"]>;
@@ -2415,6 +2435,7 @@ export type CurriculumUpdateManyInlineInput = {
 export type CurriculumUpdateManyInput = {
   description?: InputMaybe<Scalars["String"]>;
   featured?: InputMaybe<Scalars["Boolean"]>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
   threshold?: InputMaybe<Scalars["Int"]>;
 };
 
@@ -2533,6 +2554,9 @@ export type CurriculumWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]>;
   image?: InputMaybe<AssetWhereInput>;
+  manualApproval?: InputMaybe<Scalars["Boolean"]>;
+  /** All values that are not equal to given value. */
+  manualApproval_not?: InputMaybe<Scalars["Boolean"]>;
   publishedAt?: InputMaybe<Scalars["DateTime"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]>;
@@ -6024,6 +6048,19 @@ export enum _SystemDateTimeFieldVariation {
   Localization = "localization",
 }
 
+export type ArticleByIdQueryVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type ArticleByIdQuery = {
+  __typename?: "Query";
+  article?: {
+    __typename?: "Article";
+    id: string;
+    title?: string | null;
+  } | null;
+};
+
 export type CategoriesQueryVariables = Exact<{ [key: string]: never }>;
 
 export type CategoriesQuery = {
@@ -6083,6 +6120,7 @@ export type CurriculumBySlugQuery = {
     slug: string;
     description?: string | null;
     threshold: number;
+    manualApproval: boolean;
     image?: { __typename?: "Asset"; fileName: string; url: string } | null;
     category?: { __typename?: "Category"; title: string; slug: string } | null;
     articles: Array<{
@@ -6090,6 +6128,7 @@ export type CurriculumBySlugQuery = {
       id: string;
       title?: string | null;
       order: number;
+      textAnswer: boolean;
       content: { __typename?: "ArticleContentRichText"; html: string };
       choices: Array<{
         __typename?: "Choice";
@@ -6116,6 +6155,14 @@ export type FeaturedCurriculaQuery = {
   }>;
 };
 
+export const ArticleByIdDocument = gql`
+  query ArticleById($id: ID!) {
+    article(where: { id: $id }) {
+      id
+      title
+    }
+  }
+`;
 export const CategoriesDocument = gql`
   query Categories {
     categories {
@@ -6170,6 +6217,7 @@ export const CurriculumBySlugDocument = gql`
       slug
       description
       threshold
+      manualApproval
       image {
         fileName
         url
@@ -6185,6 +6233,7 @@ export const CurriculumBySlugDocument = gql`
         content {
           html
         }
+        textAnswer
         choices {
           choice
           correct
@@ -6231,6 +6280,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    ArticleById(
+      variables: ArticleByIdQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<ArticleByIdQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<ArticleByIdQuery>(ArticleByIdDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "ArticleById",
+        "query"
+      );
+    },
     Categories(
       variables?: CategoriesQueryVariables,
       requestHeaders?: Dom.RequestInit["headers"]

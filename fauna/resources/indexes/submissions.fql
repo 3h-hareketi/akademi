@@ -1,0 +1,4 @@
+CreateIndex({
+  "name": "submissions",
+  "source": Collection("submissions")
+})

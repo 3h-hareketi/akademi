@@ -1,0 +1,7 @@
+CreateIndex({
+  "name": "result_user_by_user",
+  "source": Collection("results"),
+  "terms": [{
+    "field": ["data", "user"]
+  }]
+})

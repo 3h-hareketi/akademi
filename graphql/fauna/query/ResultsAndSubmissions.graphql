@@ -1,0 +1,32 @@
+fragment User on User {
+  name
+  email
+  image
+}
+
+fragment UserResult on Result {
+  _id
+  curriculumName
+  date
+  user {
+    ...User
+  }
+}
+
+query resultsAndSubmissions {
+  results {
+    data {
+      ...UserResult
+    }
+  }
+  submissions {
+    data {
+      _id
+      curriculumName
+      user {
+        ...User
+      }
+      
+    }
+  }
+}

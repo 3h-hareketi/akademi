@@ -1,23 +1,29 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
-import { client } from "../../../../lib/graphCmsClient";
+import { GetServerSideProps } from "next";
+import { getCsrfToken, getSession } from "next-auth/react";
+import { NextSeo } from "next-seo";
 import Link from "next/link";
+import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
+import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
+import { client } from "../../../../lib/graphCmsClient";
+import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import BlurImage from "../../../../components/BlurImage";
 import { CourseJsonLd } from "next-seo";
 
-const Curriculum = ({
-  title,
-  slug,
-  category,
-  description,
-  image,
-  articles,
-}: Curriculum) => (
+type Props = {
+  curriculum: Curriculum;
+  resultId: boolean;
+  csrfToken: string;
+};
+
+const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
   <>
-    {/* <NextSeo title={title} description={description || ""} /> */}
+    <NextSeo
+      title={curriculum.title}
+      description={curriculum.description || ""}
+    />
     <CourseJsonLd
-      courseName={title}
-      description={description || ""}
+      courseName={curriculum.title}
+      description={curriculum.description || ""}
       provider={{ name: "3H Akademi", url: "https://www.3hhareketi.org/" }}
     />
     <section>
@@ -27,16 +33,16 @@ const Curriculum = ({
             <div className="w-full px-4 mb-12 lg:mb-0 lg:w-1/2">
               <div className="max-w-md">
                 <span className="font-bold text-primary">
-                  {category?.title}
+                  {curriculum.category?.title}
                 </span>
                 <h2 className="mb-3 text-4xl font-bold lg:text-5xl font-heading">
-                  {title}
+                  {curriculum.title}
                 </h2>
                 <p className="max-w-sm mb-6 leading-loose text-gray-400">
-                  {description}
+                  {curriculum.description}
                 </p>
                 <ul className="font-bold text-gray-500">
-                  {articles.map((article) => (
+                  {curriculum.articles.map((article) => (
                     <li key={article.id} className="flex items-center mb-2">
                       <svg
                         className="w-5 h-5 mr-2 text-primary"
@@ -59,50 +65,66 @@ const Curriculum = ({
             <div className="w-full lg:w-1/2">
               <BlurImage
                 className="rounded-xl"
-                src={image?.url || "/placeholder.jpeg"}
+                src={curriculum.image?.url || "/placeholder.jpeg"}
                 alt=""
                 width={"540px"}
                 height={"240px"}
               />
             </div>
           </div>
-          <Link href={`/egitimler/${category?.slug}/${slug}/exam`} passHref>
-            <a className="inline-block px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
-              Sınava katıl
-            </a>
-          </Link>
+          {resultId ? (
+            <Link href={`/api/certificate?id=${resultId}`} passHref>
+              <a className="inline-block px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
+                Sertifikanı Görüntüle
+              </a>
+            </Link>
+          ) : (
+            <Link
+              href={`/egitimler/${curriculum.category?.slug}/${curriculum.slug}/exam`}
+              passHref
+            >
+              <a className="inline-block px-6 py-2 ml-auto font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50">
+                Sınava katıl
+              </a>
+            </Link>
+          )}
         </div>
       </div>
     </section>
   </>
 );
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req, params } = context;
+  const session = await getSession({ req });
+
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
-    slug: params!.slug as string,
+    slug: params?.slug as string,
   });
 
+  let resultId: string = "";
+
+  if (session) {
+    const faunaSdk = getFaunaSdk(faunaClient);
+    const { findUserByID: user } = await faunaSdk.ResultsByUserID({
+      id: session.user.id,
+    });
+
+    user?.results.data.find((result) => {
+      if (result?.curriculumName === curriculum?.title) {
+        resultId = result?._id!;
+      }
+    });
+  }
+
   return {
-    props: { ...curriculum },
+    props: {
+      csrfToken: await getCsrfToken(context),
+      resultId: resultId,
+      curriculum: curriculum,
+    },
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const sdk = getSdk(client);
-  const { curricula } = await sdk.Curricula();
-
-  return {
-    paths: curricula.map((curriculum) => {
-      return {
-        params: {
-          category: curriculum.category?.slug,
-          slug: curriculum.slug,
-        },
-      };
-    }),
-    fallback: false,
-  };
-};
-
-export default Curriculum;
+export default CurriculumDetail;
