@@ -1,5 +1,10 @@
-query FeaturedCurricula {
-  curricula(where: { featured: true }, orderBy: createdAt_DESC, first: 6) {
+query FeaturedCurricula($stage: Stage! = PUBLISHED) {
+  curricula(
+    where: { featured: true }
+    orderBy: createdAt_DESC
+    first: 6
+    stage: $stage
+  ) {
     id
     slug
     title

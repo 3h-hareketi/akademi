@@ -1,5 +1,5 @@
-query CurriculumBySlug($slug: String!) {
-  curriculum(where: {slug: $slug}) {
+query CurriculumBySlug($slug: String!, $stage: Stage! = PUBLISHED) {
+  curriculum(where: { slug: $slug }, stage: $stage) {
     title
     slug
     description
