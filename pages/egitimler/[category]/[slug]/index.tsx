@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getCsrfToken, getSession } from "next-auth/react";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
+import { Curriculum, getSdk, Stage } from "../../../../interfaces/graphcms";
 import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
@@ -95,12 +95,15 @@ const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req, params } = context;
+  const { req, params, preview = false } = context;
   const session = await getSession({ req });
 
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
     slug: params?.slug as string,
+    stage: preview
+      ? ("DRAFT" as Stage.Draft)
+      : ("PUBLISHED" as Stage.Published),
   });
 
   let resultId: string = "";

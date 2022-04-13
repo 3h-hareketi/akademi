@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import CurriculaList from "../../components/CurriculaList";
-import { Category, Curriculum, getSdk } from "../../interfaces/graphcms";
+import { Category, Curriculum, getSdk, Stage } from "../../interfaces/graphcms";
 import { client } from "../../lib/graphCmsClient";
 
 type Props = {
@@ -16,10 +16,18 @@ const Curricula = ({ curricula, categories }: Props) => (
   </>
 );
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const sdk = getSdk(client);
-  const { curricula } = await sdk.Curricula();
-  const { categories } = await sdk.Categories();
+  const { curricula } = await sdk.Curricula({
+    stage: preview
+      ? ("DRAFT" as Stage.Draft)
+      : ("PUBLISHED" as Stage.Published),
+  });
+  const { categories } = await sdk.Categories({
+    stage: preview
+      ? ("DRAFT" as Stage.Draft)
+      : ("PUBLISHED" as Stage.Published),
+  });
 
   return {
     props: { curricula, categories },

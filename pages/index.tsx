@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import CurriculumCard from "../components/CurriculumCard";
 import Hero from "../components/Hero";
-import { Curriculum, getSdk } from "../interfaces/graphcms";
+import { Curriculum, getSdk, Stage } from "../interfaces/graphcms";
 import { client } from "../lib/graphCmsClient";
 
 type Props = {
@@ -135,9 +135,13 @@ const Home = ({ curricula }: Props) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps({ preview = false }) {
   const sdk = getSdk(client);
-  const { curricula } = await sdk.FeaturedCurricula();
+  const { curricula } = await sdk.FeaturedCurricula({
+    stage: preview
+      ? ("DRAFT" as Stage.Draft)
+      : ("PUBLISHED" as Stage.Published),
+  });
 
   return {
     props: {

@@ -10,6 +10,7 @@ import Choices from "../../../../components/Choices";
 import {
   Curriculum,
   getSdk as getGraphCmsSdk,
+  Stage,
 } from "../../../../interfaces/graphcms";
 import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client as graphCmsClient } from "../../../../lib/graphCmsClient";
