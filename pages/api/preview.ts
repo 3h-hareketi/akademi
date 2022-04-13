@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSdk } from "../../interfaces/graphcms";
-import { client } from "../../lib/faunaGraphQlClient";
+import { getSdk, Stage } from "../../interfaces/graphcms";
+import { client } from "../../lib/graphCmsClient";
 
 export default async function handler(
   request: NextApiRequest,
