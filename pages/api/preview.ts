@@ -8,17 +8,18 @@ export default async function handler(
 ) {
   // Check the secret and next parameters
   // This secret should only be known to this API route and the CMS
-  if (
-    request.query.secret !== process.env.GRAPHCMS_PREVIEW_SECRET ||
-    !request.query.slug
-  ) {
+  if (request.query.secret !== process.env.GRAPHCMS_PREVIEW_SECRET) {
     return response.status(401).json({ message: "Invalid token" });
   }
 
+  if (!request.query.slug) {
+    return response.status(400).json({ message: "Missing slug" });
+  }
   // Fetch the headless CMS to check if the provided `slug` exists
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
     slug: request.query.slug as string,
+    stage: Stage.Draft,
   });
 
   // If the slug doesn't exist prevent preview mode from being enabled
