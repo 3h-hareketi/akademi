@@ -11,11 +11,11 @@ const VerifyRequest = () => {
             width={270}
             height={300}
           />
-          <p className="mx-auto text-xl">
+          <div className="mx-auto text-xl">
             <h3 className="flex text-center text-primary-700">
               Oturum açma bağlantısı e-posta adresinize gönderildi.{" "}
             </h3>
-          </p>
+          </div>
         </div>
       </div>
     </div>
