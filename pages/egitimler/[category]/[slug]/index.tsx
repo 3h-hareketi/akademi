@@ -13,10 +13,16 @@ type Props = {
   curriculum: Curriculum;
   resultId: boolean;
   csrfToken: string;
+  preview: boolean;
 };
 
-const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
-  <Layout>
+const CurriculumDetail = ({
+  curriculum,
+  resultId,
+  csrfToken,
+  preview,
+}: Props) => (
+  <Layout preview={preview}>
     <NextSeo
       title={curriculum.title}
       description={curriculum.description || ""}
@@ -126,6 +132,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       csrfToken: await getCsrfToken(context),
       resultId: resultId,
       curriculum: curriculum,
+      preview: preview,
     },
   };
 };

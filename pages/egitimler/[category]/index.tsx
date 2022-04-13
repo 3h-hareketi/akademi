@@ -14,10 +14,16 @@ type Props = {
   curricula: Array<Curriculum>;
   categories: Array<Category>;
   activeCategory: Category;
+  preview: boolean;
 };
 
-const Category = ({ curricula, categories, activeCategory }: Props) => (
-  <Layout>
+const Category = ({
+  curricula,
+  categories,
+  activeCategory,
+  preview,
+}: Props) => (
+  <Layout preview={preview}>
     <NextSeo title={`${activeCategory.title} Eğitimlerimiz`} />
     <CurriculaList curricula={curricula} categories={categories} />
   </Layout>
@@ -41,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({
   );
 
   return {
-    props: { curricula, categories, activeCategory },
+    props: { curricula, categories, activeCategory, preview },
   };
 };
 

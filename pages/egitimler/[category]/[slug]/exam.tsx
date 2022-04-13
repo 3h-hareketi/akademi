@@ -20,14 +20,15 @@ import Layout from "../../../../components/Layout";
 
 type Props = {
   curriculum: Curriculum;
+  preview?: boolean;
 };
 
-const Exam = ({ curriculum }: Props) => {
+const Exam = ({ curriculum, preview }: Props) => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   return (
-    <Layout>
+    <Layout preview={preview}>
       <NextSeo
         title={curriculum.title}
         description={curriculum.description || ""}

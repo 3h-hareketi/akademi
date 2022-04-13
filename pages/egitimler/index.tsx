@@ -6,12 +6,13 @@ import { Category, Curriculum, getSdk, Stage } from "../../interfaces/graphcms";
 import { client } from "../../lib/graphCmsClient";
 
 type Props = {
-  curricula: Array<Curriculum>;
-  categories: Array<Category>;
+  curricula: Curriculum[];
+  categories: Category[];
+  preview: boolean;
 };
 
-const Curricula = ({ curricula, categories }: Props) => (
-  <Layout>
+const Curricula = ({ curricula, categories, preview }: Props) => (
+  <Layout preview={preview}>
     <NextSeo title="Eğitimlerimiz" />
     <CurriculaList curricula={curricula} categories={categories} />
   </Layout>
@@ -31,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   });
 
   return {
-    props: { curricula, categories },
+    props: { curricula, categories, preview },
   };
 };
 

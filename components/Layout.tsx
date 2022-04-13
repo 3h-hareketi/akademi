@@ -4,12 +4,14 @@ import Navbar from "./Navbar";
 import { DefaultSeo, LogoJsonLd, OrganizationJsonLd } from "next-seo";
 import { useRouter } from "next/router";
 import { useSwipeable } from "react-swipeable";
+import PreviewAlert from "./PreviewAlert";
 
 type Props = {
   children: React.ReactNode;
+  preview?: boolean;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, preview = false }: Props) => {
   const router = useRouter();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const slideHandler = useSwipeable({
@@ -22,6 +24,7 @@ const Layout = ({ children }: Props) => {
       className="flex flex-col justify-between h-screen subpixel-antialiased"
       {...slideHandler}
     >
+      <PreviewAlert preview={preview} />
       <DefaultSeo
         titleTemplate="%s | 3H Akademi"
         defaultTitle="3H Akademi"

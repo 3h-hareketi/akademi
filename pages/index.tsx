@@ -9,11 +9,12 @@ import { client } from "../lib/graphCmsClient";
 
 type Props = {
   curricula: Array<Curriculum>;
+  preview: boolean;
 };
 
-const Home = ({ curricula }: Props) => {
+const Home = ({ curricula, preview }: Props) => {
   return (
-    <Layout>
+    <Layout preview={preview}>
       <div className="py-10 mx-auto bg-gray-50">
         <Head>
           <title>3H Akademi</title>
@@ -151,6 +152,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       curricula,
+      preview,
     },
   };
 }
