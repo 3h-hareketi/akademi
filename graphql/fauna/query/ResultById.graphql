@@ -2,5 +2,9 @@ query ResultByID($id: ID!) {
   findResultByID(id: $id) {
     curriculumName
     date
+    user {
+      name
+      email
+    }
   }
 }

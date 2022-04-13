@@ -461,6 +461,7 @@ export type ResultByIdQuery = {
     __typename?: "Result";
     curriculumName: string;
     date?: any | null;
+    user: { __typename?: "User"; name?: string | null; email: string };
   } | null;
 };
 
@@ -688,6 +689,10 @@ export const ResultByIdDocument = gql`
     findResultByID(id: $id) {
       curriculumName
       date
+      user {
+        name
+        email
+      }
     }
   }
 `;
