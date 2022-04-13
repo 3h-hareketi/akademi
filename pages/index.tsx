@@ -144,9 +144,7 @@ const Home = ({ curricula, preview }: Props) => {
 export async function getStaticProps({ preview = false }) {
   const sdk = getSdk(client);
   const { curricula } = await sdk.FeaturedCurricula({
-    stage: preview
-      ? ("DRAFT" as Stage.Draft)
-      : ("PUBLISHED" as Stage.Published),
+    stage: preview ? Stage.Draft : Stage.Published,
   });
 
   return {

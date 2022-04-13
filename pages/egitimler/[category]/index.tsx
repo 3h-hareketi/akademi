@@ -36,9 +36,7 @@ export const getStaticProps: GetStaticProps = async ({
   const sdk = getSdk(client);
   const { category } = await sdk.CurriculaByCategorySlug({
     categorySlug: params?.category as string,
-    stage: preview
-      ? ("DRAFT" as Stage.Draft)
-      : ("PUBLISHED" as Stage.Published),
+    stage: preview ? Stage.Draft : Stage.Published,
   });
   const curricula = category?.curricula;
   const { categories } = await sdk.Categories();

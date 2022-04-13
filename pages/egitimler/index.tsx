@@ -21,14 +21,10 @@ const Curricula = ({ curricula, categories, preview }: Props) => (
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const sdk = getSdk(client);
   const { curricula } = await sdk.Curricula({
-    stage: preview
-      ? ("DRAFT" as Stage.Draft)
-      : ("PUBLISHED" as Stage.Published),
+    stage: preview ? Stage.Draft : Stage.Published,
   });
   const { categories } = await sdk.Categories({
-    stage: preview
-      ? ("DRAFT" as Stage.Draft)
-      : ("PUBLISHED" as Stage.Published),
+    stage: preview ? Stage.Draft : Stage.Published,
   });
 
   return {

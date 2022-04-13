@@ -107,9 +107,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
     slug: params?.slug as string,
-    stage: preview
-      ? ("DRAFT" as Stage.Draft)
-      : ("PUBLISHED" as Stage.Published),
+    stage: preview ? Stage.Draft : Stage.Published,
   });
 
   let resultId: string = "";
