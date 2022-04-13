@@ -5157,10 +5157,10 @@ next-auth@^4.3.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-next-runtime@^2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/next-runtime/-/next-runtime-2.3.4.tgz#510661722f6763439972c1840ef23cb6c6531b8f"
-  integrity sha512-Oc+lWf9J2mkwzZ4rKGIvty30c/DBJAxh5n41D76VJeX3EzSCQl6Zl+Yq1DWRkXLFNgX3fqWsCmDiqF25RuZhPA==
+next-runtime@^2.3.6:
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/next-runtime/-/next-runtime-2.3.6.tgz#0f5c71b5f844a41c4df115692f345a739cbc3959"
+  integrity sha512-eYI0CEmtMZXyhi9n/9iTszItSmnSbVcf8YOAf25QqbL2UBcro9p3y0IgCtLXa1GbTF6r3wLMhBpIvZMI9GMo/g==
   dependencies:
     "@types/accepts" "^1"
     "@types/body-parser" "^1"
