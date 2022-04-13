@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import CurriculaList from "../../../components/CurriculaList";
+import Layout from "../../../components/Layout";
 import {
   Curriculum,
   Category,
@@ -16,10 +17,10 @@ type Props = {
 };
 
 const Category = ({ curricula, categories, activeCategory }: Props) => (
-  <>
+  <Layout>
     <NextSeo title={`${activeCategory.title} Eğitimlerimiz`} />
     <CurriculaList curricula={curricula} categories={categories} />
-  </>
+  </Layout>
 );
 
 export const getStaticProps: GetStaticProps = async ({

@@ -1,9 +1,10 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { NextSeo } from "next-seo";
+import Layout from "../components/Layout";
 
 const EmailCallback = () => (
-  <>
+  <Layout>
     <NextSeo noindex={true} />
     <div className="py-10 text-center md:px-10 radius-for-skewed bg-gray-50">
       <div className="flex flex-wrap justify-center mx-auto">
@@ -14,7 +15,7 @@ const EmailCallback = () => (
         </div>
       </div>
     </div>
-  </>
+  </Layout>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

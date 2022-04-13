@@ -16,6 +16,7 @@ import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client as graphCmsClient } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import checkIfUserHasResultOrSubmit from "../../../../lib/checkIfUserHasResultOrSubmit";
+import Layout from "../../../../components/Layout";
 
 type Props = {
   curriculum: Curriculum;
@@ -26,7 +27,7 @@ const Exam = ({ curriculum }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   return (
-    <>
+    <Layout>
       <NextSeo
         title={curriculum.title}
         description={curriculum.description || ""}
@@ -126,7 +127,7 @@ const Exam = ({ curriculum }: Props) => {
           </div>
         </div>
       </form>
-    </>
+    </Layout>
   );
 };
 
