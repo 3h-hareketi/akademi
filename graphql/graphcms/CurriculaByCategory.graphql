@@ -1,5 +1,8 @@
-query CurriculaByCategorySlug($categorySlug: String!) {
-  category(where: {slug: $categorySlug}) {
+query CurriculaByCategorySlug(
+  $categorySlug: String!
+  $stage: Stage! = PUBLISHED
+) {
+  category(where: { slug: $categorySlug }, stage: $stage) {
     curricula {
       id
       slug

@@ -6061,14 +6061,18 @@ export type ArticleByIdQuery = {
   } | null;
 };
 
-export type CategoriesQueryVariables = Exact<{ [key: string]: never }>;
+export type CategoriesQueryVariables = Exact<{
+  stage?: Stage;
+}>;
 
 export type CategoriesQuery = {
   __typename?: "Query";
   categories: Array<{ __typename?: "Category"; title: string; slug: string }>;
 };
 
-export type CurriculaQueryVariables = Exact<{ [key: string]: never }>;
+export type CurriculaQueryVariables = Exact<{
+  stage?: Stage;
+}>;
 
 export type CurriculaQuery = {
   __typename?: "Query";
@@ -6086,6 +6090,7 @@ export type CurriculaQuery = {
 
 export type CurriculaByCategorySlugQueryVariables = Exact<{
   categorySlug: Scalars["String"];
+  stage?: Stage;
 }>;
 
 export type CurriculaByCategorySlugQuery = {
@@ -6110,6 +6115,7 @@ export type CurriculaByCategorySlugQuery = {
 
 export type CurriculumBySlugQueryVariables = Exact<{
   slug: Scalars["String"];
+  stage?: Stage;
 }>;
 
 export type CurriculumBySlugQuery = {
@@ -6139,7 +6145,9 @@ export type CurriculumBySlugQuery = {
   } | null;
 };
 
-export type FeaturedCurriculaQueryVariables = Exact<{ [key: string]: never }>;
+export type FeaturedCurriculaQueryVariables = Exact<{
+  stage?: Stage;
+}>;
 
 export type FeaturedCurriculaQuery = {
   __typename?: "Query";
@@ -6164,16 +6172,16 @@ export const ArticleByIdDocument = gql`
   }
 `;
 export const CategoriesDocument = gql`
-  query Categories {
-    categories {
+  query Categories($stage: Stage! = PUBLISHED) {
+    categories(stage: $stage) {
       title
       slug
     }
   }
 `;
 export const CurriculaDocument = gql`
-  query Curricula {
-    curricula {
+  query Curricula($stage: Stage! = PUBLISHED) {
+    curricula(stage: $stage) {
       id
       slug
       title
@@ -6192,8 +6200,11 @@ export const CurriculaDocument = gql`
   }
 `;
 export const CurriculaByCategorySlugDocument = gql`
-  query CurriculaByCategorySlug($categorySlug: String!) {
-    category(where: { slug: $categorySlug }) {
+  query CurriculaByCategorySlug(
+    $categorySlug: String!
+    $stage: Stage! = PUBLISHED
+  ) {
+    category(where: { slug: $categorySlug }, stage: $stage) {
       curricula {
         id
         slug
@@ -6211,8 +6222,8 @@ export const CurriculaByCategorySlugDocument = gql`
   }
 `;
 export const CurriculumBySlugDocument = gql`
-  query CurriculumBySlug($slug: String!) {
-    curriculum(where: { slug: $slug }) {
+  query CurriculumBySlug($slug: String!, $stage: Stage! = PUBLISHED) {
+    curriculum(where: { slug: $slug }, stage: $stage) {
       title
       slug
       description
@@ -6243,8 +6254,13 @@ export const CurriculumBySlugDocument = gql`
   }
 `;
 export const FeaturedCurriculaDocument = gql`
-  query FeaturedCurricula {
-    curricula(where: { featured: true }, orderBy: createdAt_DESC, first: 6) {
+  query FeaturedCurricula($stage: Stage! = PUBLISHED) {
+    curricula(
+      where: { featured: true }
+      orderBy: createdAt_DESC
+      first: 6
+      stage: $stage
+    ) {
       id
       slug
       title

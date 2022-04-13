@@ -1,5 +1,5 @@
-query Curricula {
-  curricula {
+query Curricula($stage: Stage! = PUBLISHED) {
+  curricula(stage: $stage) {
     id
     slug
     title

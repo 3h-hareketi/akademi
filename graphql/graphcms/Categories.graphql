@@ -1,5 +1,5 @@
-query Categories {
-  categories {
+query Categories($stage: Stage! = PUBLISHED) {
+  categories(stage: $stage) {
     title
     slug
   }

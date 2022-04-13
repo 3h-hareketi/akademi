@@ -1,22 +1,28 @@
 import { GetServerSideProps } from "next";
 import { getCsrfToken, getSession } from "next-auth/react";
-import { NextSeo } from "next-seo";
+import { NextSeo, CourseJsonLd } from "next-seo";
 import Link from "next/link";
-import { Curriculum, getSdk } from "../../../../interfaces/graphcms";
+import { Curriculum, getSdk, Stage } from "../../../../interfaces/graphcms";
 import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import BlurImage from "../../../../components/BlurImage";
-import { CourseJsonLd } from "next-seo";
+import Layout from "../../../../components/Layout";
 
 type Props = {
   curriculum: Curriculum;
   resultId: boolean;
   csrfToken: string;
+  preview: boolean;
 };
 
-const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
-  <>
+const CurriculumDetail = ({
+  curriculum,
+  resultId,
+  csrfToken,
+  preview,
+}: Props) => (
+  <Layout preview={preview}>
     <NextSeo
       title={curriculum.title}
       description={curriculum.description || ""}
@@ -91,16 +97,17 @@ const CurriculumDetail = ({ curriculum, resultId, csrfToken }: Props) => (
         </div>
       </div>
     </section>
-  </>
+  </Layout>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { req, params } = context;
+  const { req, params, preview = false } = context;
   const session = await getSession({ req });
 
   const sdk = getSdk(client);
   const { curriculum } = await sdk.CurriculumBySlug({
     slug: params?.slug as string,
+    stage: preview ? Stage.Draft : Stage.Published,
   });
 
   let resultId: string = "";
@@ -123,6 +130,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       csrfToken: await getCsrfToken(context),
       resultId: resultId,
       curriculum: curriculum,
+      preview: preview,
     },
   };
 };

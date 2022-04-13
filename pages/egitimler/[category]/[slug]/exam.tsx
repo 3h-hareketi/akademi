@@ -10,22 +10,25 @@ import Choices from "../../../../components/Choices";
 import {
   Curriculum,
   getSdk as getGraphCmsSdk,
+  Stage,
 } from "../../../../interfaces/graphcms";
 import { getSdk as getFaunaSdk } from "../../../../interfaces/fauna";
 import { client as graphCmsClient } from "../../../../lib/graphCmsClient";
 import { client as faunaClient } from "../../../../lib/faunaGraphQlClient";
 import checkIfUserHasResultOrSubmit from "../../../../lib/checkIfUserHasResultOrSubmit";
+import Layout from "../../../../components/Layout";
 
 type Props = {
   curriculum: Curriculum;
+  preview?: boolean;
 };
 
-const Exam = ({ curriculum }: Props) => {
+const Exam = ({ curriculum, preview }: Props) => {
   const [correctAnswerCount, setCorrectAnswerCount] = useState<number>(0);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   return (
-    <>
+    <Layout preview={preview}>
       <NextSeo
         title={curriculum.title}
         description={curriculum.description || ""}
@@ -126,7 +129,7 @@ const Exam = ({ curriculum }: Props) => {
           </div>
         </div>
       </form>
-    </>
+    </Layout>
   );
 };
 
