@@ -45,7 +45,7 @@ export default NextAuth({
   },
   logger: {
     debug(code, metadata) {
-      process.env.NODE_ENV !== "production" ? log.debug(code, metadata) : null;
+      log.debug(code, metadata);
     },
   },
   useSecureCookies: process.env.NODE_ENV === "production" ? true : false,
