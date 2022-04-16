@@ -16,7 +16,7 @@ export default NextAuth({
   providers: [
     EmailProvider({
       server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM || "noreply@3hhareketi.org",
+      from: process.env.EMAIL_FROM || "3H Akademi <noreply@3hhareketi.org>",
       async sendVerificationRequest({
         identifier: email,
         url,
@@ -45,7 +45,7 @@ export default NextAuth({
   },
   logger: {
     debug(code, metadata) {
-      process.env.NODE_ENV !== "production" ? log.debug(code, metadata) : null;
+      log.debug(code, metadata);
     },
   },
   useSecureCookies: process.env.NODE_ENV === "production" ? true : false,

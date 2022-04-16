@@ -8,6 +8,7 @@ type Props = {
 
 const Login = ({ csrfToken }: Props) => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   return (
     <section className="flex h-screen py-10 bg-primary-500 lg:py-20">
@@ -51,8 +52,10 @@ const Login = ({ csrfToken }: Props) => {
               <div className="text-center">
                 <button
                   className="w-full py-4 mb-10 text-sm font-bold transition duration-200 rounded bg-primary-500 hover:bg-primary-700 text-gray-50"
+                  disabled={isSubmitting}
                   onClick={(e) => {
                     e.preventDefault();
+                    setIsSubmitting(true);
                     signIn("email", {
                       email,
                       callbackUrl: "/eposta-dogrulama",
@@ -64,9 +67,11 @@ const Login = ({ csrfToken }: Props) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
+                    setIsSubmitting(true);
                     signIn("google", { callbackUrl: "/" });
                   }}
                   className="w-full py-4 mb-2 text-sm font-bold transition duration-200 bg-blue-500 rounded hover:bg-primary-700 text-gray-50"
+                  disabled={isSubmitting}
                 >
                   Google ile giriş yap
                 </button>
