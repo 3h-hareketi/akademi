@@ -35,27 +35,22 @@
       <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="15px">
         <mj-column width="100%">
           <mj-text color="#212b35" font-weight="bold" font-size="20px">
-            3H Akademi'ye hoşgeldiniz!
+            Tebrikler! ${escapedEmail},
           </mj-text>
           <mj-text color="#637381" font-size="16px">
-            Merhaba ${escapedEmail},
+            Merhaba
           </mj-text>
           <mj-text color="#637381" font-size="16px">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia a assumenda nulla in quisquam optio quibusdam fugiat perspiciatis nobis, ad tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis.
           </mj-text>
           <mj-text color="#637381" font-size="16px">
-            Sisteme giriş yapıp 3H Akademi'ye katılmak için aşağıdaki bağlantıyı takip edin.
+             ${egitim} sınavını başarıyla tamamladığınız için sertifika almaya hak kazandınız.
           </mj-text>
           <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px">
-            Onay </mj-button>
+            Sertifikanızı Görüntüleyin
+            </mj-button>
 
-          <mj-text color="#637381" font-size="16px">
-            <ul>
-              <li style="padding-bottom: 20px"><strong>Eğitimlere katılın: </strong> Sit amet consectetur adipisicing elit.</li>
-              <li style="padding-bottom: 20px"><strong>Sınavlara girin: </strong> Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis.</li>
-              <li><strong>Sertifika kazanın: </strong> In quisquam optio quibusdam fugiat perspiciatis nobis.</li>
-            </ul>
-          </mj-text>
+
 
 
         </mj-column>
