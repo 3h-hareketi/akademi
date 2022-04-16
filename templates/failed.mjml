@@ -35,18 +35,18 @@
       <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px" padding-top="15px">
         <mj-column width="100%">
           <mj-text color="#212b35" font-weight="bold" font-size="20px">
-            Tebrikler! ${escapedEmail},
+            Üzgünüz! ${escapedEmail},
           </mj-text>
           <mj-text color="#637381" font-size="16px">
             Merhaba
           </mj-text>
           <mj-text color="#637381" font-size="16px">
-            ${egitim} sınavını başarıyla tamamladığınız için sertifika almaya hak kazandınız.          </mj-text>
+            ${egitim} sınavını başarıyla tamamlayamadınız.          </mj-text>
           <mj-text color="#637381" font-size="16px">
-            Bu başarınız için sizi tebrik ederiz. Diğer eğitimlerimizde görüşmek dileğiyle.
+            Eğitimi tekrar edin ve sınavı tamamlayın. 
           </mj-text>
           <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px">
-            Sertifikanızı Görüntüleyin
+             ${egitim}'e git
             </mj-button>
 
 
