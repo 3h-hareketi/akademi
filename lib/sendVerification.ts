@@ -542,5 +542,5 @@ export function html({
 }
 
 export function text({ url, host }: Record<"url" | "host", string>) {
-  return `Sign in to ${host}\n${url}\n\n`;
+  return `Giriş yapın ${host}\n${url}\n\n`;
 }
