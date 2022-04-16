@@ -41,10 +41,9 @@
             Merhaba
           </mj-text>
           <mj-text color="#637381" font-size="16px">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia a assumenda nulla in quisquam optio quibusdam fugiat perspiciatis nobis, ad tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis.
-          </mj-text>
+            ${egitim} sınavını başarıyla tamamladığınız için sertifika almaya hak kazandınız.          </mj-text>
           <mj-text color="#637381" font-size="16px">
-             ${egitim} sınavını başarıyla tamamladığınız için sertifika almaya hak kazandınız.
+            Bu başarınız için sizi tebrik ederiz. Diğer eğitimlerimizde görüşmek dileğiyle.
           </mj-text>
           <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px">
             Sertifikanızı Görüntüleyin
