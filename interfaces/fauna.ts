@@ -62,10 +62,49 @@ export type AnswerSubmissionRelation = {
   create?: InputMaybe<SubmissionInput>;
 };
 
+export type EmailQueue = {
+  __typename?: "EmailQueue";
+  /** The document's ID. */
+  _id: Scalars["ID"];
+  /** The document's timestamp. */
+  _ts: Scalars["Long"];
+  email: Scalars["String"];
+  result?: Maybe<Result>;
+};
+
+/** 'EmailQueue' input values */
+export type EmailQueueInput = {
+  email: Scalars["String"];
+  result?: InputMaybe<EmailQueueResultRelation>;
+};
+
+/** The pagination object for elements of type 'EmailQueue'. */
+export type EmailQueuePage = {
+  __typename?: "EmailQueuePage";
+  /** A cursor for elements coming after the current page. */
+  after?: Maybe<Scalars["String"]>;
+  /** A cursor for elements coming before the current page. */
+  before?: Maybe<Scalars["String"]>;
+  /** The elements of type 'EmailQueue' in this page. */
+  data: Array<Maybe<EmailQueue>>;
+};
+
+/** Allow manipulating the relationship between the types 'EmailQueue' and 'Result' using the field 'EmailQueue.result'. */
+export type EmailQueueResultRelation = {
+  /** Connect a document of type 'Result' with the current document using its ID. */
+  connect?: InputMaybe<Scalars["ID"]>;
+  /** Create a document of type 'Result' and associate it with the current document. */
+  create?: InputMaybe<ResultInput>;
+  /** If true, disconnects this document from 'Result' */
+  disconnect?: InputMaybe<Scalars["Boolean"]>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   /** Create a new document in the collection of 'Answer' */
   createAnswer: Answer;
+  /** Create a new document in the collection of 'EmailQueue' */
+  createEmailQueue: EmailQueue;
   /** Create a new document in the collection of 'Result' */
   createResult: Result;
   /** Create a new document in the collection of 'Submission' */
@@ -74,6 +113,8 @@ export type Mutation = {
   createUser: User;
   /** Delete an existing document in the collection of 'Answer' */
   deleteAnswer?: Maybe<Answer>;
+  /** Delete an existing document in the collection of 'EmailQueue' */
+  deleteEmailQueue?: Maybe<EmailQueue>;
   /** Delete an existing document in the collection of 'Result' */
   deleteResult?: Maybe<Result>;
   /** Delete an existing document in the collection of 'Submission' */
@@ -82,6 +123,8 @@ export type Mutation = {
   deleteUser?: Maybe<User>;
   /** Partially updates an existing document in the collection of 'Answer'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
   partialUpdateAnswer?: Maybe<Answer>;
+  /** Partially updates an existing document in the collection of 'EmailQueue'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
+  partialUpdateEmailQueue?: Maybe<EmailQueue>;
   /** Partially updates an existing document in the collection of 'Result'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
   partialUpdateResult?: Maybe<Result>;
   /** Partially updates an existing document in the collection of 'Submission'. It only modifies the values that are specified in the arguments. During execution, it verifies that required fields are not set to 'null'. */
@@ -90,6 +133,8 @@ export type Mutation = {
   partialUpdateUser?: Maybe<User>;
   /** Update an existing document in the collection of 'Answer' */
   updateAnswer?: Maybe<Answer>;
+  /** Update an existing document in the collection of 'EmailQueue' */
+  updateEmailQueue?: Maybe<EmailQueue>;
   /** Update an existing document in the collection of 'Result' */
   updateResult?: Maybe<Result>;
   /** Update an existing document in the collection of 'Submission' */
@@ -100,6 +145,10 @@ export type Mutation = {
 
 export type MutationCreateAnswerArgs = {
   data: AnswerInput;
+};
+
+export type MutationCreateEmailQueueArgs = {
+  data: EmailQueueInput;
 };
 
 export type MutationCreateResultArgs = {
@@ -118,6 +167,10 @@ export type MutationDeleteAnswerArgs = {
   id: Scalars["ID"];
 };
 
+export type MutationDeleteEmailQueueArgs = {
+  id: Scalars["ID"];
+};
+
 export type MutationDeleteResultArgs = {
   id: Scalars["ID"];
 };
@@ -132,6 +185,11 @@ export type MutationDeleteUserArgs = {
 
 export type MutationPartialUpdateAnswerArgs = {
   data: PartialUpdateAnswerInput;
+  id: Scalars["ID"];
+};
+
+export type MutationPartialUpdateEmailQueueArgs = {
+  data: PartialUpdateEmailQueueInput;
   id: Scalars["ID"];
 };
 
@@ -155,6 +213,11 @@ export type MutationUpdateAnswerArgs = {
   id: Scalars["ID"];
 };
 
+export type MutationUpdateEmailQueueArgs = {
+  data: EmailQueueInput;
+  id: Scalars["ID"];
+};
+
 export type MutationUpdateResultArgs = {
   data: ResultInput;
   id: Scalars["ID"];
@@ -175,6 +238,12 @@ export type PartialUpdateAnswerInput = {
   answer?: InputMaybe<Scalars["String"]>;
   articleId?: InputMaybe<Scalars["String"]>;
   submission?: InputMaybe<AnswerSubmissionRelation>;
+};
+
+/** 'EmailQueue' input values */
+export type PartialUpdateEmailQueueInput = {
+  email?: InputMaybe<Scalars["String"]>;
+  result?: InputMaybe<EmailQueueResultRelation>;
 };
 
 /** 'Result' input values */
@@ -207,8 +276,11 @@ export type PartialUpdateUserInput = {
 export type Query = {
   __typename?: "Query";
   answers: AnswerPage;
+  emailQueue: EmailQueuePage;
   /** Find a document from the collection of 'Answer' by its id. */
   findAnswerByID?: Maybe<Answer>;
+  /** Find a document from the collection of 'EmailQueue' by its id. */
+  findEmailQueueByID?: Maybe<EmailQueue>;
   /** Find a document from the collection of 'Result' by its id. */
   findResultByID?: Maybe<Result>;
   /** Find a document from the collection of 'Submission' by its id. */
@@ -225,7 +297,16 @@ export type QueryAnswersArgs = {
   _size?: InputMaybe<Scalars["Int"]>;
 };
 
+export type QueryEmailQueueArgs = {
+  _cursor?: InputMaybe<Scalars["String"]>;
+  _size?: InputMaybe<Scalars["Int"]>;
+};
+
 export type QueryFindAnswerByIdArgs = {
+  id: Scalars["ID"];
+};
+
+export type QueryFindEmailQueueByIdArgs = {
   id: Scalars["ID"];
 };
 
