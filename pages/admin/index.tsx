@@ -90,7 +90,7 @@ const Admin = ({ submissionsAndResults }: Props) => {
           <Link
             href={
               row.values.type === "submission"
-                ? `/admin/degerlendirme?id=[id]`
+                ? `/admin/${value}`
                 : `/api/certificate?id=${value}`
             }
             passHref
