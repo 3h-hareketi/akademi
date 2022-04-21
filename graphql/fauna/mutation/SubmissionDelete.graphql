@@ -1,0 +1,6 @@
+# Write your query or mutation here
+mutation SubmissionDelete($id: ID!) {
+  deleteSubmission(id: $id) {
+    _id
+  }
+}

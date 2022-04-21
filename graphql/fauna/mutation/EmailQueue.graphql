@@ -1,0 +1,6 @@
+# Write your query or mutation here
+mutation EmailQueue($email: String!, $result: EmailQueueResultRelation!) {
+  createEmailQueue(data: { email: $email, result: $result }) {
+    _id
+  }
+}

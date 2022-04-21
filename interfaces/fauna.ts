@@ -508,6 +508,16 @@ export type AnswerMutation = {
   createAnswer: { __typename?: "Answer"; _id: string };
 };
 
+export type EmailQueueMutationVariables = Exact<{
+  email: Scalars["String"];
+  result: EmailQueueResultRelation;
+}>;
+
+export type EmailQueueMutation = {
+  __typename?: "Mutation";
+  createEmailQueue: { __typename?: "EmailQueue"; _id: string };
+};
+
 export type ResultMutationVariables = Exact<{
   curriculumName: Scalars["String"];
   user: ResultUserRelation;
@@ -530,6 +540,15 @@ export type SubmissionMutationVariables = Exact<{
 export type SubmissionMutation = {
   __typename?: "Mutation";
   createSubmission: { __typename?: "Submission"; _id: string };
+};
+
+export type SubmissionDeleteMutationVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type SubmissionDeleteMutation = {
+  __typename?: "Mutation";
+  deleteSubmission?: { __typename?: "Submission"; _id: string } | null;
 };
 
 export type ResultByIdQueryVariables = Exact<{
@@ -727,6 +746,13 @@ export const AnswerDocument = gql`
     }
   }
 `;
+export const EmailQueueDocument = gql`
+  mutation EmailQueue($email: String!, $result: EmailQueueResultRelation!) {
+    createEmailQueue(data: { email: $email, result: $result }) {
+      _id
+    }
+  }
+`;
 export const ResultDocument = gql`
   mutation Result(
     $curriculumName: String!
@@ -761,6 +787,13 @@ export const SubmissionDocument = gql`
         date: $date
       }
     ) {
+      _id
+    }
+  }
+`;
+export const SubmissionDeleteDocument = gql`
+  mutation SubmissionDelete($id: ID!) {
+    deleteSubmission(id: $id) {
       _id
     }
   }
@@ -880,6 +913,20 @@ export function getSdk(
         "mutation"
       );
     },
+    EmailQueue(
+      variables: EmailQueueMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<EmailQueueMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<EmailQueueMutation>(EmailQueueDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "EmailQueue",
+        "mutation"
+      );
+    },
     Result(
       variables: ResultMutationVariables,
       requestHeaders?: Dom.RequestInit["headers"]
@@ -905,6 +952,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "Submission",
+        "mutation"
+      );
+    },
+    SubmissionDelete(
+      variables: SubmissionDeleteMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<SubmissionDeleteMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<SubmissionDeleteMutation>(
+            SubmissionDeleteDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "SubmissionDelete",
         "mutation"
       );
     },
