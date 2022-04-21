@@ -88,6 +88,12 @@ const Validation = ({ submission, articles }: Props) => {
                                   id={article.id}
                                   name={article.id}
                                   rows={3}
+                                  defaultValue={
+                                    submission.answers.data.find(
+                                      (answer) =>
+                                        answer?.articleId == article.id
+                                    )?.answer!
+                                  }
                                   className="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                                 ></textarea>
                               </div>
