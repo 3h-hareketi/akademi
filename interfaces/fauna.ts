@@ -510,7 +510,7 @@ export type AnswerMutation = {
 
 export type EmailQueueMutationVariables = Exact<{
   email: Scalars["String"];
-  result: EmailQueueResultRelation;
+  result?: InputMaybe<EmailQueueResultRelation>;
 }>;
 
 export type EmailQueueMutation = {
@@ -747,7 +747,7 @@ export const AnswerDocument = gql`
   }
 `;
 export const EmailQueueDocument = gql`
-  mutation EmailQueue($email: String!, $result: EmailQueueResultRelation!) {
+  mutation EmailQueue($email: String!, $result: EmailQueueResultRelation) {
     createEmailQueue(data: { email: $email, result: $result }) {
       _id
     }
