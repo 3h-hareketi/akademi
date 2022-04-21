@@ -16,7 +16,14 @@ const handler = NextAuth({
   adapter: FaunaAdapter(client),
   providers: [
     EmailProvider({
-      server: process.env.EMAIL_SERVER,
+      server: {
+        host: process.env.EMAIL_HOST,
+        port: parseInt(process.env.EMAIL_PORT || "587"),
+        auth: {
+          user: process.env.MAILJET_API_KEY,
+          pass: process.env.MAILJET_API_SECRET,
+        },
+      },
       from: process.env.EMAIL_FROM || "3H Akademi <noreply@3hhareketi.org>",
       async sendVerificationRequest({
         identifier: email,
