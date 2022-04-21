@@ -1,14 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { PDFDocument, TextAlignment } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
+import { withSentry } from "@sentry/nextjs";
 import { getSdk } from "../../interfaces/fauna";
 import { client } from "../../lib/faunaGraphQlClient";
 import baseUrl from "../../lib/baseUrl";
 
-export default async function handler(
-  request: NextApiRequest,
-  response: NextApiResponse
-) {
+const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   const sdk = getSdk(client);
 
   const { findResultByID: result } = await sdk.ResultByID({
@@ -50,4 +48,6 @@ export default async function handler(
   response.setHeader("Content-Type", "application/pdf");
   response.setHeader("Content-Length", buffer.length);
   response.send(buffer);
-}
+};
+
+export default withSentry(handler);

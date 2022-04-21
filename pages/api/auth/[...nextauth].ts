@@ -6,10 +6,11 @@ import nodemailer from "nodemailer";
 import { html, text } from "../../../lib/sendVerification";
 import { Logger } from "tslog";
 import { client } from "../../../lib/faunaClient";
+import { withSentry } from "@sentry/nextjs";
 
 const log: Logger = new Logger({ name: "pages/api/auth/[...nextauth].ts" });
 
-export default NextAuth({
+const handler = NextAuth({
   debug: process.env.NODE_ENV !== "production" ? false : true,
   secret: process.env.NEXTAUTH_SECRET,
   adapter: FaunaAdapter(client),
@@ -58,3 +59,5 @@ export default NextAuth({
     },
   },
 });
+
+export default withSentry(handler);
