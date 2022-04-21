@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { FaunaAdapter } from "@next-auth/fauna-adapter";
 import nodemailer from "nodemailer";
-import { html, text } from "../../../lib/sendVerification";
+import { html, text } from "../../../lib/email/sendVerification";
 import { Logger } from "tslog";
 import { client } from "../../../lib/faunaClient";
 import { withSentry } from "@sentry/nextjs";
