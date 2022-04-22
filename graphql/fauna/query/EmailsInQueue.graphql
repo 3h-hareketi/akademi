@@ -1,0 +1,12 @@
+query EmailsInQueue {
+  emailQueue {
+    data {
+      email
+      result {
+        _id
+        curriculumName
+        date
+      }
+    }
+  }
+}

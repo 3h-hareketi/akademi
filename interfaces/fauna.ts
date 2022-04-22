@@ -551,6 +551,25 @@ export type SubmissionDeleteMutation = {
   deleteSubmission?: { __typename?: "Submission"; _id: string } | null;
 };
 
+export type EmailsInQueueQueryVariables = Exact<{ [key: string]: never }>;
+
+export type EmailsInQueueQuery = {
+  __typename?: "Query";
+  emailQueue: {
+    __typename?: "EmailQueuePage";
+    data: Array<{
+      __typename?: "EmailQueue";
+      email: string;
+      result?: {
+        __typename?: "Result";
+        _id: string;
+        curriculumName: string;
+        date?: any | null;
+      } | null;
+    } | null>;
+  };
+};
+
 export type ResultByIdQueryVariables = Exact<{
   id: Scalars["ID"];
 }>;
@@ -798,6 +817,20 @@ export const SubmissionDeleteDocument = gql`
     }
   }
 `;
+export const EmailsInQueueDocument = gql`
+  query EmailsInQueue {
+    emailQueue {
+      data {
+        email
+        result {
+          _id
+          curriculumName
+          date
+        }
+      }
+    }
+  }
+`;
 export const ResultByIdDocument = gql`
   query ResultByID($id: ID!) {
     findResultByID(id: $id) {
@@ -968,6 +1001,20 @@ export function getSdk(
           ),
         "SubmissionDelete",
         "mutation"
+      );
+    },
+    EmailsInQueue(
+      variables?: EmailsInQueueQueryVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<EmailsInQueueQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<EmailsInQueueQuery>(EmailsInQueueDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "EmailsInQueue",
+        "query"
       );
     },
     ResultByID(
