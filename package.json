@@ -47,7 +47,7 @@
     "@types/nodemailer": "^6.4.4",
     "@types/pdfkit": "^0.12.4",
     "@types/react": "18.0.6",
-    "@types/react-table": "^7.7.10",
+    "@types/react-table": "^7.7.11",
     "autoprefixer": "^10.4.5",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
