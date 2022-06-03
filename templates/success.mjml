@@ -1,7 +1,6 @@
 <mjml>
   <mj-head>
-    <mj-title>Discount Light</mj-title>
-    <mj-preview>Pre-header Text</mj-preview>
+    <mj-title>Tebrık  </mj-title>
     <mj-attributes>
       <mj-all font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-all>
       <mj-text font-weight="400" font-size="16px" color="#000000" line-height="24px" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-text>
@@ -45,7 +44,7 @@
           <mj-text color="#637381" font-size="16px">
             Bu başarınız için sizi tebrik ederiz. Diğer eğitimlerimizde görüşmek dileğiyle.
           </mj-text>
-          <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px">
+          <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="${url}" width="300px">
             Sertifikanızı Görüntüleyin
             </mj-button>
 
