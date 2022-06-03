@@ -55,7 +55,7 @@
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
     "husky": ">=6",
-    "lint-staged": ">=12",
+    "lint-staged": ">=13",
     "mjml": "^4.12.0",
     "next-sitemap": "^2.5.19",
     "postcss": "^8.4.12",
