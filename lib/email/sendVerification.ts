@@ -132,7 +132,7 @@ export function html({
                                     <tbody>
                                       <tr>
                                         <td style="width:180px;">
-                                          <a href="https://google.com" target="_blank">
+                                          <a href="https://akademi.3hhareketi.org" target="_blank">
                                             <img alt height="auto" src="https://akademi.3hhareketi.org/_next/image?url=%2F3h-logo.png&w=256&q=75" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="180">
                                           </a>
                                         </td>
@@ -197,7 +197,7 @@ export function html({
                                       <tbody>
                                         <tr>
                                           <td align="center" bgcolor="#12acbc" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#12acbc;" valign="middle">
-                                            <a href="https://google.com" style="display:inline-block;width:250px;background:#12acbc;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:17px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"> Onay </a>
+                                            <a href="https://akademi.3hhareketi.org" style="display:inline-block;width:250px;background:#12acbc;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:17px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"> Onay </a>
                                           </td>
                                         </tr>
                                       </tbody>
