@@ -1411,10 +1411,10 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node-mailjet@^3.3.8":
-  version "3.3.8"
-  resolved "https://registry.yarnpkg.com/@types/node-mailjet/-/node-mailjet-3.3.8.tgz#641e32634ce02d62051d476aad0aeda20a227e78"
-  integrity sha512-bjrj7FOG5bVGpV1RovUF1JydGngW/TIrbGDTiId41v9ak3rwzGm4OVmPzjjKbqjECCD8toRXOdyTz28rkH5OlA==
+"@types/node-mailjet@^3.3.9":
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/@types/node-mailjet/-/node-mailjet-3.3.9.tgz#fec82b9142d9c94132e5b73b469c31b334333275"
+  integrity sha512-OSwpRjw0DPNCfRQTCcYOAT42uCcbOmAufZjHbqRW+MDsO3QOBTYajwT8J0JlRdgMdBrMEcEkIqLCbc0OSfSiRQ==
 
 "@types/node@*", "@types/node@17.0.27":
   version "17.0.27"
@@ -5439,10 +5439,10 @@ node-int64@^0.4.0:
   resolved "https://registry.npmjs.org/node-int64/-/node-int64-0.4.0.tgz"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-mailjet@^3.3.13:
-  version "3.3.13"
-  resolved "https://registry.yarnpkg.com/node-mailjet/-/node-mailjet-3.3.13.tgz#2fc38d76b3c6c1a9296d25102eedecb74346e203"
-  integrity sha512-NnbD/7vbw+VVmcWnM6AFEx+xoZmEXpT9Q20yy/WPgGjeV+IMQ/3/Op55ZpOowU/tbir/yIZ0qTVU3H0/KN4X/g==
+node-mailjet@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/node-mailjet/-/node-mailjet-3.4.1.tgz#d8b31a58dfc78e980d9b5de0f757eebbeab0a8b4"
+  integrity sha512-m+msgBJYgwFbIZBIPOnsGOtBt9xP03UqmkmuEcgTcLlr/U1GUJQrVI7cDFRgujybb9Cl1wl4thIGyM3wt6X+zQ==
   dependencies:
     json-bigint "^1.0.0"
     qs "^6.5.0"
