@@ -28,9 +28,15 @@ type Result @collection(name: "results") {
   date: Time
 }
 
+type EmailQueue @collection(name: "email_queue") {
+  email: String!
+  result: Result
+}
+
 type Query {
   users: [User]
   results: [Result] @index(name: "results")
   answers: [Answer] @index(name: "answers")
   submissions: [Submission] @index(name: "submissions")
+  emailQueue: [EmailQueue] @index(name: "email_queue")
 }

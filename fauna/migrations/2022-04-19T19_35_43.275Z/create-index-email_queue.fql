@@ -1,0 +1,4 @@
+CreateIndex({
+  "name": "email_queue",
+  "source": Collection("email_queue")
+})

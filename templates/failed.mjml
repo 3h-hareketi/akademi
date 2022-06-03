@@ -1,7 +1,6 @@
 <mjml>
   <mj-head>
-    <mj-title>Discount Light</mj-title>
-    <mj-preview>Pre-header Text</mj-preview>
+    <mj-title>Üzgünüz</mj-title>
     <mj-attributes>
       <mj-all font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-all>
       <mj-text font-weight="400" font-size="16px" color="#000000" line-height="24px" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"></mj-text>
@@ -28,7 +27,7 @@
   <mj-body background-color="#E7E7E7" width="600px">
     <mj-section full-width="full-width" background-color="#E7E7E7" padding-bottom="0">
       <mj-column width="100%">
-        <mj-image src="https://akademi.3hhareketi.org/_next/image?url=%2F3h-logo.png&w=256&q=75" width="180px" alt="" padding="0" href="https://google.com" />
+        <mj-image src="https://akademi.3hhareketi.org/_next/image?url=%2F3h-logo.png&w=256&q=75" width="180px" alt="" padding="0" href="https://akademi.3hhareketi.org/" />
       </mj-column>
     </mj-section>
     <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section">
@@ -41,12 +40,12 @@
             Merhaba
           </mj-text>
           <mj-text color="#637381" font-size="16px">
-            ${egitim} sınavını başarıyla tamamlayamadınız.          </mj-text>
+            ${result.curriculumName} sınavını başarıyla tamamlayamadınız.</mj-text>
           <mj-text color="#637381" font-size="16px">
             Eğitimi tekrar edin ve sınavı tamamlayın. 
           </mj-text>
-          <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="https://google.com" width="300px">
-             ${egitim}'e git
+          <mj-button background-color="#12acbc" align="center" color="#ffffff" font-size="17px" font-weight="bold" href="${url}" width="300px">
+             ${result.curriculumName}'e git
             </mj-button>
 
 

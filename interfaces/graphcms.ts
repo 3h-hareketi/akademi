@@ -6058,6 +6058,8 @@ export type ArticleByIdQuery = {
     __typename?: "Article";
     id: string;
     title?: string | null;
+    textAnswer: boolean;
+    content: { __typename?: "ArticleContentRichText"; html: string };
   } | null;
 };
 
@@ -6160,6 +6162,10 @@ export const ArticleByIdDocument = gql`
     article(where: { id: $id }) {
       id
       title
+      textAnswer
+      content {
+        html
+      }
     }
   }
 `;

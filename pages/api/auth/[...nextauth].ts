@@ -3,19 +3,27 @@ import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { FaunaAdapter } from "@next-auth/fauna-adapter";
 import nodemailer from "nodemailer";
-import { html, text } from "../../../lib/sendVerification";
+import { html, text } from "../../../lib/email/sendVerification";
 import { Logger } from "tslog";
 import { client } from "../../../lib/faunaClient";
+import { withSentry } from "@sentry/nextjs";
 
 const log: Logger = new Logger({ name: "pages/api/auth/[...nextauth].ts" });
 
-export default NextAuth({
+const handler = NextAuth({
   debug: process.env.NODE_ENV !== "production" ? false : true,
   secret: process.env.NEXTAUTH_SECRET,
   adapter: FaunaAdapter(client),
   providers: [
     EmailProvider({
-      server: process.env.EMAIL_SERVER,
+      server: {
+        host: process.env.EMAIL_HOST,
+        port: parseInt(process.env.EMAIL_PORT || "587"),
+        auth: {
+          user: process.env.MAILJET_API_KEY,
+          pass: process.env.MAILJET_API_SECRET,
+        },
+      },
       from: process.env.EMAIL_FROM || "3H Akademi <noreply@3hhareketi.org>",
       async sendVerificationRequest({
         identifier: email,
@@ -58,3 +66,5 @@ export default NextAuth({
     },
   },
 });
+
+export default withSentry(handler);
