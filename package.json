@@ -25,17 +25,17 @@
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
     "interweave": "^13.0.0",
-    "next": "12.1.5",
+    "next": "12.1.6",
     "next-auth": "^4.3.3",
-    "next-runtime": "^2.3.4",
+    "next-runtime": "^2.4.0",
     "next-seo": "^5.3.0",
     "node-mailjet": "^3.4.1",
-    "nodemailer": "^6.7.3",
+    "nodemailer": "^6.7.5",
     "pdf-lib": "^1.17.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-swipeable": "^6.2.1",
-    "react-table": "^7.7.0",
+    "react-table": "^7.8.0",
     "tslog": "^3.3.3"
   },
   "devDependencies": {
@@ -49,10 +49,10 @@
     "@types/nodemailer": "^6.4.4",
     "@types/pdfkit": "^0.12.6",
     "@types/react": "18.0.7",
-    "@types/react-table": "^7.7.11",
+    "@types/react-table": "^7.7.12",
     "autoprefixer": "^10.4.7",
     "eslint": "8.16.0",
-    "eslint-config-next": "12.1.5",
+    "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "^8.5.0",
     "husky": ">=6",
     "lint-staged": ">=13",
@@ -61,7 +61,7 @@
     "postcss": "^8.4.14",
     "prettier": "2.6.2",
     "tailwindcss": "^3.0.23",
-    "typescript": "4.6.3"
+    "typescript": "4.7.2"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix",
