@@ -35,7 +35,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-swipeable": "^6.2.1",
-    "react-table": "^7.7.0",
+    "react-table": "^7.8.0",
     "tslog": "^3.3.3"
   },
   "devDependencies": {
@@ -49,7 +49,7 @@
     "@types/nodemailer": "^6.4.4",
     "@types/pdfkit": "^0.12.6",
     "@types/react": "18.0.7",
-    "@types/react-table": "^7.7.11",
+    "@types/react-table": "^7.7.12",
     "autoprefixer": "^10.4.7",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.5",
