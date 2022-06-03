@@ -518,6 +518,15 @@ export type EmailQueueMutation = {
   createEmailQueue: { __typename?: "EmailQueue"; _id: string };
 };
 
+export type EmailQueueDeleteMutationVariables = Exact<{
+  id: Scalars["ID"];
+}>;
+
+export type EmailQueueDeleteMutation = {
+  __typename?: "Mutation";
+  deleteEmailQueue?: { __typename?: "EmailQueue"; _id: string } | null;
+};
+
 export type ResultMutationVariables = Exact<{
   curriculumName: Scalars["String"];
   user: ResultUserRelation;
@@ -772,6 +781,13 @@ export const EmailQueueDocument = gql`
     }
   }
 `;
+export const EmailQueueDeleteDocument = gql`
+  mutation EmailQueueDelete($id: ID!) {
+    deleteEmailQueue(id: $id) {
+      _id
+    }
+  }
+`;
 export const ResultDocument = gql`
   mutation Result(
     $curriculumName: String!
@@ -957,6 +973,21 @@ export function getSdk(
             ...wrappedRequestHeaders,
           }),
         "EmailQueue",
+        "mutation"
+      );
+    },
+    EmailQueueDelete(
+      variables: EmailQueueDeleteMutationVariables,
+      requestHeaders?: Dom.RequestInit["headers"]
+    ): Promise<EmailQueueDeleteMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<EmailQueueDeleteMutation>(
+            EmailQueueDeleteDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders }
+          ),
+        "EmailQueueDelete",
         "mutation"
       );
     },

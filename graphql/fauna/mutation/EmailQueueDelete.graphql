@@ -1,0 +1,5 @@
+mutation EmailQueueDelete($id: ID!) {
+  deleteEmailQueue(id: $id) {
+    _id
+  }
+}
