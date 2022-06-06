@@ -48,7 +48,7 @@
     "@types/node-mailjet": "^3.3.9",
     "@types/nodemailer": "^6.4.4",
     "@types/pdfkit": "^0.12.6",
-    "@types/react": "18.0.10",
+    "@types/react": "18.0.12",
     "@types/react-table": "^7.7.12",
     "autoprefixer": "^10.4.7",
     "eslint": "8.16.0",
