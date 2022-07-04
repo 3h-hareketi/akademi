@@ -51,7 +51,7 @@
     "@types/react": "18.0.12",
     "@types/react-table": "^7.7.12",
     "autoprefixer": "^10.4.7",
-    "eslint": "8.16.0",
+    "eslint": "8.19.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "^8.5.0",
     "husky": ">=8",
