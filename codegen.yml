@@ -2,7 +2,7 @@ overwrite: true
 generates:
   interfaces/graphcms.ts:
     documents: "graphql/graphcms/**/*.graphql"
-    schema: "${GRAPHCMS_ENDPOINT}"
+    schema: "${HYGRAPH_ENDPOINT}"
     plugins:
       - "typescript"
       - "typescript-operations"
