@@ -5,10 +5,10 @@ const Hero = () => (
     <div className="py-20 md:px-20 radius-for-skewed bg-gray-50">
       <div className="container px-4 mx-auto">
         <div className="max-w-md mx-auto mb-16 text-center">
-          <span className="font-bold text-primary-500">
+          <span className="text-2xl font-bold text-primary-500">
             Hürriyet, Hukuk, Hoşgörü
           </span>
-          <h2 className="text-4xl font-bold lg:text-5xl font-heading">
+          <h2 className="mt-10 text-4xl font-bold lg:text-6xl font-heading">
             3H Akademi&apos;ye hoşgeldiniz!
           </h2>
         </div>
