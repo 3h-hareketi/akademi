@@ -61,32 +61,6 @@ const Navbar = (props: Props) => {
               </svg>
             </li>
             <li>
-              <a
-                className="text-sm font-bold text-primary-500"
-                href="https://3hhareketi.org"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Kurumsal Site
-              </a>
-            </li>
-            <li className="text-gray-300">
-              <svg
-                className="w-4 h-4 current-fill"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                ></path>
-              </svg>
-            </li>
-            <li>
               <Link href="/egitimler" passHref>
                 <a className="text-sm text-gray-400 hover:text-gray-500">
                   Eğitimler
@@ -107,18 +81,47 @@ const Navbar = (props: Props) => {
               </a>
             </Link>
           </div>
-
-          {session ? (
-            <div className="ml-auto">
-              <UserDropdown user={session.user} />
-            </div>
-          ) : (
-            <Link href="/giris" passHref>
-              <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
-                Giriş &amp; Kayıt
-              </a>
-            </Link>
-          )}
+          <div className="hidden lg:inline-block lg:ml-auto">
+            <ul className="hidden lg:w-auto lg:space-x-5 lg:flex lg:items-center">
+              <li>
+                <a
+                  className="text-sm font-bold text-primary-500"
+                  href="https://3hhareketi.org"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Kurumsal Site
+                </a>
+              </li>
+              <li className="text-gray-300">
+                <svg
+                  className="w-4 h-4 current-fill"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  ></path>
+                </svg>
+              </li>
+              {session ? (
+                <div className="ml-auto">
+                  <UserDropdown user={session.user} />
+                </div>
+              ) : (
+                <Link href="/giris" passHref>
+                  <a className="hidden px-6 py-2 text-sm font-bold text-white transition duration-800 lg:inline-block lg:ml-auto lg:mr-3 bg-primary-500 hover:bg-primary-700 rounded-l-xl rounded-t-xl">
+                    Giriş &amp; Kayıt
+                  </a>
+                </Link>
+              )}
+            </ul>
+          </div>
         </div>
       </nav>
       <Transition
