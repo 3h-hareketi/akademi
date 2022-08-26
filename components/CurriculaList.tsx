@@ -26,7 +26,7 @@ const CurriculaList = ({ curricula, categories }: Props) => {
             <div className="hidden w-1/2 text-right lg:block">
               <a
                 className="inline-block px-6 py-2 font-bold leading-loose transition duration-200 bg-primary-500 rounded-l-xl rounded-t-xl hover:bg-primary-700 text-gray-50"
-                href="#"
+                href="mailto:iletisim@3hhareketi.org"
                 data-removed="true"
               >
                 Bizimle İletişime Geçin
