@@ -34,9 +34,9 @@ const Hero = () => (
               <h3 className="px-8 mb-4 text-2xl font-bold font-heading">
                 Eğitimlere katılın
               </h3>
-              <p className="text-gray-500">
+              {/* <p className="text-gray-500">
                 Fusce quam tellus, placerat eu metus ut, viverra aliquet purus.
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="w-full px-4 mb-8 lg:mb-0 lg:w-1/3">
@@ -54,10 +54,10 @@ const Hero = () => (
               <h3 className="px-8 mb-4 text-2xl font-bold font-heading">
                 Sınavlara girin
               </h3>
-              <p className="text-gray-500">
+              {/* <p className="text-gray-500">
                 Ut tempus tellus ac nisi vestibulum tempus. Nunc tincidunt
                 lectus libero.
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="w-full px-4 lg:w-1/3">
@@ -81,10 +81,10 @@ const Hero = () => (
               <h3 className="px-8 mb-4 text-2xl font-bold font-heading">
                 Sertifikanızı alın
               </h3>
-              <p className="text-gray-500">
+              {/* <p className="text-gray-500">
                 Donec ut ligula nunc. Mauris blandit vel est et facilisis.
                 Integer sapien felis.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
